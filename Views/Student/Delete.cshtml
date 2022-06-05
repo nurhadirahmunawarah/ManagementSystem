@@ -1,0 +1,96 @@
+﻿@model ManagementSystem.Models.tb_student
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">Padam Pelajar</h6>
+        </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <h6 text-align="center">Butiran Maklumat</h6>
+
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Date)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Package)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Package)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.RefNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.RefNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IC)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IC)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_batches.ID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_batches.ID)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Padam" class="btn btn-danger" /> |
+                        <button class="btn btn-outline-primary">
+                            @Html.ActionLink("Kembali ke Utama", "Index", new { style = "color: white" })
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

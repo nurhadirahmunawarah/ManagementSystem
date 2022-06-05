@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ManagementSystem.Models.tb_performance>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Kemaskini Prestasi Pelajar</h1>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-primary">Senarai Pelajar Dengan Prestasi</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <h5>  Cari</h5>
+                    <div class="input-group">
+                        <input type="text" id="myInput" class="form-control bg-light border-0 small" onkeyup="myFunction()" placeholder="Sila masukkan nama pelajar"
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <button class="btn btn-outline-primary ">
+                        @Html.ActionLink("Tambah Prestasi Pelajar", "Create", new { style = "color: white" })
+                    </button>
+                    <hr>
+                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.tb_student.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Remark)
+                            </th>
+
+                            <th>Kemaskini</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_student.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remark)
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+
+                                    <button class="btn btn-info ">
+                                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-danger ">@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                    <script>
+                        function myFunction() {
+                            var input, filter, table, tr, td, i, txtValue;
+                            input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            table = document.getElementById("myTable");
+                            tr = table.getElementsByTagName("tr");
+                            for (i = 0; i < tr.length; i++) {
+                                td = tr[i].getElementsByTagName("td")[0];
+                                if (td) {
+                                    txtValue = td.textContent || td.innerText;
+                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        </body>

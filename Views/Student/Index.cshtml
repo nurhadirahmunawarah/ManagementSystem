@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ManagementSystem.Models.tb_student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<body>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Kemaskini Pelajar</h1>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-primary">Senarai Pelajar</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+                    <h5>  Cari</h5>
+                    <div class="input-group">
+                        <input type="text" id="myInput" class="form-control bg-light border-0 small" onkeyup="myFunction()" placeholder="Sila masukkan nama"
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <button class="btn btn-outline-primary ">
+                        @Html.ActionLink("Tambah Pelajar Baharu", "Create", new { style = "color: white" })
+                    </button>
+                    <hr>
+                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Package)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RefNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IC)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tb_batches.ID)
+
+                            </th>
+                            <th>Kemaskini</th>
+                        </tr>
+                            </thead>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_package.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_batches.ID)
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+
+                                    <button class="btn btn-info ">
+                                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-danger ">@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>

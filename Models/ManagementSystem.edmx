@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tb_batches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_class">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="Package" Type="int" Nullable="false" />
+          <Property Name="TutorID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_package">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_performance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_salary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="TutorID" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="tb_status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="IC" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+          <Property Name="Package" Type="int" />
+          <Property Name="BatchID" Type="int" Nullable="false" />
+          <Property Name="RefNo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IC" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Role" Type="int" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Contact" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="BatchID" Type="int" />
+        </EntityType>
+        <Association Name="FK_tb_class_tb_package">
+          <End Role="tb_package" Type="Self.tb_package" Multiplicity="1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_package">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="Package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_class_tb_student">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="0..1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_class_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_performance_tb_student">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="1" />
+          <End Role="tb_performance" Type="Self.tb_performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_performance">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_salary_tb_user1">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_salary" Type="Self.tb_salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_salary">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_student_tb_batches">
+          <End Role="tb_batches" Type="Self.tb_batches" Multiplicity="1" />
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_student">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_student_tb_package">
+          <End Role="tb_package" Type="Self.tb_package" Multiplicity="0..1" />
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_package">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_student">
+              <PropertyRef Name="Package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="0..1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManagementSystemModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_batches" EntityType="Self.tb_batches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_class" EntityType="Self.tb_class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_package" EntityType="Self.tb_package" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_performance" EntityType="Self.tb_performance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_salary" EntityType="Self.tb_salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_status" EntityType="Self.tb_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_class_tb_package" Association="Self.FK_tb_class_tb_package">
+            <End Role="tb_package" EntitySet="tb_package" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_class_tb_student" Association="Self.FK_tb_class_tb_student">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_class_tb_user" Association="Self.FK_tb_class_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_performance_tb_student" Association="Self.FK_tb_performance_tb_student">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_performance" EntitySet="tb_performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_salary_tb_user1" Association="Self.FK_tb_salary_tb_user1">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_salary" EntitySet="tb_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_student_tb_batches" Association="Self.FK_tb_student_tb_batches">
+            <End Role="tb_batches" EntitySet="tb_batches" />
+            <End Role="tb_student" EntitySet="tb_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_student_tb_package" Association="Self.FK_tb_student_tb_package">
+            <End Role="tb_package" EntitySet="tb_package" />
+            <End Role="tb_student" EntitySet="tb_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_status" Association="Self.FK_tb_user_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tb_batches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_student_tb_batches" FromRole="tb_batches" ToRole="tb_student" />
+        </EntityType>
+        <EntityType Name="tb_class">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="Package" Type="Int32" Nullable="false" />
+          <Property Name="TutorID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <NavigationProperty Name="tb_package" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_class" ToRole="tb_package" />
+          <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_class_tb_student" FromRole="tb_class" ToRole="tb_student" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_class" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_package">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_package" ToRole="tb_class" />
+          <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_student_tb_package" FromRole="tb_package" ToRole="tb_student" />
+        </EntityType>
+        <EntityType Name="tb_performance">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_performance" ToRole="tb_student" />
+        </EntityType>
+        <EntityType Name="tb_salary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="TutorID" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_salary_tb_user1" FromRole="tb_salary" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_user_tb_status" FromRole="tb_status" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <Property Name="Package" Type="Int32" />
+          <Property Name="BatchID" Type="Int32" Nullable="false" />
+          <Property Name="RefNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_batches" Relationship="Self.FK_tb_student_tb_batches" FromRole="tb_student" ToRole="tb_batches" />
+          <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_student" FromRole="tb_student" ToRole="tb_class" />
+          <NavigationProperty Name="tb_package" Relationship="Self.FK_tb_student_tb_package" FromRole="tb_student" ToRole="tb_package" />
+          <NavigationProperty Name="tb_performance" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_student" ToRole="tb_performance" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="BatchID" Type="Int32" />
+          <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_user" ToRole="tb_class" />
+          <NavigationProperty Name="tb_salary" Relationship="Self.FK_tb_salary_tb_user1" FromRole="tb_user" ToRole="tb_salary" />
+          <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_user_tb_status" FromRole="tb_user" ToRole="tb_status" />
+        </EntityType>
+        <Association Name="FK_tb_student_tb_batches">
+          <End Role="tb_batches" Type="Self.tb_batches" Multiplicity="1" />
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_student">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_class_tb_package">
+          <End Role="tb_package" Type="Self.tb_package" Multiplicity="1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_package">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="Package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_class_tb_student">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="0..1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_class_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="0..1" />
+          <End Role="tb_class" Type="Self.tb_class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_class">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_student_tb_package">
+          <End Role="tb_package" Type="Self.tb_package" Multiplicity="0..1" />
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_package">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_student">
+              <PropertyRef Name="Package" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_performance_tb_student">
+          <End Role="tb_student" Type="Self.tb_student" Multiplicity="1" />
+          <End Role="tb_performance" Type="Self.tb_performance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_performance">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_salary_tb_user1">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_salary" Type="Self.tb_salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_salary">
+              <PropertyRef Name="TutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="0..1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tb_batches" EntityType="Self.tb_batches" />
+          <EntitySet Name="tb_class" EntityType="Self.tb_class" />
+          <EntitySet Name="tb_package" EntityType="Self.tb_package" />
+          <EntitySet Name="tb_performance" EntityType="Self.tb_performance" />
+          <EntitySet Name="tb_salary" EntityType="Self.tb_salary" />
+          <EntitySet Name="tb_status" EntityType="Self.tb_status" />
+          <EntitySet Name="tb_student" EntityType="Self.tb_student" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+          <AssociationSet Name="FK_tb_student_tb_batches" Association="Self.FK_tb_student_tb_batches">
+            <End Role="tb_batches" EntitySet="tb_batches" />
+            <End Role="tb_student" EntitySet="tb_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_class_tb_package" Association="Self.FK_tb_class_tb_package">
+            <End Role="tb_package" EntitySet="tb_package" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_class_tb_student" Association="Self.FK_tb_class_tb_student">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_class_tb_user" Association="Self.FK_tb_class_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_class" EntitySet="tb_class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_student_tb_package" Association="Self.FK_tb_student_tb_package">
+            <End Role="tb_package" EntitySet="tb_package" />
+            <End Role="tb_student" EntitySet="tb_student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_performance_tb_student" Association="Self.FK_tb_performance_tb_student">
+            <End Role="tb_student" EntitySet="tb_student" />
+            <End Role="tb_performance" EntitySet="tb_performance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_salary_tb_user1" Association="Self.FK_tb_salary_tb_user1">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_salary" EntitySet="tb_salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_status" Association="Self.FK_tb_user_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ManagementSystemModelStoreContainer" CdmEntityContainer="ManagementSystemEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ManagementSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_batches">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_batches">
+              <MappingFragment StoreEntitySet="tb_batches">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_class">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_class">
+              <MappingFragment StoreEntitySet="tb_class">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="TutorID" ColumnName="TutorID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_package">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_package">
+              <MappingFragment StoreEntitySet="tb_package">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_performance">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_performance">
+              <MappingFragment StoreEntitySet="tb_performance">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_salary">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_salary">
+              <MappingFragment StoreEntitySet="tb_salary">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TutorID" ColumnName="TutorID" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_status">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_status">
+              <MappingFragment StoreEntitySet="tb_status">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_student">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_student">
+              <MappingFragment StoreEntitySet="tb_student">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_user">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_user">
+              <MappingFragment StoreEntitySet="tb_user">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IC" ColumnName="IC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
