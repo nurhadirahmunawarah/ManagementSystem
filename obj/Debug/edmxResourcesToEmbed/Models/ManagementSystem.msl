@@ -43,6 +43,7 @@
     <EntitySetMapping Name="tb_performance">
       <EntityTypeMapping TypeName="ManagementSystemModel.tb_performance">
         <MappingFragment StoreEntitySet="tb_performance">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />

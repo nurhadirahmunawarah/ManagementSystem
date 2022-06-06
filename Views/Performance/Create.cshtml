@@ -27,34 +27,44 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <div class="form-horizontal">
-                           
-                            <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.StudentID, "StudentID", htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.DropDownList("StudentID", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group" style="display:none"> 
+                        @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" }) 
+                    <div class="col-md-10"> 
+                        @Html.TextBoxFor(model => model.DateCreated, new { @Value = @DateTime.Now.ToShortDateString(), htmlAttributes = new { @class = "form-control" } })  
+                        @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })             
+                        </div>         
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StudentID, "StudentID", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("StudentID", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
 
-                            <div class="text-center">
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Create" class="btn btn-success" text-align="center" />
-                                    </div>
-                                </div>
+
+                    <div class="text-center">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-success" text-align="center" />
                             </div>
                         </div>
+                    </div>
+                </div>
                     }
 
 

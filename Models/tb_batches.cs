@@ -18,6 +18,7 @@ namespace ManagementSystem.Models
         public tb_batches()
         {
             this.tb_student = new HashSet<tb_student>();
+            this.tb_user = new HashSet<tb_user>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace ManagementSystem.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_student> tb_student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_user> tb_user { get; set; }
     }
 }

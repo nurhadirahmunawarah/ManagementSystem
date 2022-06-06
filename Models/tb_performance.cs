@@ -17,6 +17,7 @@ namespace ManagementSystem.Models
         public int ID { get; set; }
         public string Remark { get; set; }
         public int StudentID { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual tb_student tb_student { get; set; }
     }

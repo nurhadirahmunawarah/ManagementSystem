@@ -4,13 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-
 <div class="container">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">Maklumat Pelajar</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Maklumat Pengguna</h6>
         </div>
 
 
@@ -26,6 +25,14 @@
 
                     <dd>
                         @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IC)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IC)
                     </dd>
 
                     <dt>
@@ -45,27 +52,11 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Package)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Package)
-                    </dd>
-
-                    <dt>
                         @Html.DisplayNameFor(model => model.RefNo)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.RefNo)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IC)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.IC)
                     </dd>
 
                     <dt>
@@ -76,16 +67,23 @@
                         @Html.DisplayFor(model => model.tb_batches.ID)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_package.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_package.Name)
+                    </dd>
+
                 </dl>
             </div>
             <p>
-
                 <button class="btn btn-warning ">
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { style = "color: white" })
+                    @Html.ActionLink("Kemaskini", "Edit", new { id = Model.ID }, new { style = "color: white" })
                 </button>
 
                 <button class="btn btn-outline-primary">
-                    @Html.ActionLink("Back to List", "Index", new { style = "color: white" })
+                    @Html.ActionLink("Kembali", "Index", new { style = "color: white" })
                 </button>
 
             </p>

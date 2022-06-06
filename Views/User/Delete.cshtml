@@ -4,8 +4,6 @@
     ViewBag.Title = "Delete";
 }
 
-
-
 <div class="container">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -77,12 +75,20 @@
                         @Html.DisplayFor(model => model.tb_status.Description)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_batches.ID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_batches.ID)
+                    </dd>
+
                 </dl>
-                <hr>
 
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
+
 
                     <div class="form-actions no-color">
                         <input type="submit" value="Padam" class="btn btn-danger" /> |

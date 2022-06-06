@@ -17,7 +17,7 @@
             <div class="table-responsive">
                 <h6 text-align="center">Butiran Maklumat</h6>
 
-                <hr />
+                <hr>
                 <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.Name)
@@ -25,6 +25,14 @@
 
                     <dd>
                         @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IC)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IC)
                     </dd>
 
                     <dt>
@@ -44,27 +52,11 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Package)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Package)
-                    </dd>
-
-                    <dt>
                         @Html.DisplayNameFor(model => model.RefNo)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.RefNo)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IC)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.IC)
                     </dd>
 
                     <dt>
@@ -75,12 +67,19 @@
                         @Html.DisplayFor(model => model.tb_batches.ID)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_package.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_package.Name)
+                    </dd>
+
                 </dl>
 
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-
 
                     <div class="form-actions no-color">
                         <input type="submit" value="Padam" class="btn btn-danger" /> |

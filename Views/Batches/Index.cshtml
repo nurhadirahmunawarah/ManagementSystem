@@ -35,6 +35,9 @@
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.ID)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.CreateDate)
                                 </th>
                                 <th>Kemaskini</th>
@@ -43,21 +46,26 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CreateDate)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateDate)
+                                </td>
+                                <td>
 
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-danger ">@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                    </td>
-                                </tr>
+                                    <button class="btn btn-info ">
+                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+
+
+                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                </td>
+                            </tr>
                             }
 
                         </tbody>

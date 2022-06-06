@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -47,6 +47,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Remark" Type="nvarchar(max)" />
           <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="tb_salary">
           <Key>
@@ -177,6 +178,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tb_user_tb_batches">
+          <End Role="tb_batches" Type="Self.tb_batches" Multiplicity="0..1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tb_user_tb_status">
           <End Role="tb_status" Type="Self.tb_status" Multiplicity="0..1" />
           <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
@@ -227,13 +240,16 @@
             <End Role="tb_package" EntitySet="tb_package" />
             <End Role="tb_student" EntitySet="tb_student" />
           </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_batches" Association="Self.FK_tb_user_tb_batches">
+            <End Role="tb_batches" EntitySet="tb_batches" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
           <AssociationSet Name="FK_tb_user_tb_status" Association="Self.FK_tb_user_tb_status">
             <End Role="tb_status" EntitySet="tb_status" />
             <End Role="tb_user" EntitySet="tb_user" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -254,6 +270,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_student_tb_batches" FromRole="tb_batches" ToRole="tb_student" />
+          <NavigationProperty Name="tb_user" Relationship="ManagementSystemModel.FK_tb_user_tb_batches" FromRole="tb_batches" ToRole="tb_user" />
         </EntityType>
         <EntityType Name="tb_class">
           <Key>
@@ -286,6 +303,7 @@
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_performance" ToRole="tb_student" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="tb_salary">
           <Key>
@@ -340,6 +358,7 @@
           <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_user" ToRole="tb_class" />
           <NavigationProperty Name="tb_salary" Relationship="Self.FK_tb_salary_tb_user1" FromRole="tb_user" ToRole="tb_salary" />
           <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_user_tb_status" FromRole="tb_user" ToRole="tb_status" />
+          <NavigationProperty Name="tb_batches" Relationship="ManagementSystemModel.FK_tb_user_tb_batches" FromRole="tb_user" ToRole="tb_batches" />
         </EntityType>
         <Association Name="FK_tb_student_tb_batches">
           <End Role="tb_batches" Type="Self.tb_batches" Multiplicity="1" />
@@ -479,7 +498,23 @@
             <End Role="tb_status" EntitySet="tb_status" />
             <End Role="tb_user" EntitySet="tb_user" />
           </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_batches" Association="ManagementSystemModel.FK_tb_user_tb_batches">
+            <End Role="tb_batches" EntitySet="tb_batches" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_tb_user_tb_batches">
+          <End Type="ManagementSystemModel.tb_batches" Role="tb_batches" Multiplicity="0..1" />
+          <End Type="ManagementSystemModel.tb_user" Role="tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_batches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="BatchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -528,6 +563,7 @@
           <EntitySetMapping Name="tb_performance">
             <EntityTypeMapping TypeName="ManagementSystemModel.tb_performance">
               <MappingFragment StoreEntitySet="tb_performance">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />

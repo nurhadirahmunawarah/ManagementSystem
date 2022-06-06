@@ -17,7 +17,7 @@ namespace ManagementSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var tb_user = db.tb_user.Include(t => t.tb_status);
+            var tb_user = db.tb_user.Include(t => t.tb_status).Include(t => t.tb_batches);
             return View(tb_user.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace ManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description");
+            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID");
             return View();
         }
 
@@ -58,6 +59,7 @@ namespace ManagementSystem.Controllers
             }
 
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 
@@ -74,6 +76,7 @@ namespace ManagementSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 
@@ -91,6 +94,7 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 

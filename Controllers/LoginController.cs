@@ -43,6 +43,7 @@ namespace ManagementSystem.Controllers
         {
            
             Session.Abandon();
+            Session.Clear();
             return RedirectToAction("Index","Login");
         }
     }

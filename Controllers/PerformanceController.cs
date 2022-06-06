@@ -48,7 +48,7 @@ namespace ManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Remark,StudentID")] tb_performance tb_performance)
+        public ActionResult Create([Bind(Include = "ID,Remark,StudentID,DateCreated")] tb_performance tb_performance)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +120,25 @@ namespace ManagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ViewPerformance()
+        {
+            var tb_performance = db.tb_performance.Include(t => t.tb_student);
+            return View(tb_performance.ToList());
+        }
+
+        public ActionResult ViewPerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tb_performance tb_performance = db.tb_performance.Find(id);
+            if (tb_performance == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tb_performance);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

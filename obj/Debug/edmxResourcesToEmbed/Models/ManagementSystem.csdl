@@ -17,6 +17,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
     <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_student_tb_batches" FromRole="tb_batches" ToRole="tb_student" />
+    <NavigationProperty Name="tb_user" Relationship="ManagementSystemModel.FK_tb_user_tb_batches" FromRole="tb_batches" ToRole="tb_user" />
   </EntityType>
   <EntityType Name="tb_class">
     <Key>
@@ -49,6 +50,7 @@
     <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="StudentID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_performance" ToRole="tb_student" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
   </EntityType>
   <EntityType Name="tb_salary">
     <Key>
@@ -103,6 +105,7 @@
     <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_user" ToRole="tb_class" />
     <NavigationProperty Name="tb_salary" Relationship="Self.FK_tb_salary_tb_user1" FromRole="tb_user" ToRole="tb_salary" />
     <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_user_tb_status" FromRole="tb_user" ToRole="tb_status" />
+    <NavigationProperty Name="tb_batches" Relationship="ManagementSystemModel.FK_tb_user_tb_batches" FromRole="tb_user" ToRole="tb_batches" />
   </EntityType>
   <Association Name="FK_tb_student_tb_batches">
     <End Role="tb_batches" Type="Self.tb_batches" Multiplicity="1" />
@@ -242,5 +245,21 @@
       <End Role="tb_status" EntitySet="tb_status" />
       <End Role="tb_user" EntitySet="tb_user" />
     </AssociationSet>
+    <AssociationSet Name="FK_tb_user_tb_batches" Association="ManagementSystemModel.FK_tb_user_tb_batches">
+      <End Role="tb_batches" EntitySet="tb_batches" />
+      <End Role="tb_user" EntitySet="tb_user" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_tb_user_tb_batches">
+    <End Type="ManagementSystemModel.tb_batches" Role="tb_batches" Multiplicity="0..1" />
+    <End Type="ManagementSystemModel.tb_user" Role="tb_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_batches">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tb_user">
+        <PropertyRef Name="BatchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

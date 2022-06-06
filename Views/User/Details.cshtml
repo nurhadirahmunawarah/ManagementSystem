@@ -4,8 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-
-
 <div class="container">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -69,8 +67,6 @@
                         @Html.DisplayFor(model => model.Contact)
                     </dd>
 
-
-
                     <dt>
                         @Html.DisplayNameFor(model => model.tb_status.Description)
                     </dt>
@@ -79,22 +75,26 @@
                         @Html.DisplayFor(model => model.tb_status.Description)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_batches.ID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_batches.ID)
+                    </dd>
+
                 </dl>
             </div>
             <p>
-
                 <button class="btn btn-warning ">
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { style = "color: white" })
+                    @Html.ActionLink("Kemaskini", "Edit", new { id = Model.ID }, new { style = "color: white" })
                 </button>
 
                 <button class="btn btn-outline-primary">
-                    @Html.ActionLink("Back to List", "Index", new { style = "color: white" })
+                    @Html.ActionLink("Kembali", "Index", new { style = "color: white" })
                 </button>
-               
+
             </p>
         </div>
     </div>
 </div>
-
-
-
