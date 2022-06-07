@@ -4,24 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-@functions{
-    public string badgeColor(string status)
-    {
-        
-        switch (status.Trim())
-        {
-            case "Dalam Proses":
-                return "badge badge-warning";
-                break;
-            case "Selesai":
-                return "badge badge-success";
-                break;
-            default:
-                return "badge badge-primary";
-        }
-    }
-}
-
 <body>
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -60,62 +42,61 @@
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <tr>
-                        <thead>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tb_user.IC)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Amount)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.month)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Status)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Date)
-                        </th>
+                            <thead>
+                            <th>
+                                @Html.DisplayNameFor(model => model.tb_user.IC)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.month)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
 
-                        <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_user.IC)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Amount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.month)
-                                    </td>
-                                    <td>
-                                        @*<span class=@badgeColor(item.Status)>@item.Status</span>*@
-                                        @Html.DisplayFor(modelItem => item.Status)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Date)
-                                    </td>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_user.IC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.month)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
 
-                                    <td>
+                                <td>
 
 
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                        <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", new { id = item.ID }, new { @target = "_blank" }) </button>
-                                    </td>
+                                    <button class="btn btn-info ">
+                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", new { id = item.ID }, new { @target = "_blank" }) </button>
+                                </td>
 
-                                </tr>
-                            }
+                            </tr>
+                        }
                         </tbody>
                     </table>
                     <script>
@@ -141,7 +122,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</body>
+        </div>
+        </body>
 
-
+        
