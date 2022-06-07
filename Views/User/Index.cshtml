@@ -108,13 +108,16 @@
                                         @Html.DisplayFor(modelItem => item.tb_batches.ID)
                                     </td>
                                     <td>
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-info ">
+                                                @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
+                                            </button>
+                                            <button class="btn btn-warning ">
+                                                @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                            </button>
+                                            <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                        </div>
+                                     
                                         
                                     </td>
 
