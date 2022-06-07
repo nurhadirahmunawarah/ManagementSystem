@@ -11,7 +11,8 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tb_batches
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace ManagementSystem.Models
             this.tb_student = new HashSet<tb_student>();
             this.tb_user = new HashSet<tb_user>();
         }
-    
+        [DisplayName("Nombor Batch")]
         public int ID { get; set; }
         public System.DateTime CreateDate { get; set; }
     

@@ -70,14 +70,15 @@
                         </td>
 
                         <td>
+                            <button class="btn btn-info ">
+                                @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
+                            </button>
                             <button class="btn btn-warning ">
-                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
                             </button>
 
-                            <button class="btn btn-info ">
-                                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "color: white" })
-                            </button>
-                            <button class="btn btn-danger ">@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+
+                            <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
                         </td>
                     </tr>
                         }

@@ -11,11 +11,14 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class tb_class
     {
         public int ID { get; set; }
+        [DisplayName("Tarikh")]
         public System.DateTime Date { get; set; }
+        [DisplayName("Tempoh (minit)")]
         public int Duration { get; set; }
         public int Package { get; set; }
         public Nullable<int> TutorID { get; set; }
