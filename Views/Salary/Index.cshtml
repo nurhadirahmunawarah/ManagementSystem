@@ -4,23 +4,65 @@
     ViewBag.Title = "Index";
 }
 
-@functions{
-    public string badgeColor(string status)
-    {
-        
-        switch (status.Trim())
-        {
-            case "Dalam Proses":
-                return "badge badge-warning";
-                break;
-            case "Selesai":
-                return "badge badge-success";
-                break;
-            default:
-                return "badge badge-primary";
-        }
+<style>
+    .badge {
+        padding: 1px 9px 2px;
+        font-size: 12.025px;
+        font-weight: bold;
+        white-space: nowrap;
+        color: #ffffff;
+        background-color: #70b9c5;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
     }
-}
+
+        .badge:hover {
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .badge-error {
+        background-color: #b94a48;
+    }
+
+        .badge-error:hover {
+            background-color: #953b39;
+        }
+
+    .badge-warning {
+        background-color: #f89406;
+    }
+
+        .badge-warning:hover {
+            background-color: #c67605;
+        }
+
+    .badge-success {
+        background-color: ##5cc45e;
+    }
+
+        .badge-success:hover {
+            background-color: #356635;
+        }
+
+    .badge-info {
+        background-color: #3a87ad;
+    }
+
+        .badge-info:hover {
+            background-color: #2d6987;
+        }
+
+    .badge-inverse {
+        background-color: #333333;
+    }
+
+        .badge-inverse:hover {
+            background-color: #1a1a1a;
+        }
+</style>
 
 <body>
     <!-- Begin Page Content -->
@@ -94,8 +136,8 @@
                                         @Html.DisplayFor(modelItem => item.month)
                                     </td>
                                     <td>
-                                        @*<span class=@badgeColor(item.Status)>@item.Status</span>*@
-                                        @Html.DisplayFor(modelItem => item.Status)
+                                        <span class="badge" id="badgeId">@item.Status</span>
+                                        @*@Html.DisplayFor(modelItem => item.Status)*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Date)
@@ -119,29 +161,64 @@
                         </tbody>
                     </table>
                     <script>
-                        function myFunction() {
-                            var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("myInput");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("myTable");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[0];
-                                if (td) {
-                                    txtValue = td.textContent || td.innerText;
-                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                        tr[i].style.display = "";
-                                    } else {
-                                        tr[i].style.display = "none";
-                                    }
-                                }
+                        //function myFunction() {
+                        //    var input, filter, table, tr, td, i, txtValue;
+                        //    input = document.getElementById("myInput");
+                        //    filter = input.value.toUpperCase();
+                        //    table = document.getElementById("myTable");
+                        //    tr = table.getElementsByTagName("tr");
+                        //    for (i = 0; i < tr.length; i++) {
+                        //        td = tr[i].getElementsByTagName("td")[0];
+                        //        if (td) {
+                        //            txtValue = td.textContent || td.innerText;
+                        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        //                tr[i].style.display = "";
+                        //            } else {
+                        //                tr[i].style.display = "none";
+                        //            }
+                        //        }
+                        //    }
+                        //}
+
+                        function badgeColor() {
+                            let el = document.getElementById("badgeId");
+                            console.log(el);
+                            let text = el.trim();
+                            console.log(text);
+                            if (text == "Selesai") {
+                                text.className = "badge badge-success";
+                            } else if (text == "Dalam Proses") {
+                                text.className = "badge badge-warning";
+                            } else {
+                                text.className = "badge badge-primary";
                             }
                         }
+                        document.getElementById("badgeId").onload = badgeColor();
                     </script>
+                   
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+@*@functions{
+    public string badgeColor(string status)
+    {
+
+        switch (status.Trim())
+        {
+            case "Dalam Proses":
+                return "badge badge-warning";
+                break;
+            case "Selesai":
+                return "badge badge-success";
+                break;
+            default:
+                return "badge badge-primary";
+        }
+    }
+}*@
+
 
 
