@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_class">
@@ -32,6 +32,12 @@
           <Property Name="Package" Type="int" Nullable="false" />
           <Property Name="TutorID" Type="int" />
           <Property Name="StudentID" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="CheckIn" Type="datetime2" Precision="7" />
+          <Property Name="CheckOut" Type="datetime2" Precision="7" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="RatingTutor" Type="int" />
+          <Property Name="verifyStatus" Type="int" />
         </EntityType>
         <EntityType Name="tb_package">
           <Key>
@@ -48,6 +54,7 @@
           <Property Name="Remark" Type="nvarchar(max)" />
           <Property Name="StudentID" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Precision="7" />
+          <Property Name="ratingStudent" Type="int" />
         </EntityType>
         <EntityType Name="tb_salary">
           <Key>
@@ -59,6 +66,14 @@
           <Property Name="month" Type="int" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Date" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="tb_salaryRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime2" Precision="7" />
+          <Property Name="SalaryRate" Type="decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="tb_status">
           <Key>
@@ -209,6 +224,7 @@
           <EntitySet Name="tb_package" EntityType="Self.tb_package" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_performance" EntityType="Self.tb_performance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_salary" EntityType="Self.tb_salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_salaryRate" EntityType="Self.tb_salaryRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_status" EntityType="Self.tb_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
@@ -285,6 +301,12 @@
           <NavigationProperty Name="tb_package" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_class" ToRole="tb_package" />
           <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_class_tb_student" FromRole="tb_class" ToRole="tb_student" />
           <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_class" ToRole="tb_user" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CheckIn" Type="DateTime" Precision="7" />
+          <Property Name="CheckOut" Type="DateTime" Precision="7" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="RatingTutor" Type="Int32" />
+          <Property Name="verifyStatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_package">
           <Key>
@@ -304,6 +326,7 @@
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_performance" ToRole="tb_student" />
           <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <Property Name="ratingStudent" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_salary">
           <Key>
@@ -502,6 +525,7 @@
             <End Role="tb_batches" EntitySet="tb_batches" />
             <End Role="tb_user" EntitySet="tb_user" />
           </AssociationSet>
+          <EntitySet Name="tb_salaryRate" EntityType="ManagementSystemModel.tb_salaryRate" />
         </EntityContainer>
         <Association Name="FK_tb_user_tb_batches">
           <End Type="ManagementSystemModel.tb_batches" Role="tb_batches" Multiplicity="0..1" />
@@ -515,6 +539,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tb_salaryRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreated" Type="DateTime" Precision="7" />
+          <Property Name="SalaryRate" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -543,6 +575,12 @@
           <EntitySetMapping Name="tb_class">
             <EntityTypeMapping TypeName="ManagementSystemModel.tb_class">
               <MappingFragment StoreEntitySet="tb_class">
+                <ScalarProperty Name="verifyStatus" ColumnName="verifyStatus" />
+                <ScalarProperty Name="RatingTutor" ColumnName="RatingTutor" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -563,6 +601,7 @@
           <EntitySetMapping Name="tb_performance">
             <EntityTypeMapping TypeName="ManagementSystemModel.tb_performance">
               <MappingFragment StoreEntitySet="tb_performance">
+                <ScalarProperty Name="ratingStudent" ColumnName="ratingStudent" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -616,6 +655,15 @@
                 <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_salaryRate">
+            <EntityTypeMapping TypeName="ManagementSystemModel.tb_salaryRate">
+              <MappingFragment StoreEntitySet="tb_salaryRate">
+                <ScalarProperty Name="SalaryRate" ColumnName="SalaryRate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

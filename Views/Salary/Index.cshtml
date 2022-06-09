@@ -96,16 +96,20 @@
 
 
                     <br>
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Butiran Gaji", "Create", new { style = "color: white" })
-                    </button>
+                   
+                        @Html.ActionLink("Tambah Butiran Gaji", "Create",null, new { @class = "btn btn-outline-primary" })
+                   
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <tr>
                         <thead>
                         <th>
+                            @Html.DisplayNameFor(model => model.tb_user.Name)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.tb_user.IC)
                         </th>
+
                         <th>
                             @Html.DisplayNameFor(model => model.Amount)
                         </th>
@@ -119,66 +123,71 @@
                             @Html.DisplayNameFor(model => model.Date)
                         </th>
 
-                        <th></th>
-                        </tr>
+                        <th>Kemaskini</th>
+
                         </thead>
+                        </tr>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_user.IC)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Amount)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.month)
-                                    </td>
-                                    <td>
-                                        <span class="badge" id="badgeId">@item.Status</span>
-                                        @*@Html.DisplayFor(modelItem => item.Status)*@
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Date)
-                                    </td>
+                            <tr>
 
-                                    <td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_user.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_user.IC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.month)
+                                </td>
+                                <td>
+                                    <span class="badge" id="badgeId">@item.Status</span>
+                                    @*@Html.DisplayFor(modelItem => item.Status)*@
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+
+                                <td>
 
 
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                        <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", new { id = item.ID }, new { @target = "_blank" }) </button>
-                                    </td>
 
-                                </tr>
+                                    @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+
+
+                                    @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                    @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = item.ID }, new { @target = "_blank" }) </button>
+                                </td>
+
+                            </tr>
                             }
                         </tbody>
                     </table>
                     <script>
-                        //function myFunction() {
-                        //    var input, filter, table, tr, td, i, txtValue;
-                        //    input = document.getElementById("myInput");
-                        //    filter = input.value.toUpperCase();
-                        //    table = document.getElementById("myTable");
-                        //    tr = table.getElementsByTagName("tr");
-                        //    for (i = 0; i < tr.length; i++) {
-                        //        td = tr[i].getElementsByTagName("td")[0];
-                        //        if (td) {
-                        //            txtValue = td.textContent || td.innerText;
-                        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        //                tr[i].style.display = "";
-                        //            } else {
-                        //                tr[i].style.display = "none";
-                        //            }
-                        //        }
-                        //    }
-                        //}
+                        function myFunction() {
+                            var input, filter, table, tr, td, i, txtValue;
+                           input = document.getElementById("myInput");
+                            filter = input.value.toUpperCase();
+                            table = document.getElementById("myTable");
+                            tr = table.getElementsByTagName("tr");
+                            for (i = 0; i < tr.length; i++) {
+                               td = tr[i].getElementsByTagName("td")[1];
+                               if (td) {
+                                   txtValue = td.textContent || td.innerText;
+                                   if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                       tr[i].style.display = "";
+                                 } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
 
                         function badgeColor() {
                             let el = document.getElementById("badgeId");

@@ -34,5 +34,6 @@ namespace ManagementSystem.Models
         public virtual DbSet<tb_status> tb_status { get; set; }
         public virtual DbSet<tb_student> tb_student { get; set; }
         public virtual DbSet<tb_user> tb_user { get; set; }
+        public virtual DbSet<tb_salaryRate> tb_salaryRate { get; set; }
     }
 }

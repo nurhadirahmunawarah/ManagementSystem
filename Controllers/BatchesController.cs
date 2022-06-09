@@ -17,6 +17,18 @@ namespace ManagementSystem.Controllers
         // GET: Batches
         public ActionResult Index()
         {
+            using (var context = new ManagementSystemEntities())
+            {
+                var tutor = context.Database.SqlQuery<string>("SELECT tb_user.Name FROM tb_user INNER JOIN tb_batches ON tb_batches.ID = tb_user.BatchID").ToList();
+                
+                ViewBag.tutorList = tutor;
+                
+            }
+            var numStudent = db.tb_student.Count();
+            ViewBag.stuCount = numStudent;
+
+
+
             return View(db.tb_batches.ToList());
         }
 

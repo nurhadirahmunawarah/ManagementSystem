@@ -22,7 +22,6 @@ namespace ManagementSystem.Models
         [DisplayName("No Kad Pengenalan")]
         public int TutorID { get; set; }
         [DisplayName("Bulan")]
-
         public Nullable<int> month { get; set; }
         public string Status { get; set; }
         [DisplayName("Tarikh")]

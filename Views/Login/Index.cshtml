@@ -39,79 +39,77 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                      
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="~/Content/system-white.png" width="500" height="300" class="center" />
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="text-center">
-                                            <br>
-                                            <br>
-                                            <h1 class="h4 text-gray-900 mb-4">Selamat Kembali!</h1>
-                                            <h3 class="h4 text-gray-900 mb-5">Sistem Pengurusan Mengaji</h3>
-                                        </div>
-                                        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-                                        {
-                                            <table>
-                                                <tr>
-                                                    <td></td>
 
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        @Html.LabelFor(model => model.IC)
-                                                    </td>
-                                                    <td>
-                                                        @Html.EditorFor(model => model.IC)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>
-                                                        @Html.ValidationMessageFor(model => model.IC)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> @Html.LabelFor(model => Model.Password)</td>
-                                                    <td> @Html.PasswordFor(model => model.Password)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>
-                                                        @Html.ValidationMessageFor(model => model.Password)
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td>
-
-                                                        <input type="submit" class="btn-primary" name="name" value="Login" />
-
-
-                                                        <input type="reset" name="name" class="btn-success" value="Clear" />
-                                                    </td>
-                                                </tr>
-
-
-
-                                            </table>
-                                        }
-                                        <button class="btn btn-outline-light " text-color="white">
-                                            @Html.ActionLink("Adakan anda sebagai pelajar? Klik Disini!", "ViewPerformance", "Performance")
-                                        </button>
-
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <img src="~/Content/system-white.png" width="500" height="350" class="center" />
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <br>
+                                        <br>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Kembali!</h1>
+                                        <h3 class="h4 text-gray-900 mb-5">Sistem Pengurusan Mengaji</h3>
                                     </div>
+                                    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+                                    {
+                                        <table>
+                                            <tr>
+                                                <td></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @Html.LabelFor(model => model.IC)
+                                                </td>
+                                                <td>
+                                                    @Html.EditorFor(model => model.IC)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    @Html.ValidationMessageFor(model => model.IC)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td> @Html.LabelFor(model => Model.Password)</td>
+                                                <td> @Html.PasswordFor(model => model.Password)</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    @Html.ValidationMessageFor(model => model.Password)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+
+                                                    <input type="submit" class="btn-primary" name="name" value="Login" />
+
+
+                                                    <input type="reset" name="name" class="btn-success" value="Clear" />
+                                                </td>
+                                            </tr>
+
+
+
+                                        </table>
+                                    }
                                    
+
                                 </div>
+
                             </div>
                         </div>
+                    </div>
                 </div>
 
             </div>

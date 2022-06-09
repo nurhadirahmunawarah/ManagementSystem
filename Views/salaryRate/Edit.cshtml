@@ -1,0 +1,61 @@
+﻿@model ManagementSystem.Models.tb_salaryRate
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<style>
+    .text-center {
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-primary">Kemaskini Butiran Gaji</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+
+                        @Html.HiddenFor(model => model.DateCreated)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SalaryRate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.SalaryRate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SalaryRate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="text-center">
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+                </div>
+            </div>
+        </div>
+        </div>
+
+</body>
