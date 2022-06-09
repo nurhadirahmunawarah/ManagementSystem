@@ -28,7 +28,6 @@ namespace ManagementSystem.Models
         [Required(ErrorMessage = "Ruang ini perlu diisi")]
         public string IC { get; set; }
         [DisplayName("Nama Penuh")]
-       
         public string Name { get; set; }
         [DisplayName("Pengguna")]
         [Required(ErrorMessage = "Ruang ini perlu diisi")]
@@ -44,6 +43,7 @@ namespace ManagementSystem.Models
         public Nullable<int> Status { get; set; }
         [DisplayName("Nombor Batch")]
         public Nullable<int> BatchID { get; set; }
+
         public string LoginErrorMessage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -29,9 +29,10 @@ namespace ManagementSystem.Models
         [DisplayName("No Kad Pengenalan")]
         public string IC { get; set; }
         [DisplayName("Alamat")]
-    public string Address { get; set; }
+        public string Address { get; set; }
         [DisplayName("Tarikh")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         public Nullable<System.DateTime> Date { get; set; }
         [DisplayName("Nama Pakej")]
         public Nullable<int> Package { get; set; }
@@ -40,6 +41,7 @@ namespace ManagementSystem.Models
         [DisplayName("Kod Pelajar")]
         public string RefNo { get; set; }
         public string LoginErrorMessage { get; set; }
+
 
         public virtual tb_batches tb_batches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

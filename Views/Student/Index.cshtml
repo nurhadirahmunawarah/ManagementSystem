@@ -36,19 +36,19 @@
 
 
                     <br>
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Pelajar", "Create", new { style = "color: white" })
-                    </button>
+                   
+                    @Html.ActionLink("Tambah Pelajar", "Create",null, new { @class = "btn btn-outline-primary" })
+
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <tr>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.IC)
-                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IC)
+                            </th>
+
 
                             <th>
                                 @Html.DisplayNameFor(model => model.Address)
@@ -70,42 +70,43 @@
 
                         @foreach (var item in Model)
                         {
-                            <tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IC)
+                        </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_batches.ID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_package.Name)
-                                </td>
-                                <td>
-                                    <button class="btn btn-info ">
-                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-warning ">
-                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
 
-                                </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RefNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_batches.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tb_package.Name)
+                        </td>
+                        <td>
 
-                            </tr>
+                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+
+
+                            @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                            @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+
+                        </td>
+
+                    </tr>
                         }
                         </tbody>
                     </table>
@@ -117,7 +118,7 @@
                             table = document.getElementById("myTable");
                             tr = table.getElementsByTagName("tr");
                             for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[0];
+                                td = tr[i].getElementsByTagName("td")[1];
                                 if (td) {
                                     txtValue = td.textContent || td.innerText;
                                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
