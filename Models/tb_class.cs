@@ -25,6 +25,17 @@ namespace ManagementSystem.Models
         public int Package { get; set; }
         public Nullable<int> TutorID { get; set; }
         public Nullable<int> StudentID { get; set; }
+        public string Description { get; set; }
+        [DisplayName("Waktu Masuk")]
+        public Nullable<System.DateTime> CheckIn { get; set; }
+        [DisplayName("Waktu Keluar")]
+        public Nullable<System.DateTime> CheckOut { get; set; }
+        [DisplayName("Waktu Mula")]
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        [DisplayName("Penilaian Pelajar")]
+        public Nullable<int> RatingTutor { get; set; }
+        [DisplayName("Verifikasi")]
+        public Nullable<int> verifyStatus { get; set; }
     
         public virtual tb_package tb_package { get; set; }
         public virtual tb_student tb_student { get; set; }

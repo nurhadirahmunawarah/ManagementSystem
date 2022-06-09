@@ -12,7 +12,6 @@ namespace ManagementSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class tb_batches
     {
@@ -25,7 +24,6 @@ namespace ManagementSystem.Models
         [DisplayName("Nombor Batch")]
         public int ID { get; set; }
         [DisplayName("Tarikh Dijana")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime CreateDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -25,15 +25,15 @@ namespace ManagementSystem.Models
     
         public int ID { get; set; }
         [DisplayName("Nombor Kad Pengenalan")]
-        [Required(ErrorMessage = "Ruang ini perlu diisi")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public string IC { get; set; }
         [DisplayName("Nama Penuh")]
         public string Name { get; set; }
         [DisplayName("Pengguna")]
-        [Required(ErrorMessage = "Ruang ini perlu diisi")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public Nullable<int> Role { get; set; }
         [DisplayName("Kata Laluan")]
-        [Required(ErrorMessage = "Ruang ini perlu diisi")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public string Password { get; set; }
         [DisplayName("Emel")]
         public string Email { get; set; }
@@ -43,7 +43,6 @@ namespace ManagementSystem.Models
         public Nullable<int> Status { get; set; }
         [DisplayName("Nombor Batch")]
         public Nullable<int> BatchID { get; set; }
-
         public string LoginErrorMessage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

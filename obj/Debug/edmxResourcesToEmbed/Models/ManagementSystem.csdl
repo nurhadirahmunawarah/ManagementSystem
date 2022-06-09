@@ -32,6 +32,12 @@
     <NavigationProperty Name="tb_package" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_class" ToRole="tb_package" />
     <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_class_tb_student" FromRole="tb_class" ToRole="tb_student" />
     <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_class" ToRole="tb_user" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CheckIn" Type="DateTime" Precision="7" />
+    <Property Name="CheckOut" Type="DateTime" Precision="7" />
+    <Property Name="StartTime" Type="Time" Precision="7" />
+    <Property Name="RatingTutor" Type="Int32" />
+    <Property Name="verifyStatus" Type="Int32" />
   </EntityType>
   <EntityType Name="tb_package">
     <Key>
@@ -51,6 +57,7 @@
     <Property Name="StudentID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_performance_tb_student" FromRole="tb_performance" ToRole="tb_student" />
     <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="ratingStudent" Type="Int32" />
   </EntityType>
   <EntityType Name="tb_salary">
     <Key>
@@ -249,6 +256,7 @@
       <End Role="tb_batches" EntitySet="tb_batches" />
       <End Role="tb_user" EntitySet="tb_user" />
     </AssociationSet>
+    <EntitySet Name="tb_salaryRate" EntityType="ManagementSystemModel.tb_salaryRate" />
   </EntityContainer>
   <Association Name="FK_tb_user_tb_batches">
     <End Type="ManagementSystemModel.tb_batches" Role="tb_batches" Multiplicity="0..1" />
@@ -262,4 +270,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="tb_salaryRate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreated" Type="DateTime" Precision="7" />
+    <Property Name="SalaryRate" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
 </Schema>

@@ -73,10 +73,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Salary")">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Kemaskini Butiran Gaji</span>
-                    </a>
+                    <a class="nav-link collapsed" href="@Url.Action("Index", "Salary")" data-toggle="collapse" data-target="#collapseTwo"
+                       aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-chart-area"></i>
+                            <span>Kemaskini Butiran Gaji</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Tambahan:</h6>
+                                <a class="collapse-item" href="@Url.Action("Index", "salaryRate")">Kemaskini Kadar Gaji</a>
+
+                            </div>
+                        </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Student")">

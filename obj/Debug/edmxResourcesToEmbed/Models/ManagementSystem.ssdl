@@ -27,6 +27,12 @@
     <Property Name="Package" Type="int" Nullable="false" />
     <Property Name="TutorID" Type="int" />
     <Property Name="StudentID" Type="int" />
+    <Property Name="Description" Type="text" />
+    <Property Name="CheckIn" Type="datetime2" Precision="7" />
+    <Property Name="CheckOut" Type="datetime2" Precision="7" />
+    <Property Name="StartTime" Type="time" Precision="7" />
+    <Property Name="RatingTutor" Type="int" />
+    <Property Name="verifyStatus" Type="int" />
   </EntityType>
   <EntityType Name="tb_package">
     <Key>
@@ -43,6 +49,7 @@
     <Property Name="Remark" Type="nvarchar(max)" />
     <Property Name="StudentID" Type="int" Nullable="false" />
     <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="ratingStudent" Type="int" />
   </EntityType>
   <EntityType Name="tb_salary">
     <Key>
@@ -54,6 +61,14 @@
     <Property Name="month" Type="int" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Date" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="tb_salaryRate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime2" Precision="7" />
+    <Property Name="SalaryRate" Type="decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="tb_status">
     <Key>
@@ -204,6 +219,7 @@
     <EntitySet Name="tb_package" EntityType="Self.tb_package" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_performance" EntityType="Self.tb_performance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_salary" EntityType="Self.tb_salary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_salaryRate" EntityType="Self.tb_salaryRate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_status" EntityType="Self.tb_status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_student" EntityType="Self.tb_student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />

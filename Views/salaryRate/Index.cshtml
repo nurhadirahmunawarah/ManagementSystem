@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ManagementSystem.Models.tb_salaryRate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<body>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Kemaskini Kadar Gaji</h1>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-primary">Senarai Kadar Gaji</h6>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+
+
+
+
+
+                    <br>
+
+                    @Html.ActionLink("Tambah Kadar Gaji", "Create", null, new { @class = "btn btn-outline-primary" })
+
+                    <hr>
+                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DateCreated)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SalaryRate)
+                                </th>
+                                <th>Kemaskini</th>
+
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateCreated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SalaryRate)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+
+
+                                        @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                        @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
