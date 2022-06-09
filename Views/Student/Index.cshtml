@@ -70,43 +70,45 @@
 
                         @foreach (var item in Model)
                         {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IC)
-                        </td>
+                            <tr>
+                      
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
 
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IC)
+                                </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RefNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tb_batches.ID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tb_package.Name)
-                        </td>
-                        <td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_batches.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_package.Name)
+                                </td>
+                                <td>
+                                    <button class="btn btn-info ">
+                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
+                                    </button>
+                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
+                                </td>
 
-                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+                            </tr>
 
-
-                            @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
-
-                            @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
-
-                        </td>
-
-                    </tr>
                         }
                         </tbody>
                     </table>
@@ -133,3 +135,4 @@
                 </div>
             </div>
         </div>
+    </div>
