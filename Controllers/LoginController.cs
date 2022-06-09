@@ -24,9 +24,17 @@ namespace ManagementSystem.Controllers
             using(ManagementSystemEntities db = new ManagementSystemEntities())
             {
                 
-                var userDetails = db.tb_user.Where(x => x.IC == userModel.IC && VerifyHashedPassword(x.Password, userModel.Password)).FirstOrDefault();
-               
-                if(userDetails ==null)
+                var userDetails = db.tb_user.Where(x => x.IC == userModel.IC).FirstOrDefault(); // x.Password == userModel.Password VerifyHashedPassword(x.Password, userModel.Password)
+                var PasswordCorrect = VerifyHashedPassword(userDetails.Password, userModel.Password);
+
+
+                if(PasswordCorrect == false)
+                {
+                    userModel.LoginErrorMessage = "Pengguna tidak dijumpa";
+                    return View("Index", userModel);
+                }
+
+                if (userDetails ==null)
                 {
                     userModel.LoginErrorMessage = "Salah nombor kad pengenalan atau kata laluan";
                     return View("Index", userModel);
