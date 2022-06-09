@@ -12,6 +12,7 @@ namespace ManagementSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tb_performance
     {
@@ -20,6 +21,7 @@ namespace ManagementSystem.Models
         public string Remark { get; set; }
         public int StudentID { get; set; }
         [DisplayName("Tarikh Dijana")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual tb_student tb_student { get; set; }

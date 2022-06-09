@@ -1,0 +1,142 @@
+﻿@using System.Data.Entity;
+@model ManagementSystem.Models.tb_student
+
+@{
+    ViewBag.Title = "ViewReport";
+    Layout = "";
+
+}
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Management System</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class="mx-auto bg-white">
+
+        <div class="row justify-content-end pb-5">
+            <div class="well col-xs-10 col-sm-10 col-md-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <button onclick="window.print()"><i style="font-size:24px" class="fa">&#xf02f;</i></button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center pb-5">
+            <img src="~/Content/logo.png" width="200" height="150" class="img" alt="Responsive image">
+        </div>
+        <div class="row justify-content-center">
+            <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            Nama: @Html.DisplayFor(model => model.Name) <br>
+                            Kod Pelajar: @Html.DisplayFor(model => model.RefNo)<br>
+                            IC: @Html.DisplayFor(model => model.IC)<br><br>
+                            Pakej: @Html.DisplayFor(model => model.tb_package.Name)<br>
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <em>Masa: @DateTime.Now</em>
+                        </p>
+                        <p>
+                            <em>Laporan #: @Html.DisplayFor(model => model.ID)</em>
+                        </p>
+                        <p>
+                            <em>Batch: @Html.DisplayFor(model => model.tb_batches.ID)</em>
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-center">
+                    <div class="text-center">
+                        <h3>Laporan Prestasi Pelajar</h3>
+                        <p><strong>Berdasarkan Kelas Terkini</strong></p>
+                    </div>
+                    </span>
+                </div>
+
+                <div class="row justify-content-center py-3">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Tarikh Kelas</th>
+                                <!-- <th>#</th>
+                            <th class="text-center">Price</th> -->
+                                <th class="text-center">Catatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.tb_performance)
+                            {
+                                <tr>
+                                    <td class="col-md-2"><em>@item.DateCreated.GetValueOrDefault().ToString("dd/MM/yyyy")</em></td>
+                                    <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
+                                <td class="col-md-1 text-center">$13</td> -->
+                                    <td class="col-md-8">@item.Remark</td>
+                                </tr>
+                            }
+
+
+                            <!-- <tr>
+                            <td class="text-right">
+                            <p>
+                                <strong>Jumlah: </strong>
+                            </p>
+                            <p>
+                                <strong>Tax: </strong>
+                            </p></td>
+                            <td class="text-center">
+                            <p>
+                                <strong>$6.94</strong>
+                            </p>
+                            <p>
+                                <strong>$6.94</strong>
+                            </p></td>
+                        </tr> -->
+                            <tr>
+                                <!-- <td>   </td>
+                            <td>   </td> -->
+                                <td class="col-md-2"><h6><strong>Jumlah Kelas: </strong></h6></td>
+                                <td class="col-md-8">@Model.tb_performance.Count()</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="row justify-content-center py-3">
+                    <footer class="text-center text-muted">
+                        Laporan ini merupakan kelas-kelas terakhir yang dihadiri pelajar
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+

@@ -102,7 +102,7 @@
                                         @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
                                     </button>
                                     <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-
+                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
                                 </td>
 
                             </tr>
@@ -132,3 +132,4 @@
                 </div>
             </div>
         </div>
+    </div>
