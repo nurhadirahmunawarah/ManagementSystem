@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-1">
                                         <div class="form-group row">
-                                            @Html.LabelFor(model => model.TutorID, "TutorID", htmlAttributes: new { @class = "control-form-label col-md-5" })
+                                            @Html.LabelFor(model => model.TutorID, "No Kad Pengenalan Tutor",htmlAttributes: new { @class = "control-form-label col-md-5" })
                                             <div class="col-md-12">
                                                 @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-5" })
+                                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-7" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-5" })
                                         <div class="col-md-12">
-                                            <select id="Status" name="Role" class="form-control">
+                                            <select id="Status" name="Status" class="form-control">
                                                 <option value="">-- Pilih Status --</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Tidak Selesai">Tidak Selesai</option>

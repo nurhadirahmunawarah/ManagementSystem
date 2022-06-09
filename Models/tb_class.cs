@@ -12,11 +12,13 @@ namespace ManagementSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tb_class
     {
         public int ID { get; set; }
         [DisplayName("Tarikh")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Date { get; set; }
         [DisplayName("Tempoh (minit)")]
         public int Duration { get; set; }
