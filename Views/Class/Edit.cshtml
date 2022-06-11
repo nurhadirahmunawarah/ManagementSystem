@@ -35,78 +35,99 @@
                             @Html.HiddenFor(model => model.ID)
 
                             <div class="row">
-                                <div class="col-md-7 col-md-1">
-
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.TutorID, "TutorID", htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
+                                <div class="col-md-8 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.StudentID, "Nama Pelajar", htmlAttributes: new { @class = "control-label col-md-7" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownList("StudentID", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-
-
                                 </div>
-                                <div class="col-md-5 col-md-1">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                                        <div class="col-md-10">
-                                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="row">
+                             @*<div class="col-md-7 col-md-1">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TutorID, "TutorID", htmlAttributes: new { @class = "control-label col-md-5" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>*@
+                                <div class="col-md-4 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.Date, "Tarikh", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                                             @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                           
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.StudentID, "StudentID", htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("StudentID", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
-                                    </div>
-                                    </div>
-                                
-
-
-
-
-                                <div class="row">
-                                    <div class="col-md-7 col-md-1">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-5 col-md-1">
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Package, "Package", htmlAttributes: new { @class = "control-label col-md-4" })
-                                            <div class="col-md-10">
-                                                @Html.DropDownList("Package", null, htmlAttributes: new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
-                                            </div>
+                                <div class="col-md-4 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.StartTime, "Waktu Mula", htmlAttributes: new { @class = "control-label col-md-12" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                                            @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.Duration, "Durasi", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.Package, "Pakej", htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownList("Package", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-md-1">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.Description, "Keterangan", htmlAttributes: new { @class = "control-label col-md-7" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <br >
+                            <div class="row">
                                 <div class="text-center">
                                     <div class="form-group">
                                         <div class="col-md-offset-2 col-md-12">
-                                            <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
+                                            @Html.HiddenFor(model => model.ID)
+                                            <input type="submit" value="Simpan" class="btn btn-success" text-align="center" @*id="@Session["ID"]"*@ />
+                                            <button class="btn btn-outline-primary ">
+                                                @Html.ActionLink("Kembali", "Index")
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                                
+                            </div>
                             }
 
-                            <button class="btn btn-outline-primary ">
-                                @Html.ActionLink("Kembali", "Index")
-                            </button>
+                            
                         </div>
                         </div>
         </div>

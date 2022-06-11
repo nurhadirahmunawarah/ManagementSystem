@@ -33,6 +33,7 @@ namespace ManagementSystem.Controllers
                     Session["IC"] = userDetails.IC;
                     Session["Name"] = userDetails.Name;
                     Session["Role"] = userDetails.Role;
+                    Session["ID"] = userDetails.ID;
                     return RedirectToAction("Index", "Home");
                 }
             }

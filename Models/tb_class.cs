@@ -11,18 +11,24 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tb_class
     {
         public int ID { get; set; }
-        [DisplayName("Tarikh")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Date { get; set; }
-        [DisplayName("Tempoh (minit)")]
         public int Duration { get; set; }
         public int Package { get; set; }
         public Nullable<int> TutorID { get; set; }
         public Nullable<int> StudentID { get; set; }
+        public string Description { get; set; }
+        public Nullable<System.DateTime> CheckIn { get; set; }
+        public Nullable<System.DateTime> CheckOut { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public Nullable<int> Rating { get; set; }
     
         public virtual tb_package tb_package { get; set; }
         public virtual tb_student tb_student { get; set; }
