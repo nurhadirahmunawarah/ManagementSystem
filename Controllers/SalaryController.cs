@@ -46,11 +46,15 @@ namespace ManagementSystem.Controllers
                 .Select(s => new
                 {
                     Text = s.Name + " - " + s.IC,
-                    Value = s.IC
+                    Value = s.ID
                 })
                 .ToList();
 
             ViewBag.TutorID = new SelectList(clients, "Value", "Text");
+
+
+            //var listOfClasses = db.tb_class.Where(s => s.Date.Month == 1).ToList();
+            //ViewBag.ClassList = listOfClasses;
             return View();
         }
 
@@ -61,8 +65,20 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Amount,TutorID,month,Status,Date")] tb_salary tb_salary)
         {
+            var listClasses = db.tb_class.Where(s => s.Date.Month == tb_salary.month && s.TutorID==tb_salary.TutorID).Select(s=>s.Duration).DefaultIfEmpty().Sum();
+            var rateSalary = db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate;
+            
+
+            if(listClasses == 0)
+            {
+                // insert model state error fail.
+                return RedirectToAction("Index");
+            }
+            var salaryAmount = (decimal)listClasses * rateSalary / 60;
+
             if (ModelState.IsValid)
             {
+                tb_salary.Amount = (double?)salaryAmount;
                 db.tb_salary.Add(tb_salary);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,6 +111,22 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Amount,TutorID,month,Status,Date")] tb_salary tb_salary)
         {
+            var listClasses = db.tb_class.Where(s => s.Date.Month == tb_salary.month && s.TutorID == tb_salary.TutorID).Select(s => s.Duration).DefaultIfEmpty().Sum();
+            var rateSalary = db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate;
+
+
+            if (listClasses == 0)
+            {
+                // insert model state error fail.
+                return RedirectToAction("Index");
+            }
+            var salaryAmount = (decimal)listClasses * rateSalary / 60;
+            if (tb_salary.Status == null)
+            {
+                ModelState.AddModelError("Status", "Status tidak diisi.");
+                return View(tb_salary);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_salary).State = EntityState.Modified;
