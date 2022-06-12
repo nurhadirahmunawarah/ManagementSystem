@@ -603,9 +603,8 @@ readers do not read off random characters that represent icons */
 .fa-book-medical:before {
   content: "\f7e6"; }
 
-.fa-address-card:before {
-    content: "\f518";
-}
+.fa-book-open:before {
+  content: "\f518"; }
 
 .fa-book-reader:before {
   content: "\f5da"; }
@@ -2012,7 +2011,7 @@ readers do not read off random characters that represent icons */
   content: "\f3ae"; }
 
 .fa-h-square:before {
-  content: "\f0fd"; 
+  content: "\f0fd"; }
 
 .fa-hacker-news:before {
   content: "\f1d4"; }

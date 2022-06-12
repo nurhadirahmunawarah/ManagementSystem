@@ -23,6 +23,9 @@ namespace ManagementSystem.Models
         public string Description { get; set; }
         public Nullable<System.DateTime> CheckIn { get; set; }
         public Nullable<System.DateTime> CheckOut { get; set; }
+        [DisplayName("Waktu Mula")]
+         [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> StartTime { get; set; }
         public Nullable<int> RatingTutor { get; set; }
         public Nullable<int> verifyStatus { get; set; }
