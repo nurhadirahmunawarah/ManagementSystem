@@ -63,7 +63,7 @@ namespace ManagementSystem.Controllers
                 db.Entry(tb_user).Property(c => c.Status).IsModified = false;
                 db.Entry(tb_user).Property(c => c.BatchID).IsModified = false;
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Index", "Home");
             }
          
             return View(tb_user);

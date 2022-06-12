@@ -11,9 +11,7 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tb_student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,20 +22,12 @@ namespace ManagementSystem.Models
         }
     
         public int ID { get; set; }
-        [DisplayName("Nama Penuh")]
         public string Name { get; set; }
-        [DisplayName("No Kad Pengenalan")]
         public string IC { get; set; }
-        [DisplayName("Alamat")]
-    public string Address { get; set; }
-        [DisplayName("Tarikh")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public string Address { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        [DisplayName("Nama Pakej")]
         public Nullable<int> Package { get; set; }
-        [DisplayName("Nombor Batch")]
         public int BatchID { get; set; }
-        [DisplayName("Kod Student")]
         public string RefNo { get; set; }
     
         public virtual tb_batches tb_batches { get; set; }

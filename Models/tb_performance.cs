@@ -11,15 +11,12 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class tb_performance
     {
         public int ID { get; set; }
-        [DisplayName("Ulasan")]
         public string Remark { get; set; }
         public int StudentID { get; set; }
-        [DisplayName("Tarikh Dijana")]
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         public virtual tb_student tb_student { get; set; }

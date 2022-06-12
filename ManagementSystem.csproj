@@ -267,6 +267,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\PerformanceController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -2279,6 +2280,8 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

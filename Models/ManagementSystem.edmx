@@ -32,6 +32,11 @@
           <Property Name="Package" Type="int" Nullable="false" />
           <Property Name="TutorID" Type="int" />
           <Property Name="StudentID" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="CheckIn" Type="datetime2" Precision="7" />
+          <Property Name="CheckOut" Type="datetime2" Precision="7" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="Rating" Type="int" />
         </EntityType>
         <EntityType Name="tb_package">
           <Key>
@@ -285,6 +290,11 @@
           <NavigationProperty Name="tb_package" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_class" ToRole="tb_package" />
           <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_class_tb_student" FromRole="tb_class" ToRole="tb_student" />
           <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_class_tb_user" FromRole="tb_class" ToRole="tb_user" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CheckIn" Type="DateTime" Precision="7" />
+          <Property Name="CheckOut" Type="DateTime" Precision="7" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="Rating" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_package">
           <Key>
@@ -543,6 +553,11 @@
           <EntitySetMapping Name="tb_class">
             <EntityTypeMapping TypeName="ManagementSystemModel.tb_class">
               <MappingFragment StoreEntitySet="tb_class">
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+                <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
