@@ -26,7 +26,6 @@ namespace ManagementSystem.Models
         }
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<tb_batches> tb_batches { get; set; }
         public virtual DbSet<tb_class> tb_class { get; set; }
         public virtual DbSet<tb_package> tb_package { get; set; }
         public virtual DbSet<tb_performance> tb_performance { get; set; }

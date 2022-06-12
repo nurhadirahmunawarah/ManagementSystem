@@ -40,17 +40,13 @@
                     </dt>
 
                     <dd>
+
                         @Html.DisplayFor(model => model.Role)
+                        <br />
+                        (1-Admin | 2-Tutor)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Password)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Password)
-                    </dd>
-
+                 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
                     </dt>
@@ -76,19 +72,19 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.tb_batches.ID)
+                        @Html.DisplayNameFor(model => model.BatchID)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.tb_batches.ID)
+                        @Html.DisplayFor(model => model.BatchID)
                     </dd>
 
                 </dl>
             </div>
             <p>
-                
-                    @Html.ActionLink("Kemaskini", "Edit",null, new { id = Model.ID }, new { @class = "btn btn-warning" })
-                
+
+                @Html.ActionLink("Kemaskini", "Edit", null, new { id = Model.ID }, new { @class = "btn btn-warning" })
+
 
                 @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
 

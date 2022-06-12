@@ -261,7 +261,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BatchesController.cs" />
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -293,9 +292,6 @@
       <DependentUpon>ManagementSystem.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>ManagementSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tb_batches.cs">
       <DependentUpon>ManagementSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_class.cs">
@@ -2241,11 +2237,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Batches\Create.cshtml" />
-    <Content Include="Views\Batches\Delete.cshtml" />
-    <Content Include="Views\Batches\Details.cshtml" />
-    <Content Include="Views\Batches\Edit.cshtml" />
-    <Content Include="Views\Batches\Index.cshtml" />
     <Content Include="Views\Performance\Create.cshtml" />
     <Content Include="Views\Performance\Delete.cshtml" />
     <Content Include="Views\Performance\Details.cshtml" />
@@ -2275,11 +2266,6 @@
     <Content Include="Views\Salary\ViewInvoice.cshtml" />
     <Content Include="Views\Performance\ViewPerformance.cshtml" />
     <Content Include="Views\Performance\ViewPerDetails.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Delete.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />
@@ -2294,6 +2280,11 @@
     <Content Include="Views\salaryRate\Details.cshtml" />
     <Content Include="Views\salaryRate\Edit.cshtml" />
     <Content Include="Views\salaryRate\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

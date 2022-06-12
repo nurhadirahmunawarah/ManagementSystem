@@ -15,9 +15,7 @@ namespace ManagementSystem.Controllers
         public ActionResult Index()
         {
 
-            string queryStudent = "SELECT COUNT(*) FROM tb_student;";
-            string queryTutor = "SELECT COUNT(*) FROM tb_tutor;";
-            string queryBatch = "SELECT COUNT(*) FROM tb_batch;";
+        
 
             var numStudent = db.tb_student.Count();
             var numTutor = db.tb_user.Count();

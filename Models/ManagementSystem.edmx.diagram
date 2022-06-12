@@ -6,15 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="c20db4c062294d50972ed85b120ac599" Name="Diagram1">
         <EntityTypeShape EntityType="ManagementSystemModel.sysdiagram" Width="1.5" PointX="3.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ManagementSystemModel.tb_batches" Width="1.5" PointX="7.375" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_class" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_package" Width="1.5" PointX="8.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_performance" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_salary" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_status" Width="1.5" PointX="1.5" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_student" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ManagementSystemModel.tb_user" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="ManagementSystemModel.FK_tb_student_tb_batches" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ManagementSystemModel.tb_user" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="ManagementSystemModel.FK_tb_class_tb_package" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementSystemModel.FK_tb_class_tb_student" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementSystemModel.FK_tb_class_tb_user" ManuallyRouted="false" />
@@ -22,7 +20,6 @@
         <AssociationConnector Association="ManagementSystemModel.FK_tb_performance_tb_student" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementSystemModel.FK_tb_salary_tb_user1" ManuallyRouted="false" />
         <AssociationConnector Association="ManagementSystemModel.FK_tb_user_tb_status" ManuallyRouted="false" />
-        <AssociationConnector Association="ManagementSystemModel.FK_tb_user_tb_batches" />
         <EntityTypeShape EntityType="ManagementSystemModel.tb_salaryRate" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>

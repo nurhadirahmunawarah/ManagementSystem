@@ -60,7 +60,7 @@
                                 @Html.DisplayNameFor(model => model.RefNo)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.tb_batches.ID)
+                                @Html.DisplayNameFor(model => model.BatchID)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.tb_package.Name)
@@ -69,48 +69,48 @@
                         </tr>
 
                         @foreach (var item in Model)
-                        {
+                     {
+                    <tbody>
+                        <tr>
 
-                            <tr>
-                      
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IC)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IC)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefNo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_batches.ID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_package.Name)
-                                </td>
-                                <td>
-                                    <button class="btn btn-info ">
-                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-warning ">
-                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BatchID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tb_package.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
 
-                            </tr>
 
-                        }
-                        </tbody>
+                                @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                    }
+                       
                     </table>
                     <script>
                         function myFunction() {

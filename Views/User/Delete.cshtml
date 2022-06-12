@@ -41,15 +41,11 @@
 
                     <dd>
                         @Html.DisplayFor(model => model.Role)
+                        <br />
+                        (1-Admin | 2-Tutor)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Password)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Password)
-                    </dd>
+                 
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -76,11 +72,11 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.tb_batches.ID)
+                        @Html.DisplayNameFor(model => model.BatchID)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.tb_batches.ID)
+                        @Html.DisplayFor(model => model.BatchID)
                     </dd>
 
                 </dl>
@@ -90,10 +86,10 @@
                     @Html.AntiForgeryToken()
 
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Padam" class="btn btn-danger" /> |
-                @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
-            </div>
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Padam" class="btn btn-danger" /> |
+                        @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+                    </div>
                 }
             </div>
         </div>
