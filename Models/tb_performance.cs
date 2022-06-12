@@ -22,7 +22,6 @@ namespace ManagementSystem.Models
         [DisplayName("Tarikh Dijana")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateCreated { get; set; }
-        [DisplayName("Penilaian Tutor")]
         public Nullable<int> ratingStudent { get; set; }
     
         public virtual tb_student tb_student { get; set; }

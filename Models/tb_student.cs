@@ -33,9 +33,9 @@ namespace ManagementSystem.Models
         public int BatchID { get; set; }
         [DisplayName("Kod Pelajar")]
         public string RefNo { get; set; }
+
         public string LoginErrorMessage { get; set; }
 
-        public virtual tb_batches tb_batches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_class> tb_class { get; set; }
         public virtual tb_package tb_package { get; set; }

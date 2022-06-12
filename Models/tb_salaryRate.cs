@@ -12,13 +12,16 @@ namespace ManagementSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tb_salaryRate
     {
         public int ID { get; set; }
-        [DisplayName("Tarikh Dijana")]
+        [DisplayName("Tarikh")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateCreated { get; set; }
-        [DisplayName("Kadar Gaji Tutor (RM)")]
+        [DisplayName("Kadar Gaji satu jam (RM)")]
+     
         public Nullable<decimal> SalaryRate { get; set; }
     }
 }

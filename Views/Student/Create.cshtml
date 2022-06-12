@@ -94,14 +94,20 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-md-1">
+<<<<<<< HEAD
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.BatchID, "BatchID", htmlAttributes: new { @class = "control-label col-md-4" })
                                         <div class="col-md-10">
                                             @Html.DropDownList("BatchID", null, htmlAttributes: new { @class = "form-control" })
+=======
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.BatchID, htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.BatchID, new { htmlAttributes = new { @class = "form-control" })
+>>>>>>> main
                                             @Html.ValidationMessageFor(model => model.BatchID, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 

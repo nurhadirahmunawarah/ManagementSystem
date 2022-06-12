@@ -51,7 +51,8 @@ namespace ManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name");
-            ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC");
+            var tutors = db.tb_user.Where(x => x.Role == 2);
+            ViewBag.TutorID = new SelectList(tutors, "ID", "Name");
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name");
             return View();
         }

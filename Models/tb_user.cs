@@ -28,22 +28,22 @@ namespace ManagementSystem.Models
         [DisplayName("Nama Penuh")]
         public string Name { get; set; }
         [DisplayName("Pengguna")]
-        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
+        [Required(ErrorMessage = "Ruang ini perlu diisi")]
         public Nullable<int> Role { get; set; }
         [DisplayName("Kata Laluan")]
-        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
+        [Required(ErrorMessage = "Ruang ini perlu diisi")]
         public string Password { get; set; }
         public string Email { get; set; }
         public string Contact { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> BatchID { get; set; }
-    
+
+        public string LoginErrorMessage { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_class> tb_class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_salary> tb_salary { get; set; }
         public virtual tb_status tb_status { get; set; }
-        public virtual tb_batches tb_batches { get; set; }
-        public string LoginErrorMessage { get; internal set; }
     }
 }

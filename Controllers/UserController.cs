@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using ManagementSystem.Models;
@@ -18,7 +17,7 @@ namespace ManagementSystem.Controllers
         // GET: User
         public ActionResult Index()
         {
-            var tb_user = db.tb_user.Include(t => t.tb_status).Include(t => t.tb_batches);
+            var tb_user = db.tb_user.Include(t => t.tb_status);
             return View(tb_user.ToList());
         }
 
@@ -41,7 +40,6 @@ namespace ManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description");
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID");
             return View();
         }
 
@@ -54,15 +52,12 @@ namespace ManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var unhashedPass = tb_user.Password;
-                tb_user.Password = HashPassword(unhashedPass);
                 db.tb_user.Add(tb_user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 
@@ -79,7 +74,6 @@ namespace ManagementSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 
@@ -97,7 +91,6 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_user.BatchID);
             return View(tb_user);
         }
 
@@ -134,25 +127,6 @@ namespace ManagementSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public static string HashPassword(string password)
-        {
-            byte[] salt;
-            byte[] buffer2;
-            if (password == null)
-            {
-                throw new ArgumentNullException("password");
-            }
-            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
-            {
-                salt = bytes.Salt;
-                buffer2 = bytes.GetBytes(0x20);
-            }
-            byte[] dst = new byte[0x31];
-            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
-            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
-            return Convert.ToBase64String(dst);
         }
     }
 }
