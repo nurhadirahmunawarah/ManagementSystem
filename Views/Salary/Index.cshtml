@@ -4,6 +4,69 @@
     ViewBag.Title = "Index";
 }
 
+<<<<<<< HEAD
+=======
+<style>
+    .badge {
+        padding: 1px 9px 2px;
+        font-size: 12.025px;
+        font-weight: bold;
+        white-space: nowrap;
+        color: #ffffff;
+        background-color: #70b9c5;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+    }
+
+        .badge:hover {
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .badge-error {
+        background-color: #b94a48;
+    }
+
+        .badge-error:hover {
+            background-color: #953b39;
+        }
+
+    .badge-warning {
+        background-color: #f89406;
+    }
+
+        .badge-warning:hover {
+            background-color: #c67605;
+        }
+
+    .badge-success {
+        background-color: ##5cc45e;
+    }
+
+        .badge-success:hover {
+            background-color: #356635;
+        }
+
+    .badge-info {
+        background-color: #3a87ad;
+    }
+
+        .badge-info:hover {
+            background-color: #2d6987;
+        }
+
+    .badge-inverse {
+        background-color: #333333;
+    }
+
+        .badge-inverse:hover {
+            background-color: #1a1a1a;
+        }
+</style>
+
+>>>>>>> upstream/main
 <body>
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -36,12 +99,13 @@
 
 
                     <br>
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Butiran Gaji", "Create", new { style = "color: white" })
-                    </button>
+                   
+                        @Html.ActionLink("Tambah Butiran Gaji", "Create",null, new { @class = "btn btn-outline-primary" })
+                   
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <tr>
+<<<<<<< HEAD
                             <thead>
                             <th>
                                 @Html.DisplayNameFor(model => model.tb_user.IC)
@@ -61,8 +125,35 @@
 
                             <th></th>
                         </tr>
+=======
+                        <thead>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_user.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.tb_user.IC)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.month)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+
+                        <th>Kemaskini</th>
+
+>>>>>>> upstream/main
                         </thead>
+                        </tr>
                         <tbody>
+<<<<<<< HEAD
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -97,32 +188,114 @@
 
                             </tr>
                         }
+=======
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_user.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_user.IC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.month)
+                                </td>
+                                <td>
+                                    <span class="badge" id="badgeId">@item.Status</span>
+                                    @*@Html.DisplayFor(modelItem => item.Status)*@
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+
+                                <td>
+
+
+
+                                    @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+
+
+                                    @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                    @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = item.ID }, new { @target = "_blank" }) </button>
+                                </td>
+
+                            </tr>
+                            }
+>>>>>>> upstream/main
                         </tbody>
                     </table>
                     <script>
                         function myFunction() {
                             var input, filter, table, tr, td, i, txtValue;
-                            input = document.getElementById("myInput");
+                           input = document.getElementById("myInput");
                             filter = input.value.toUpperCase();
                             table = document.getElementById("myTable");
                             tr = table.getElementsByTagName("tr");
                             for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[0];
-                                if (td) {
-                                    txtValue = td.textContent || td.innerText;
-                                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                        tr[i].style.display = "";
-                                    } else {
+                               td = tr[i].getElementsByTagName("td")[1];
+                               if (td) {
+                                   txtValue = td.textContent || td.innerText;
+                                   if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                       tr[i].style.display = "";
+                                 } else {
                                         tr[i].style.display = "none";
                                     }
                                 }
                             }
                         }
+
+                        function badgeColor() {
+                            let el = document.getElementById("badgeId");
+                            console.log(el);
+                            let text = el.trim();
+                            console.log(text);
+                            if (text == "Selesai") {
+                                text.className = "badge badge-success";
+                            } else if (text == "Dalam Proses") {
+                                text.className = "badge badge-warning";
+                            } else {
+                                text.className = "badge badge-primary";
+                            }
+                        }
+                        document.getElementById("badgeId").onload = badgeColor();
                     </script>
+                   
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         </div>
         </body>
+=======
+    </div>
+</body>
+
+@*@functions{
+    public string badgeColor(string status)
+    {
+
+        switch (status.Trim())
+        {
+            case "Dalam Proses":
+                return "badge badge-warning";
+                break;
+            case "Selesai":
+                return "badge badge-success";
+                break;
+            default:
+                return "badge badge-primary";
+        }
+    }
+}*@
+
+
+>>>>>>> upstream/main
 
         

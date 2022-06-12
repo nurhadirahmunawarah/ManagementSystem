@@ -265,9 +265,12 @@
     <Compile Include="Controllers\ClassController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginStudentController.cs" />
+    <Compile Include="Controllers\MainPageController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\PerformanceController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
+    <Compile Include="Controllers\salaryRateController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -305,6 +308,9 @@
       <DependentUpon>ManagementSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_salary.cs">
+      <DependentUpon>ManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_salaryRate.cs">
       <DependentUpon>ManagementSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_status.cs">
@@ -2279,6 +2285,15 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\MainPage\Index.cshtml" />
+    <Content Include="Views\StudentPage\Index.cshtml" />
+    <Content Include="Views\LoginStudent\Index.cshtml" />
+    <Content Include="Views\StudentPage\Test.cshtml" />
+    <Content Include="Views\salaryRate\Create.cshtml" />
+    <Content Include="Views\salaryRate\Delete.cshtml" />
+    <Content Include="Views\salaryRate\Details.cshtml" />
+    <Content Include="Views\salaryRate\Edit.cshtml" />
+    <Content Include="Views\salaryRate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,13 +11,20 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_performance
     {
         public int ID { get; set; }
+        [DisplayName("Ulasan")]
         public string Remark { get; set; }
         public int StudentID { get; set; }
+        [DisplayName("Tarikh Dijana")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateCreated { get; set; }
+        [DisplayName("Penilaian Tutor")]
+        public Nullable<int> ratingStudent { get; set; }
     
         public virtual tb_student tb_student { get; set; }
     }

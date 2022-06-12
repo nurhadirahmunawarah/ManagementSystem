@@ -40,6 +40,17 @@ namespace ManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC");
+            
+
+            var clients = db.tb_user
+                .Select(s => new
+                {
+                    Text = s.Name + " - " + s.IC,
+                    Value = s.IC
+                })
+                .ToList();
+
+            ViewBag.TutorID = new SelectList(clients, "Value", "Text");
             return View();
         }
 

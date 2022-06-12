@@ -29,6 +29,7 @@
                         @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
+<<<<<<< HEAD
 
                         <div class="form-horizontal">
 
@@ -78,6 +79,46 @@
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
+=======
+                            <div class="form-horizontal">
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-10 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.TutorID, "No Kad Pengenalan Tutor",htmlAttributes: new { @class = "control-form-label col-md-5" })
+                                            <div class="col-md-12">
+                                                @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-5" })
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
+                                                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.month, htmlAttributes: new { @class = "control-label col-md-5" })
+                                            <div class="col-md-12">
+                                                @Html.EditorFor(model => model.month, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.month, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-7" })
+                                        <div class="col-md-12">
+>>>>>>> upstream/main
                                             @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
                                         </div>
@@ -88,9 +129,15 @@
 
 
                                     <div class="form-group">
+<<<<<<< HEAD
                                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
                                             <select id="Status" name="Role">
+=======
+                                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-5" })
+                                        <div class="col-md-12">
+                                            <select id="Status" name="Status" class="form-control">
+>>>>>>> upstream/main
                                                 <option value="">-- Pilih Status --</option>
                                                 <option value="Selesai">Selesai</option>
                                                 <option value="Tidak Selesai">Tidak Selesai</option>
@@ -106,7 +153,12 @@
                                     <div class="text-center">
                                         <div class="form-group">
                                             <div class="col-md-offset-2 col-md-12">
+<<<<<<< HEAD
                                                 <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
+=======
+                                                <input type="submit" value="Simpan" class="btn btn-success " text-align="center" />
+                                                @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+>>>>>>> upstream/main
                                             </div>
                                         </div>
                                     </div>

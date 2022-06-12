@@ -10,127 +10,108 @@ using ManagementSystem.Models;
 
 namespace ManagementSystem.Controllers
 {
-    public class StudentController : Controller
+    public class salaryRateController : Controller
     {
         private ManagementSystemEntities db = new ManagementSystemEntities();
 
-        // GET: Student
+        // GET: salaryRate
         public ActionResult Index()
         {
-            var tb_student = db.tb_student.Include(t => t.tb_batches).Include(t => t.tb_package);
-            return View(tb_student.ToList());
+            return View(db.tb_salaryRate.ToList());
         }
 
-        // GET: Student/Details/5
+        // GET: salaryRate/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_student tb_student = db.tb_student.Find(id);
-            if (tb_student == null)
+            tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
+            if (tb_salaryRate == null)
             {
                 return HttpNotFound();
             }
-            return View(tb_student);
+            return View(tb_salaryRate);
         }
 
-        // GET: Student/Create
+        // GET: salaryRate/Create
         public ActionResult Create()
         {
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID");
-            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name");
             return View();
         }
 
-        // POST: Student/Create
+        // POST: salaryRate/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,IC,Address,Date,Package,BatchID,RefNo")] tb_student tb_student)
+        public ActionResult Create([Bind(Include = "ID,DateCreated,SalaryRate")] tb_salaryRate tb_salaryRate)
         {
             if (ModelState.IsValid)
             {
-                db.tb_student.Add(tb_student);
+                tb_salaryRate.DateCreated = DateTime.Now;
+                db.tb_salaryRate.Add(tb_salaryRate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
-            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
-            return View(tb_student);
+            return View(tb_salaryRate);
         }
 
-        // GET: Student/Edit/5
+        // GET: salaryRate/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_student tb_student = db.tb_student.Find(id);
-            if (tb_student == null)
+            tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
+            if (tb_salaryRate == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
-            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
-            return View(tb_student);
+            return View(tb_salaryRate);
         }
 
-        // POST: Student/Edit/5
+        // POST: salaryRate/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,IC,Address,Date,Package,BatchID,RefNo")] tb_student tb_student)
+        public ActionResult Edit([Bind(Include = "ID,DateCreated,SalaryRate")] tb_salaryRate tb_salaryRate)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tb_student).State = EntityState.Modified;
+                db.Entry(tb_salaryRate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
-            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
-            return View(tb_student);
+            return View(tb_salaryRate);
         }
 
-        // GET: Student/Delete/5
+        // GET: salaryRate/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tb_student tb_student = db.tb_student.Find(id);
-            if (tb_student == null)
+            tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
+            if (tb_salaryRate == null)
             {
                 return HttpNotFound();
             }
-            return View(tb_student);
-        }
-        public ActionResult ViewReport(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var Sreport = db.tb_student.Include(p => p.tb_performance).Include(c => c.tb_class).FirstOrDefault(x => x.ID == id);
-            
-            return View(Sreport);
+            return View(tb_salaryRate);
         }
 
-        // POST: Student/Delete/5
+        // POST: salaryRate/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            tb_student tb_student = db.tb_student.Find(id);
-            db.tb_student.Remove(tb_student);
+            tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
+            db.tb_salaryRate.Remove(tb_salaryRate);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

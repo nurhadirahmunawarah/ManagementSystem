@@ -11,7 +11,9 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +24,24 @@ namespace ManagementSystem.Models
         }
     
         public int ID { get; set; }
+        [DisplayName("Nombor Kad Pengenalan")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public string IC { get; set; }
+        [DisplayName("Nama Penuh")]
         public string Name { get; set; }
+        [DisplayName("Pengguna")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public Nullable<int> Role { get; set; }
+        [DisplayName("Kata Laluan")]
+        [Required(ErrorMessage = "Ruangan ini perlu diisi")]
         public string Password { get; set; }
+        [DisplayName("Emel")]
         public string Email { get; set; }
+        [DisplayName("Nombor Telefon")]
         public string Contact { get; set; }
+        [DisplayName("Status")]
         public Nullable<int> Status { get; set; }
+        [DisplayName("Nombor Batch")]
         public Nullable<int> BatchID { get; set; }
         public string LoginErrorMessage { get; set; }
 

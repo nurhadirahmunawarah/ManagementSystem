@@ -1,60 +1,18 @@
-﻿@model ManagementSystem.Models.tb_salary
+﻿@using System.Data.Entity;
+@model ManagementSystem.Models.tb_student
+
 @{
-    ViewBag.Title = "ViewInvoice";
+    ViewBag.Title = "ViewReport";
     Layout = "";
 
 }
 
-@functions{
-    public string CetakBulan(int nombor){
-        switch(nombor){
-            case 1:
-                return "Januari";
-                break;
-            case 2:
-                return "Februari";
-                break;
-            case 3:
-                return "Mac";
-                break;
-            case 4:
-                return "April";
-                break;
-            case 5:
-                return "Mei";
-                break;
-            case 6:
-                return ("Jun");
-                break;
-            case 7:
-                return "Julai";
-                break;
-            case 8:
-                return "Ogos";
-                break;
-            case 9:
-                return "September";
-                break;
-            case 10:
-                return "Oktober";
-                break;
-            case 11:
-                return "November";
-                break;
-            case 12:
-                return "Disember";
-                break;
-            default:
-                return "";
-        }
-    }
-}
 <head>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Management System</title>
-  
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,15 +34,12 @@
 
 <body>
 
- 
-    <div class="container py-5 bg-white">
-        
-        <div class="row justify-content-end pb-5">
+    <div class="mx-auto bg-white">
 
+        <div class="row justify-content-end pb-5">
             <div class="well col-xs-10 col-sm-10 col-md-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
                 <button onclick="window.print()"><i style="font-size:24px" class="fa">&#xf02f;</i></button>
             </div>
-
         </div>
 
         <div class="row justify-content-center pb-5">
@@ -95,59 +50,55 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <address>
-                            <strong>MengajiOneToOne</strong>
-                            <br>No 7 Lorong Mewah 11, <br>
-                            Bandar Tun Razak, Cheras, <br>
-                            56000, Kuala Lumpur.<br>
-                            Telefon: +60 11-5978 0670
+                            Nama: @Html.DisplayFor(model => model.Name) <br>
+                            Kod Pelajar: @Html.DisplayFor(model => model.RefNo)<br>
+                            IC: @Html.DisplayFor(model => model.IC)<br><br>
+                            Pakej: @Html.DisplayFor(model => model.tb_package.Name)<br>
                         </address>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                         <p>
-                            <em>@Html.DisplayFor(model => model.Date)</em>
+                            <em>Masa: @DateTime.Now</em>
                         </p>
                         <p>
-                            <em>Resit #: @Html.DisplayFor(model => model.ID)</em>
+                            <em>Laporan #: @Html.DisplayFor(model => model.ID)</em>
+                        </p>
+                        <p>
+                            <em>Batch: @Html.DisplayFor(model => model.tb_batches.ID)</em>
                         </p>
                     </div>
                 </div>
                 <hr>
                 <div class="row justify-content-center">
                     <div class="text-center">
-                        <h3>INVOIS</h3>
-                        <p><strong>Bulan @CetakBulan((int)Model.month)</strong></p>
+                        <h3>Laporan Prestasi Pelajar</h3>
+                        <p><strong>Berdasarkan Kelas Terkini</strong></p>
                     </div>
                     </span>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <address>
-                            Nama: @Html.DisplayFor(model => model.tb_user.Name) <br>
-                            IC: @Html.DisplayFor(model => model.tb_user.IC)<br>
-                            Tarikh (Pembayaran):@Html.DisplayFor(model => model.Date)
-                        </address>
-                    </div>
 
-                </div>
                 <div class="row justify-content-center py-3">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Penerangan</th>
+                                <th class="text-center">Tarikh Kelas</th>
                                 <!-- <th>#</th>
                             <th class="text-center">Price</th> -->
-                                <th class="text-center">Jumlah</th>
+                                <th class="text-center">Catatan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="col-md-9"><em>Elaun Tutor</em></h4></td>
-                                <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
-                            <td class="col-md-1 text-center">$13</td> -->
-                                <td class="col-md-1 text-center">RM @Html.DisplayFor(model => model.Amount)</td>
-                            </tr>
+                            @foreach (var item in Model.tb_performance)
+                            {
+                                <tr>
+                                    <td class="col-md-2"><em>@item.DateCreated.GetValueOrDefault().ToString("dd/MM/yyyy")</em></td>
+                                    <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
+                                <td class="col-md-1 text-center">$13</td> -->
+                                    <td class="col-md-8">@item.Remark</td>
+                                </tr>
+                            }
 
-                            </tr>
+
                             <!-- <tr>
                             <td class="text-right">
                             <p>
@@ -167,8 +118,9 @@
                             <tr>
                                 <!-- <td>   </td>
                             <td>   </td> -->
-                                <td class="text-right"><h6><strong>Jumlah Kesuluruhan: </strong></h6></td>
-                                <td class="text-left"><h6><strong>RM @Html.DisplayFor(model => model.Amount)</strong></h6></td>
+                                <td class="col-md-2"><h6><strong>Jumlah Kelas: </strong></h6></td>
+                                <td class="col-md-8">@Model.tb_performance.Count()</td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -176,7 +128,7 @@
                 </div>
                 <div class="row justify-content-center py-3">
                     <footer class="text-center text-muted">
-                        Resit ini Dijana pada @DateTime.Now secara automatik, tiada tandatangan diperlukan
+                        Laporan ini merupakan kelas-kelas terakhir yang dihadiri pelajar
                     </footer>
                 </div>
             </div>
@@ -186,3 +138,5 @@
 
 
 </body>
+
+

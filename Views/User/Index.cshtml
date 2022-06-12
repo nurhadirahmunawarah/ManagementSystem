@@ -36,25 +36,23 @@
 
 
                     <br>
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Pengguna", "Create", new { style = "color: white" })
-                    </button>
+                    
+                        @Html.ActionLink("Tambah Pengguna", "Create",null, new { @class = "btn btn-outline-primary" })
+                    
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
 
-                                <th>
-                                    @Html.DisplayNameFor(model => model.IC)
-                                </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Role)
+                                    @Html.DisplayNameFor(model => model.IC)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Password)
+                                    @Html.DisplayNameFor(model => model.Role)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Email)
@@ -74,6 +72,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
+<<<<<<< HEAD
                                 <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.IC)
@@ -117,8 +116,54 @@
                                         <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
                                         
                                     </td>
+=======
+                            <tr>
+>>>>>>> upstream/main
 
-                                </tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IC)
+                                </td>
+                                <td>
+
+                                    @if (item.Role == 1)
+                                    {
+                                        <p>Admin</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Tutor</p>
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_status.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tb_batches.ID)
+                                </td>
+                                <td>
+                                    <div class="col-sm-12">
+
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+
+
+                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                        @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                    </div>
+
+
+                                </td>
+
+                            </tr>
                             }
                         </tbody>
                     </table>
@@ -130,7 +175,7 @@
                             table = document.getElementById("myTable");
                             tr = table.getElementsByTagName("tr");
                             for (i = 0; i < tr.length; i++) {
-                                td = tr[i].getElementsByTagName("td")[0];
+                                td = tr[i].getElementsByTagName("td")[1];
                                 if (td) {
                                     txtValue = td.textContent || td.innerText;
                                     if (txtValue.toUpperCase().indexOf(filter) > -1) {

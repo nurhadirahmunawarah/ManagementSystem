@@ -13,19 +13,12 @@ namespace ManagementSystem.Models
     using System.Collections.Generic;
     using System.ComponentModel;
 
-    public partial class tb_status
+    public partial class tb_salaryRate
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_status()
-        {
-            this.tb_user = new HashSet<tb_user>();
-        }
-    
         public int ID { get; set; }
-        [DisplayName("Status")]
-        public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_user> tb_user { get; set; }
+        [DisplayName("Tarikh Dijana")]
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        [DisplayName("Kadar Gaji Tutor (RM)")]
+        public Nullable<decimal> SalaryRate { get; set; }
     }
 }

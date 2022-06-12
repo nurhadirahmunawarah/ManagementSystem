@@ -1,4 +1,4 @@
-﻿@model ManagementSystem.Models.tb_batches
+﻿@model ManagementSystem.Models.tb_salaryRate
 
 @{
     ViewBag.Title = "Details";
@@ -9,40 +9,38 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">Maklumat Batch</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Maklumat Butiran Gaji</h6>
         </div>
 
 
         <div class="card-body">
             <div class="table-responsive">
                 <h6 text-align="center">Butiran Maklumat</h6>
-
                 <hr />
                 <dl class="dl-horizontal">
-               
                     <dt>
-                        @Html.DisplayNameFor(model => model.ID)
+                        @Html.DisplayNameFor(model => model.DateCreated)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.ID)
+                        @Html.DisplayFor(model => model.DateCreated)
                     </dd>
+
                     <dt>
-                        @Html.DisplayNameFor(model => model.CreateDate)
+                        @Html.DisplayNameFor(model => model.SalaryRate)
                     </dt>
+
                     <dd>
-                        @Html.DisplayFor(model => model.CreateDate)
+                        @Html.DisplayFor(model => model.SalaryRate)
                     </dd>
 
                 </dl>
             </div>
             <p>
+                @Html.ActionLink("Kemaskini", "Edit", null, new { id = Model.ID }, new { @class = "btn btn-warning" })
 
-               
-                    @Html.ActionLink("Kemaskini", "Edit",null, new { id = Model.ID }, new { @class = "btn btn-warning" })
-               
 
-                @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Kembali ", "Index", null, new { @class = "btn btn-outline-primary" })
 
             </p>
         </div>
