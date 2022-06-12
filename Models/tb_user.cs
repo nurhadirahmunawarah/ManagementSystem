@@ -33,7 +33,7 @@ namespace ManagementSystem.Models
         [Required(ErrorMessage = "Ruang ini perlu diisi")]
         public Nullable<int> Role { get; set; }
         [DisplayName("Kata Laluan")]
-        [Required(ErrorMessage = "Ruang ini perlu diisi")]
+        
         public string Password { get; set; }
         [DisplayName("Emel")]
         public string Email { get; set; }

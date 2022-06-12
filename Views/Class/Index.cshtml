@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<body>
+<body onload="setStatus()">
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -36,41 +36,55 @@
 
 
                     <br>
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Kelas Baharu", "Create", new { style = "color: white" })
-                    </button>
+                    @Html.ActionLink("Tambah Kelas", "Create", new {ID=Session["ID"]}, new { @class = "btn btn-outline-primary" })
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tb_user.IC)
+                                    @*@Html.DisplayNameFor(model => model.tb_student.Name)*@ Nama Pelajar
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Date)
+                                    @*@Html.DisplayNameFor(model => model.Date)*@ Tarikh
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Duration)
+                                    @*@Html.DisplayNameFor(model => model.Date)*@ Waktu
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tb_package.Name)
+                                    @*@Html.DisplayNameFor(model => model.Duration)*@ Durasi (min)
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.tb_student.Name)
+                                    @*@Html.DisplayNameFor(model => model.tb_package.Name*@ Pakej
                                 </th>
+
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tb_package.Name*@ Status
+                                </th>
+
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.tb_package.Name*@ Tindakan
+                                </th>
+
+
                                 <th> Kemaskini</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Where(m => m.TutorID == (int)Session["ID"]))
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.tb_user.IC)
+                                        @Html.DisplayFor(modelItem => item.tb_student.Name)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @*<p id="startTime-id" onload="setStatus()">*@
+                                        @Html.DisplayFor(modelItem => item.StartTime)
+                                        @*</p>*@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Duration)
@@ -78,28 +92,35 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.tb_package.Name)
                                     </td>
+                                    <td id="status-id">
+                                        @(item.CheckIn.HasValue ? "Selesai" : "Belum Selesai")
+                                    </td>
+                                    <td align="center">
+                                        <button id="myBtn" class="myBtn btn btn-primary" onclick="checkIn(@item.ID)">
+                                            Mula
+                                            @*@Html.ActionLink("Tindakan", "...", new { id = item.ID }, new { style = "color: white" })*@
+                                        </button>
+                                        <button id="myBtn" class="myBtn btn btn-danger" onclick="checkOut(@item.ID)">
+                                            Tamat
+                                        </button>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_student.Name)
+
                                     </td>
                                     <td>
-
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
 
 
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                        @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                        @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
                                     </td>
 
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <script>
+                    <script type="text/javascript">
+                        //window.onload() = load();
                         function myFunction() {
                             var input, filter, table, tr, td, i, txtValue;
                             input = document.getElementById("myInput");
@@ -118,7 +139,154 @@
                                 }
                             }
                         }
+
+                        function checkIn(s) {
+                            // Creating Our XMLHttpRequest object
+                            if (confirm("Anda pasti mahu mulakan kelas?\nMasa anda akan mula direkod.")) {
+                                 var xhr = new XMLHttpRequest();
+                                /*model => model.b_total*/
+                                // Making our connection
+                                var url = '@Url.Action("CheckIn", "Class")' + '?id=' + s;
+                                xhr.open("POST", url, false);
+
+                                // function execute after request is successful
+                                xhr.onreadystatechange = function () {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        console.log(this.responseText);
+                                        r = JSON.parse(this.responseText);
+                                        checkInTime = r.checkIn;
+                                        alert("Kelas telah bermula dan direkod pada " + checkInTime + ".");
+                                    }
+                                }
+                                // Sending our request
+                                xhr.send();
+                            }
+
+                        }
+
+                        function checkOut(s) {
+                            // Creating Our XMLHttpRequest object
+                            if (confirm("Anda pasti mahu tamatkan kelas?\nMasa anda akan direkod.")) {
+                                var xhr = new XMLHttpRequest();
+                                /*model => model.b_total*/
+                                // Making our connection
+                                var url = '@Url.Action("CheckOut", "Class")' + '?id=' + s;
+                                xhr.open("POST", url, false);
+
+                                // function execute after request is successful
+                                xhr.onreadystatechange = function () {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        console.log(this.responseText);
+                                        r = JSON.parse(this.responseText);
+                                        checkOutTime = r.checkOut;
+                                        if (confirm("Kelas telah berakhir dan direkod pada " + checkOutTime + "." + '\n' + "Klik Ok untuk muat semula laman muka ini. ")) {
+                                            window.location.reload();
+                                        }
+                                    }
+                                }
+                                // Sending our request
+                                xhr.send();
+                                }
+
+                        }
+
+                        //function CheckOutButton() {
+                        //    document.ge
+                        //}
+
+                        function setStatus() {
+                            console.log("Document loaded.");
+
+                            // Retrieve elements from table
+                            var tab = document.getElementById("myTable");
+                            var tr = tab.getElementsByTagName("tr");
+                            var n = tab.rows.length;
+
+                            // Generate today date
+                            var today = new Date();
+
+                            var btn;
+
+                            for (var i = 0; i < n; i++) {
+                                // Get class date and time
+                                td_date = tr[i].getElementsByTagName("td")[1];
+                                td_time = tr[i].getElementsByTagName("td")[2];
+
+                                // Get class status element
+                                td_status = tr[i].getElementsByTagName("td")[5];
+
+                                // Get class 'tindakan' button element
+                                td_action = tr[i].getElementsByClassName("myBtn")[0];
+                                td_action2 = tr[i].getElementsByClassName("myBtn")[1];
+                                //console.log(td_action);
+                                //btn = td_action.getElementById("myBtn");
+
+                                if (td_status) {
+                                    status = (td_status.textContent || td_status.innerText).trim();
+                                    console.log(status);
+
+                                    if (status == "Selesai") {
+                                        td_action.disabled = true;
+                                        td_action2.disabled = true;
+                                    } else {
+                                        td_action.disabled = false;
+                                        td_action2.disabled = false;
+                                    }
+                                }
+
+
+
+                                //if (td_date && td_time) {
+                                    //console.log(td_action.textContent);
+                                    // Combine date and time to create classDate obj
+                                    //date = (td_date.textContent || td_date.innerText).trim();
+                                    //time = (td_time.textContent || td_time.innerText).trim();
+                                    //classDate = new Date(date + " " + time);
+                                    //console.log(classDate);
+                                    //console.log(today);
+
+
+                                  /*  if (today <= classDate) {*/
+                                        //console.log("Aktif");
+                                        //console.log(td_status);
+                                        //td_status.innerHTML = "Belum Aktif";
+                                        //td_action.innerHTML = "MULA";
+                                    //    //td_action.setAttribute("class", "myBtn btn btn-secondary")
+                                    //    td_action.disabled = true;
+                                    //    td_action2.disabled = true;
+                                    //} else if (today >= classDate) {
+                                        //td_action.getElementById("myBtn").disabled = true;
+                                        //td_action.innerHTML = "MULA";
+                                        //td_action.setAttribute("class", "myBtn btn btn-success");
+                                        //td_status.innerHTML = "Aktif";
+
+                                    //}
+                                    //else {
+                                    //    td_status.innerHTML = "";
+                                    //}
+                                //}
+                            }
+                        };
+
+                        //document.getElementById("statusId").onload = setStatus(s);
+
                     </script>
                 </div>
             </div>
         </div>
+
+
+        @*function badgeColor() {
+            let el = document.getElementById("badgeId");
+            console.log(el);
+            let text = el.trim();
+            console.log(text);
+            if (text == "Selesai") {
+            text.className = "badge badge-success";
+            } else if (text == "Dalam Proses") {
+            text.className = "badge badge-warning";
+            } else {
+            text.className = "badge badge-primary";
+            }
+            }
+            document.getElementById("badgeId").onload = badgeColor();*@

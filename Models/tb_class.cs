@@ -11,10 +11,13 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_class
     {
         public int ID { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         public System.DateTime Date { get; set; }
         public int Duration { get; set; }
         public int Package { get; set; }
@@ -23,6 +26,9 @@ namespace ManagementSystem.Models
         public string Description { get; set; }
         public Nullable<System.DateTime> CheckIn { get; set; }
         public Nullable<System.DateTime> CheckOut { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+
         public Nullable<System.TimeSpan> StartTime { get; set; }
         public Nullable<int> RatingTutor { get; set; }
         public Nullable<int> verifyStatus { get; set; }
