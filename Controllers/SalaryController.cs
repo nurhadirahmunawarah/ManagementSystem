@@ -130,8 +130,6 @@ namespace ManagementSystem.Controllers
             var invoice = db.tb_salary.Include(t => t.tb_user).FirstOrDefault(x => x.ID == id);
             return View(invoice);
 
-
-
         }
         // POST: Salary/Delete/5
         [HttpPost, ActionName("Delete")]

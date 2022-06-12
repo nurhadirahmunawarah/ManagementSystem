@@ -11,7 +11,6 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class tb_class
@@ -20,7 +19,6 @@ namespace ManagementSystem.Models
         [DisplayName("Tarikh")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Date { get; set; }
-        [DisplayName("Tempoh (minit)")]
         public int Duration { get; set; }
         public int Package { get; set; }
         public Nullable<int> TutorID { get; set; }
@@ -31,6 +29,8 @@ namespace ManagementSystem.Models
         [DisplayName("Waktu Keluar")]
         public Nullable<System.DateTime> CheckOut { get; set; }
         [DisplayName("Waktu Mula")]
+         [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public Nullable<System.TimeSpan> StartTime { get; set; }
         [DisplayName("Penilaian Pelajar")]
         public Nullable<int> RatingTutor { get; set; }
