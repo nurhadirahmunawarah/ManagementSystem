@@ -71,57 +71,7 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-<<<<<<< HEAD
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IC)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                    <td>
-                                        
-                                        @if (item.Role ==1)
-                                        {
-                                            <p>Admin</p>
-                                        }
-                                        else
-                                        {
-                                            <p>Tutor</p>
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Password)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Contact)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_status.Description)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tb_batches.ID)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                        
-                                    </td>
-=======
                             <tr>
-<<<<<<< HEAD
->>>>>>> upstream/main
-
-=======
->>>>>>> main
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>

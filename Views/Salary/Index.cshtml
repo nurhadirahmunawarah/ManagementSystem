@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<<<<<<< HEAD
-=======
 <style>
     .badge {
         padding: 1px 9px 2px;
@@ -66,7 +64,6 @@
         }
 </style>
 
->>>>>>> upstream/main
 <body>
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -105,27 +102,6 @@
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <tr>
-<<<<<<< HEAD
-                            <thead>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tb_user.IC)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Amount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.month)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Status)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Date)
-                            </th>
-
-                            <th></th>
-                        </tr>
-=======
                         <thead>
                         <th>
                             @Html.DisplayNameFor(model => model.tb_user.Name)
@@ -149,46 +125,9 @@
 
                         <th>Kemaskini</th>
 
->>>>>>> upstream/main
                         </thead>
                         </tr>
                         <tbody>
-<<<<<<< HEAD
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_user.IC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Amount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.month)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
-
-                                <td>
-
-
-                                    <button class="btn btn-info ">
-                                        @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-warning ">
-                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                    </button>
-                                    <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
-                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", new { id = item.ID }, new { @target = "_blank" }) </button>
-                                </td>
-
-                            </tr>
-                        }
-=======
                             @foreach (var item in Model)
                             {
                             <tr>
@@ -228,7 +167,6 @@
 
                             </tr>
                             }
->>>>>>> upstream/main
                         </tbody>
                     </table>
                     <script>
@@ -270,10 +208,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-        </div>
-        </body>
-=======
     </div>
 </body>
 
@@ -296,6 +230,4 @@
 }*@
 
 
->>>>>>> upstream/main
 
-        

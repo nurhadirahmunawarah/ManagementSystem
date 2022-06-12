@@ -2,36 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-
-    var w = (Model.StartTime + TimeSpan.FromMinutes(Model.Duration));
-    var waktuTamat = "";
-
-    if (w.HasValue)
-    {
-        var wt = Convert.ToDateTime(w.ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-US"));
-        var h = wt.Hour;
-        var m = wt.Minute;
-        waktuTamat = wt.ToString("HH:mm");
-
-    } else
-    {
-        waktuTamat = "";
-    }
-
-
-    //var waktuTamat = DateTime.ParseExact(w, "HH:m", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None);
-
-    //var hm = new DateTime
-
-    //string sqlFormattedDate = waktuTamat.HasValue ? waktuTamat.Value.ToString("HH:mm:ss") : "<not available>";
-
-    //string format = "HH:mm:ss";
-    //string eventdatetime = waktuTamat.ToString();
-    //DateTime x = DateTime.ParseExact(eventdatetime, format,
-    //                                 CultureInfo.InvariantCulture);
-
-    //var display = x.ToString("yyyy.MM.dd HH:mm:ss:ffff");
-
 }
 
 <div class="container">
@@ -50,16 +20,7 @@
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
-                        Nama Penuh Pelajar
-                        @*@Html.DisplayNameFor(model => model.tb_student.Name, "Nama Pelajar")*@
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tb_student.Name)
-                    </dd>
-                    <dt>
-                        Tarikh
-                        @*@Html.DisplayNameFor(model => model.Date)*@
+                        @Html.DisplayNameFor(model => model.Date)
                     </dt>
 
                     <dd>
@@ -67,27 +28,15 @@
                     </dd>
 
                     <dt>
-                        Durasi
-                        @*@Html.DisplayNameFor(model => model.Duration)*@
+                        @Html.DisplayNameFor(model => model.Duration)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.Duration) minit
+                        @Html.DisplayFor(model => model.Duration)
                     </dd>
 
                     <dt>
-                        Waktu Kelas
-                        @*@Html.DisplayNameFor(model => model.Duration)*@
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.StartTime) - @waktuTamat
-                    </dd>
-
-
-                    <dt>
-                        Pakej
-                        @*@Html.DisplayNameFor(model => model.tb_package.Name)*@
+                        @Html.DisplayNameFor(model => model.tb_package.Name)
                     </dt>
 
                     <dd>
@@ -95,22 +44,20 @@
                     </dd>
 
                     <dt>
-                        Keterangan
-                        @*@Html.DisplayNameFor(model => model.tb_package.Name)*@
+                        @Html.DisplayNameFor(model => model.tb_user.IC)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.Description)
+                        @Html.DisplayFor(model => model.tb_user.IC)
                     </dd>
 
-                    @*<dt>
-                            @Html.DisplayNameFor(model => model.tb_user.IC)
-                        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_student.Name)
+                    </dt>
 
-                        <dd>
-                            @Html.DisplayFor(model => model.tb_user.IC)
-                        </dd>*@
-
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_student.Name)
+                    </dd>
 
                 </dl>
             </div>

@@ -12,17 +12,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tb_batches">
-      <EntityTypeMapping TypeName="ManagementSystemModel.tb_batches">
-        <MappingFragment StoreEntitySet="tb_batches">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tb_class">
       <EntityTypeMapping TypeName="ManagementSystemModel.tb_class">
         <MappingFragment StoreEntitySet="tb_class">
+          <ScalarProperty Name="verifyStatus" ColumnName="verifyStatus" />
+          <ScalarProperty Name="RatingTutor" ColumnName="RatingTutor" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="CheckOut" ColumnName="CheckOut" />
+          <ScalarProperty Name="CheckIn" ColumnName="CheckIn" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Duration" ColumnName="Duration" />
@@ -43,6 +41,7 @@
     <EntitySetMapping Name="tb_performance">
       <EntityTypeMapping TypeName="ManagementSystemModel.tb_performance">
         <MappingFragment StoreEntitySet="tb_performance">
+          <ScalarProperty Name="ratingStudent" ColumnName="ratingStudent" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -96,6 +95,15 @@
           <ScalarProperty Name="Contact" ColumnName="Contact" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_salaryRate">
+      <EntityTypeMapping TypeName="ManagementSystemModel.tb_salaryRate">
+        <MappingFragment StoreEntitySet="tb_salaryRate">
+          <ScalarProperty Name="SalaryRate" ColumnName="SalaryRate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

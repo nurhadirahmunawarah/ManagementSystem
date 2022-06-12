@@ -2,12 +2,6 @@
 
 @{
     ViewBag.Title = "Delete";
-    var w = (Model.StartTime + TimeSpan.FromMinutes(Model.Duration));
-
-    var wt = Convert.ToDateTime(w.ToString(), System.Globalization.CultureInfo.GetCultureInfo("en-US"));
-    var h = wt.Hour;
-    var m = wt.Minute;
-    var waktuTamat = wt.ToString("HH:mm");
 }
 
 <div class="container">
@@ -26,14 +20,7 @@
                 <hr>
                 <dl class="dl-horizontal">
                     <dt>
-                        @*@Html.DisplayNameFor(model => model.tb_student.Name)*@ Nama Pelajar
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tb_student.Name)
-                    </dd>
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.Date)*@ Tarikh Kelas
+                        @Html.DisplayNameFor(model => model.Date)
                     </dt>
 
                     <dd>
@@ -41,32 +28,36 @@
                     </dd>
 
                     <dt>
-                        Waktu Kelas
-                        @*@Html.DisplayNameFor(model => model.Duration)*@
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.StartTime) - @waktuTamat
-                    </dd>
-
-
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.Duration)*@ Durasi
+                        @Html.DisplayNameFor(model => model.Duration)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.Duration)
                     </dd>
 
-
                     <dt>
-                        @*@Html.DisplayNameFor(model => model.tb_package.Name)*@ Nama Pakej
+                        @Html.DisplayNameFor(model => model.tb_package.Name)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.tb_package.Name)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_user.IC)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_user.IC)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_student.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_student.Name)
+                    </dd>
 
                 </dl>
 
@@ -76,7 +67,7 @@
 
 
                     <div class="form-actions no-color">
-                        <input type="submit" value="Padam" class="btn btn-danger" /> 
+                        <input type="submit" value="Padam" class="btn btn-danger" /> |
                         <button class="btn btn-outline-primary">
                             @Html.ActionLink("Kembali ke Utama", "Index", new { style = "color: white" })
                         </button>
