@@ -5,9 +5,21 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Web;
+using Google.Apis.Util;
+using Google.Apis.Util.Store;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using ManagementSystem.Models;
+using MimeKit;
+using MimeKit.Text;
 
 namespace ManagementSystem.Controllers
 {
@@ -124,6 +136,30 @@ namespace ManagementSystem.Controllers
             tb_user tb_user = db.tb_user.Find(id);
             db.tb_user.Remove(tb_user);
             db.SaveChanges();
+
+
+            ////email code
+            
+
+
+            //// create email message
+            //var email = new MimeMessage();
+            //email.From.Add(MailboxAddress.Parse("mengaji121@yahoo.com"));
+            //email.To.Add(MailboxAddress.Parse("arifffansurirazak@gmail.com"));
+            //email.Subject = "Test Email Subject";
+            //email.Body = new TextPart(TextFormat.Plain) { Text = "Example Plain Text Message Body" };
+
+            //// send email
+            //using (var smtp = new SmtpClient())
+            //{
+            //    smtp.Connect("smtp.mail.yahoo.com", 587, SecureSocketOptions.StartTls);
+            //    smtp.Authenticate("mengaji121@yahoo.com", "oypqfmgwbomycrzs");
+            //    smtp.Send(email);
+            //    smtp.Disconnect(true);
+            //}
+            
+            ////end email code
+
             return RedirectToAction("Index");
         }
 
