@@ -61,7 +61,7 @@ namespace ManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Date,Duration,Package,TutorID,StudentID,Description,StartTime,Rating")] tb_class tb_class, int ID)
+        public ActionResult Create([Bind(Include = "Date,Duration,Package,TutorID,StudentID,Description,StartTime,RatingTutor, verifyStatus")] tb_class tb_class, int ID)
         {
 
             if (ModelState.IsValid)
@@ -71,7 +71,7 @@ namespace ManagementSystem.Controllers
                 {
                     tb_class.Description = "Tiada keterangan";
                 }
-
+                tb_class.verifyStatus = 2;
                 tb_class.TutorID = ID;
                 db.tb_class.Add(tb_class);
                 db.SaveChanges();
@@ -226,6 +226,30 @@ namespace ManagementSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost, ActionName("verify")]
+        public ActionResult Verify(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var c = new tb_class()
+            {
+                ID = (int)id,
+                verifyStatus = 1
+            };
+
+            using (var db = new ManagementSystemEntities())
+            {
+                db.tb_class.Attach(c);
+                db.Entry(c).Property(x => x.verifyStatus).IsModified = true;
+                db.SaveChanges();
+            }
+
+            return Json(new { verify = 1 });
         }
     }
 }

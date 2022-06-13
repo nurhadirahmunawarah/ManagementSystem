@@ -64,7 +64,7 @@
                             <em>Laporan #: @Html.DisplayFor(model => model.ID)</em>
                         </p>
                         <p>
-                            <em>Batch: @Html.DisplayFor(model => model.tb_batches.ID)</em>
+                            <em>Batch: @Html.DisplayFor(model => model.BatchID)</em>
                         </p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                             <tr>
                                 <th class="text-center">Tarikh Kelas</th>
                                 <!-- <th>#</th>
-                            <th class="text-center">Price</th> -->
+                                <th class="text-center">Price</th> -->
                                 <th class="text-center">Catatan</th>
                             </tr>
                         </thead>
@@ -93,31 +93,31 @@
                                 <tr>
                                     <td class="col-md-2"><em>@item.DateCreated.GetValueOrDefault().ToString("dd/MM/yyyy")</em></td>
                                     <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
-                                <td class="col-md-1 text-center">$13</td> -->
+                                    <td class="col-md-1 text-center">$13</td> -->
                                     <td class="col-md-8">@item.Remark</td>
                                 </tr>
                             }
 
 
                             <!-- <tr>
-                            <td class="text-right">
-                            <p>
-                                <strong>Jumlah: </strong>
-                            </p>
-                            <p>
-                                <strong>Tax: </strong>
-                            </p></td>
-                            <td class="text-center">
-                            <p>
-                                <strong>$6.94</strong>
-                            </p>
-                            <p>
-                                <strong>$6.94</strong>
-                            </p></td>
-                        </tr> -->
+                                <td class="text-right">
+                                <p>
+                                    <strong>Jumlah: </strong>
+                                </p>
+                                <p>
+                                    <strong>Tax: </strong>
+                                </p></td>
+                                <td class="text-center">
+                                <p>
+                                    <strong>$6.94</strong>
+                                </p>
+                                <p>
+                                    <strong>$6.94</strong>
+                                </p></td>
+                            </tr> -->
                             <tr>
                                 <!-- <td>   </td>
-                            <td>   </td> -->
+                                <td>   </td> -->
                                 <td class="col-md-2"><h6><strong>Jumlah Kelas: </strong></h6></td>
                                 <td class="col-md-8">@Model.tb_performance.Count()</td>
 

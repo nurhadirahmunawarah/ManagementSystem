@@ -5,8 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
-
-
+using System.Web.Security;
 
 namespace ManagementSystem.Controllers
 {
@@ -21,20 +20,20 @@ namespace ManagementSystem.Controllers
         [HttpPost]
         public ActionResult Authorize(ManagementSystem.Models.tb_user userModel)
         {
-            using(ManagementSystemEntities db = new ManagementSystemEntities())
+            using (ManagementSystemEntities db = new ManagementSystemEntities())
             {
-                
+
                 var userDetails = db.tb_user.Where(x => x.IC == userModel.IC).FirstOrDefault(); // x.Password == userModel.Password VerifyHashedPassword(x.Password, userModel.Password)
                 var PasswordCorrect = VerifyHashedPassword(userDetails.Password, userModel.Password);
 
 
-                if(PasswordCorrect == false)
+                if (PasswordCorrect == false)
                 {
                     userModel.LoginErrorMessage = "Pengguna tidak dijumpa";
                     return View("Index", userModel);
                 }
 
-                if (userDetails ==null)
+                if (userDetails == null)
                 {
                     userModel.LoginErrorMessage = "Salah nombor kad pengenalan atau kata laluan";
                     return View("Index", userModel);
@@ -47,10 +46,10 @@ namespace ManagementSystem.Controllers
                     Session["ID"] = userDetails.ID;
                     return RedirectToAction("Index", "Home");
                 }
-               
+
 
             }
-           
+
         }
 
         public static bool VerifyHashedPassword(string hashedPassword, string password)
@@ -92,13 +91,16 @@ namespace ManagementSystem.Controllers
             return true;
         }
 
-
+        [Authorize]
         public ActionResult Logout()
         {
-           
-            Session.Abandon();
-            Session.Clear();
-            return RedirectToAction("Index","Login");
+            FormsAuthentication.SignOut();
+            Session["IC"] = null;
+            Session["Name"] = null;
+            Session["Role"] = null;
+            Session["ID"] = null;
+            return RedirectToAction("Index", "Login");
+
         }
     }
 }

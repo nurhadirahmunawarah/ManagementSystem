@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using ManagementSystem.Models;
@@ -40,6 +41,7 @@ namespace ManagementSystem.Controllers
         public ActionResult Create()
         {
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description");
+           
             return View();
         }
 
@@ -52,12 +54,15 @@ namespace ManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var unhashedPass = tb_user.Password;
+                tb_user.Password = HashPassword(unhashedPass);
                 db.tb_user.Add(tb_user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+          
             return View(tb_user);
         }
 
@@ -74,6 +79,7 @@ namespace ManagementSystem.Controllers
                 return HttpNotFound();
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+           
             return View(tb_user);
         }
 
@@ -91,6 +97,7 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
+            
             return View(tb_user);
         }
 
@@ -127,6 +134,25 @@ namespace ManagementSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public static string HashPassword(string password)
+        {
+            byte[] salt;
+            byte[] buffer2;
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+            using (Rfc2898DeriveBytes bytes = new Rfc2898DeriveBytes(password, 0x10, 0x3e8))
+            {
+                salt = bytes.Salt;
+                buffer2 = bytes.GetBytes(0x20);
+            }
+            byte[] dst = new byte[0x31];
+            Buffer.BlockCopy(salt, 0, dst, 1, 0x10);
+            Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
+            return Convert.ToBase64String(dst);
         }
     }
 }

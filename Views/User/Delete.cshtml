@@ -17,7 +17,7 @@
             <div class="table-responsive">
                 <h6 text-align="center">Butiran Maklumat</h6>
 
-                <hr>
+                <hr />
                 <dl class="dl-horizontal">
                     <dt>
                         @Html.DisplayNameFor(model => model.IC)
@@ -41,11 +41,9 @@
 
                     <dd>
                         @Html.DisplayFor(model => model.Role)
-                        <br />
-                        (1-Admin | 2-Tutor)
                     </dd>
 
-                 
+             
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -64,14 +62,6 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.tb_status.Description)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tb_status.Description)
-                    </dd>
-
-                    <dt>
                         @Html.DisplayNameFor(model => model.BatchID)
                     </dt>
 
@@ -79,12 +69,19 @@
                         @Html.DisplayFor(model => model.BatchID)
                     </dd>
 
+                    <dt>
+                        @Html.DisplayNameFor(model => model.tb_status.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tb_status.Description)
+                    </dd>
+
                 </dl>
 
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-
 
                     <div class="form-actions no-color">
                         <input type="submit" value="Padam" class="btn btn-danger" /> |

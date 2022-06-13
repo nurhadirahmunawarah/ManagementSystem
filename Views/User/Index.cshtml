@@ -9,14 +9,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Kemaskini Kelas</h1>
+        <h1 class="h3 mb-2 text-gray-800">Kemaskini Pengguna</h1>
 
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
 
-                <h6 class="m-0 font-weight-bold text-primary">Senarai Kelas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Senarai Pengguna</h6>
             </div>
 
             <div class="card-body">
@@ -36,18 +36,20 @@
 
 
                     <br>
+
                     @Html.ActionLink("Tambah Pengguna", "Create", null, new { @class = "btn btn-outline-primary" })
+
                     <hr>
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-
                                 <th>
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.IC)
                                 </th>
+
                                 <th>
                                     @Html.DisplayNameFor(model => model.Role)
                                 </th>
@@ -64,57 +66,61 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.tb_status.Description)
                                 </th>
-                                <th></th>
-</thead>
+                                <th>Kemaskini</th>
+                        </thead>
                         </tr>
-
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.IC)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IC)
+                                    </td>
 
-                                <td>
-                                    @if (item.Role == 1)
-                                    {
-                                        <p> Admin</p>
-                                    }
-                                    else
-                                    {
-                                        <p> Tutor</p>
-                                    }
-                                </td>
+                                    <td>
+                                        @if (item.Role == 1)
+                                        {
+                                            <p>Admin</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Tutor</p>
+                                        }
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Contact)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.BatchID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_status.Description)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Contact)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BatchID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tb_status.Description)
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-12">
+
+                                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
 
 
-                                    @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
 
-                                    @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
-                                </td>
-                            </tr>
+                                            @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                        </div>
+
+
+                                    </td>
+
+                                </tr>
                             }
                         </tbody>
                     </table>
-
                     <script>
                         function myFunction() {
                             var input, filter, table, tr, td, i, txtValue;
@@ -135,7 +141,17 @@
                             }
                         }
                     </script>
+
+                    
+
+
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>
+
 

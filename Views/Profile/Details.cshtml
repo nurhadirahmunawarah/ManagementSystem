@@ -36,7 +36,7 @@
                         @Html.DisplayFor(model => model.Name)
                     </dd>
 
-                 
+                  
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -57,7 +57,9 @@
                 </dl>
             </div>
             <p>
-                @Html.ActionLink("Kemaskini", "Edit", null, new { id = Model.ID }, new { @class = "btn btn-warning" })
+                <button class="btn btn-warning ">
+                    @Html.ActionLink("Kemaskini", "Edit", new { id = Model.ID }, new { style = "color: white" })
+                </button>
 
                 <button class="btn btn-outline-primary">
                     @Html.ActionLink("Kembali", "Index", "Home")

@@ -2281,13 +2281,19 @@
     <Content Include="Views\salaryRate\Details.cshtml" />
     <Content Include="Views\salaryRate\Edit.cshtml" />
     <Content Include="Views\salaryRate\Index.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Profile\Details.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
+    <Content Include="Views\Student\MyPerformance.cshtml" />
+    <Content Include="Views\Student\ViewClass.cshtml" />
+    <Content Include="Views\Student\ViewReport.cshtml" />
+    <Content Include="Views\Profile\DetailsStudent.cshtml" />
+    <Content Include="Views\Profile\EditStudent.cshtml" />
+    <Content Include="Views\Home\TestChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

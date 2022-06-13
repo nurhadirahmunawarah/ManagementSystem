@@ -1,8 +1,14 @@
-﻿@{
+﻿@model ManagementSystem.Models.tb_student
+
+@{
+    Page.Title = "View Profile";
     Layout = "";
 }
-
-
+<style>
+    .text-center {
+        text-align: center;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +34,6 @@
     <link href="~/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -65,7 +70,6 @@
 
 
             <!-- Nav Item - Tables -->
-         
             <!-- Nav Item - Tables -->
             <li class="nav-item ">
                 <a class="nav-link" href="@Url.Action("ViewClass", "Student", new { id = Session["ID"] })">
@@ -90,7 +94,7 @@
 
             </li>
 
-       
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -150,7 +154,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item"  href="@Url.Action("DetailsStudent", "Profile", new { id = Session["ID"] })">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -192,147 +196,129 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h3 class="h3 mb-0 text-gray-800">Selamat Datang, @Session["Name"]</h3>
 
-                        <br>
-                        <h1 class="h3 mb-0 text-gray-800">Laman Utama</h1>
+                       
                     </div>
                 </div>
 
+                <div class="container">
+                
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Bulan
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.MonthNow</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary">Maklumat Pelajar</h6>
                             </div>
-                        </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Tarikh & Waktu
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.DateNow</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
 
-                                        </div>
-                                    </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <h6 text-align="center">Butiran Maklumat</h6>
+
+                                    <hr />
+                                    <dl class="dl-horizontal">
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.IC)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.IC)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Name)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Address)
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Package)
+                                        </dt>
+
+                                        <dd>
+                                            @if (Model.Package == 1)
+                                            {
+                                                <p>Pakej Basic</p>
+                                            }
+                                            @if (Model.Package == 2)
+                                            {
+                                                <p>Pakej Keluarga</p>
+                                            }
+                                            @if (Model.Package == 3)
+                                            {
+                                                <p> Pakej Experts</p>
+                                            }
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.RefNo)
+                                        </dt>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.RefNo)
+                                        </dd>
+
+
+
+
+                                    </dl>
                                 </div>
-                            </div>
-                        </div>
+                                <p>
+                                    <button class="btn btn-warning ">
+                                        @Html.ActionLink("Kemaskini", "EditStudent", new { id = Model.ID }, new { style = "color: white" })
+                                    </button>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Kelas Akan Datang
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ClassNow</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-circle fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <button class="btn btn-outline-primary">
+                                        @Html.ActionLink("Kembali", "Index", "Home")
+                                    </button>
 
-
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Kelas Sudah Selesai
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ClassEnded</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                    </div>
-
-                    <!-- Content Row -->
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>Copyright &copy; Sagepixel 2022</span>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
                 </div>
-
-
-
-
-
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Sagepixel 2022</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
-
+                <!-- End of Content Wrapper -->
             </div>
-                                <!-- End of Content Wrapper -->
-
-                            </div>
-                            <!-- End of Page Wrapper -->
-                            <!-- Scroll to Top Button-->
-                            <a class="scroll-to-top rounded" href="#page-top">
-                                <i class="fas fa-angle-up"></i>
-                            </a>
+            <!-- End of Page Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
 
 
-                            <!-- Bootstrap core JavaScript-->
-                            <script src="~/Content/vendor/jquery/jquery.min.js"></script>
-                            <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+            <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                            <!-- Core plugin JavaScript-->
-                            <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                            <!-- Custom scripts for all pages-->
-                            <script src="~/Content/js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="~/Content/js/sb-admin-2.min.js"></script>
 
-                            <!-- Page level plugins -->
-                            <script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
-                            <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-                            <!-- Page level custom scripts -->
-                            <script src="~/Content/js/demo/datatables-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="~/Content/js/demo/datatables-demo.js"></script>
 
-                </body>
+</body>
 
 </html>
