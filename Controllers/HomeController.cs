@@ -21,7 +21,7 @@ namespace ManagementSystem.Controllers
             var numTutor = db.tb_user.Count();
             decimal salaryRate = db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate.Value;
             var ClassNow = db.tb_class.Where(a => a.Date >= DateTime.Now && a.TutorID== test).Count();
-            var ClassEnded = db.tb_class.Where(a => a.Date < DateTime.Now && a.TutorID == test).Count();
+            var ClassEnded = db.tb_class.Where(a => a.Date < DateTime.Now && a.verifyStatus==1 && a.TutorID == test).Count();
 
             ViewBag.numStudent = numStudent;
             ViewBag.numTutor = numTutor;

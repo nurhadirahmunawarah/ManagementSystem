@@ -49,12 +49,14 @@
 
                         <div class="row">
                             <div class="col-lg-6">
-                                <img src="~/Content/system-white.png" width="500" height="350" class="center" />
-                            </div>
+                                <div class="image-container">
+                                    <img src="~/Content/system-white.png" width="500" height="350" class="center" />
+                                    </div>
+                                </div>
                             
                         <div class="col-lg-6">
                            
-                            <div class="p-5">
+                            <div class="p-4">
                                
                                     <button class="btn btn-outline-primary" onclick="history.back()">Kembali</button>
 
@@ -105,15 +107,11 @@
 
                                                 </td>
                                                 <td>
-                                                    @Html.ActionLink("Forgot Password", "ForgotPassword","Login", new { @class = "btn btn-info" })
+                                                    <input type="submit" class="btn btn-primary" name="name" value="Login" />
+                                                    <input type="reset" name="name" class="btn btn-success" value="Clear" />
                                                     <br />
                                                     <br />
-                                                    <input type="submit" class="btn-primary" name="name" value="Login" />
-
-
-                                                    <input type="reset" name="name" class="btn-success" value="Clear" />
-
-
+                                                    @Html.ActionLink("Forgot Password", "ForgotPassword", "Login", new { @class = "btn btn-info" })
                                                 </td>
                                             </tr>
                                         </table>
