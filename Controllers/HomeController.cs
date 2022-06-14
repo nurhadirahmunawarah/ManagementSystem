@@ -24,6 +24,7 @@ namespace ManagementSystem.Controllers
             decimal salaryRate = db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate.Value;
             var ClassNow = db.tb_class.Where(a => a.Date >= DateTime.Now && a.TutorID == test).Count();
             var ClassEnded = db.tb_class.Where(a => a.Date < DateTime.Now && a.verifyStatus == 1 && a.TutorID == test).Count();
+            var totalstu = db.tb_student.Where(a => a.Date.Value.Month == DateTime.Now.Month).Count();
 
             ViewBag.numStudent = numStudent;
             ViewBag.numTutor = numTutor;
@@ -32,6 +33,7 @@ namespace ManagementSystem.Controllers
             ViewBag.DateNow = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
             ViewBag.ClassNow = ClassNow;
             ViewBag.ClassEnded = ClassEnded;
+            ViewBag.totalstu= totalstu;
 
             return View();
         }
@@ -90,6 +92,73 @@ namespace ManagementSystem.Controllers
             public int Student
             { get; set; }
         }
+
+        public ActionResult GetData1()
+        {
+           
+           
+                var query = db.tb_student.GroupBy(s => s.Date.Value.Day).Select(g => new { date = g.Key, count = g.Count() }).ToList();
+
+                return Json(query, JsonRequestBehavior.AllowGet);
+            
+        }
+      
+        public ActionResult GetData2()
+        {
+            int rating1 = db.tb_class.Where(x => x.RatingTutor == 1).Count();
+            int rating2 = db.tb_class.Where(x => x.RatingTutor == 2).Count();
+            int rating3 = db.tb_class.Where(x => x.RatingTutor == 3).Count();
+            int rating4 = db.tb_class.Where(x => x.RatingTutor == 4).Count();
+            int rating5 = db.tb_class.Where(x => x.RatingTutor == 5).Count();
+            Ratio1 obj = new Ratio1();
+            obj.rating1 = rating1;
+            obj.rating2 = rating2;
+            obj.rating3 = rating3;
+            obj.rating4 = rating4;
+            obj.rating5 = rating5;
+
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+
+
+        }
+
+        public class Ratio1
+        {
+            public int rating1
+            { get; set; }
+            public int rating2
+            { get; set; }
+            public int rating3
+            { get; set; }
+            public int rating4
+            { get; set; }
+            public int rating5
+            { get; set; }
+        }
+        public ActionResult GetData3()
+        {
+            int test = (int)Session["ID"];
+            var rating1s = db.tb_performance.Where( a=> a.StudentID== test && a.ratingStudent==1 ).Count();
+            var rating2s = db.tb_performance.Where(a => a.StudentID == test && a.ratingStudent == 2).Count();
+            var rating3s = db.tb_performance.Where(a => a.StudentID == test && a.ratingStudent == 3).Count();
+            var rating4s = db.tb_performance.Where(a => a.StudentID == test && a.ratingStudent == 4).Count();
+            var rating5s = db.tb_performance.Where(a => a.StudentID == test && a.ratingStudent == 5).Count();
+
+
+            Ratio1 obj = new Ratio1();
+            obj.rating1 = rating1s;
+            obj.rating2 = rating2s;
+            obj.rating3 = rating3s;
+            obj.rating4 = rating4s;
+            obj.rating5 = rating5s;
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+    
+
+
+
 
     }
 }
