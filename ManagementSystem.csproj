@@ -2064,6 +2064,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Models\ManagementSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ManagementSystem.edmx</DependentUpon>
@@ -2256,6 +2257,9 @@
       <DependentUpon>ManagementSystem.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\d3.js" />
+    <Content Include="Scripts\d3.min.js" />
+    <Content Include="Scripts\Dashboard.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
