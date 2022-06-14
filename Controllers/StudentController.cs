@@ -17,7 +17,7 @@ namespace ManagementSystem.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            var tb_student = db.tb_student.Include(t => t.tb_batches).Include(t => t.tb_package);
+            var tb_student = db.tb_student.Include(t => t.tb_package);
             return View(tb_student.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace ManagementSystem.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID");
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name");
             return View();
         }
@@ -58,7 +57,6 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
             return View(tb_student);
         }
@@ -75,7 +73,7 @@ namespace ManagementSystem.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
+        
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
             return View(tb_student);
         }
@@ -93,7 +91,6 @@ namespace ManagementSystem.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BatchID = new SelectList(db.tb_batches, "ID", "ID", tb_student.BatchID);
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
             return View(tb_student);
         }
@@ -112,17 +109,7 @@ namespace ManagementSystem.Controllers
             }
             return View(tb_student);
         }
-        public ActionResult ViewReport(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var Sreport = db.tb_student.Include(p => p.tb_performance).Include(c => c.tb_class).FirstOrDefault(x => x.ID == id);
-            
-            return View(Sreport);
-        }
+ 
 
         // POST: Student/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -143,5 +130,42 @@ namespace ManagementSystem.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult ViewReport(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var Sreport = db.tb_student.Include(p => p.tb_performance).Include(c => c.tb_class).FirstOrDefault(x => x.ID == id);
+
+            return View(Sreport);
+        }
+        public ActionResult ViewClass(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var Sclass = db.tb_student.Include(c => c.tb_class).FirstOrDefault(x => x.ID == id);
+
+            return View(Sclass);
+        }
+        public ActionResult MyPerformance(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var Sperformance = db.tb_student.Include(c => c.tb_performance).FirstOrDefault(x => x.ID == id);
+
+            return View(Sperformance);
+        }
+
+
+
     }
 }

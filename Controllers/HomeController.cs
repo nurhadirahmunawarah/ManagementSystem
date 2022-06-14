@@ -15,25 +15,37 @@ namespace ManagementSystem.Controllers
         public ActionResult Index()
         {
 
-            string queryStudent = "SELECT COUNT(*) FROM tb_student;";
-            string queryTutor = "SELECT COUNT(*) FROM tb_tutor;";
-            string queryBatch = "SELECT COUNT(*) FROM tb_batch;";
+            int test = (int)Session["ID"];
 
             var numStudent = db.tb_student.Count();
             var numTutor = db.tb_user.Count();
-            var numBatch = db.tb_student.Count();
+            decimal salaryRate = db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate.Value;
+            var ClassNow = db.tb_class.Where(a => a.Date >= DateTime.Now && a.TutorID== test).Count();
+            var ClassEnded = db.tb_class.Where(a => a.Date < DateTime.Now && a.TutorID == test).Count();
 
             ViewBag.numStudent = numStudent;
             ViewBag.numTutor = numTutor;
-            ViewBag.numBatch = numBatch;
+            ViewBag.salaryRate = salaryRate.ToString("0.00");
             ViewBag.MonthNow = DateTime.Now.ToString("MMM");
+            ViewBag.DateNow = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+            ViewBag.ClassNow = ClassNow;
+            ViewBag.ClassEnded = ClassEnded;
 
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            int studentid = (int)Session["ID"];
+
+            var ClassNow = db.tb_class.Where(a => a.Date >= DateTime.Now && a.StudentID == studentid).Count();
+            var ClassEnded = db.tb_class.Where(a => a.Date < DateTime.Now && a.StudentID == studentid).Count();
+
+            ViewBag.MonthNow = DateTime.Now.ToString("MMM");
+            ViewBag.DateNow = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+            ViewBag.ClassNow = ClassNow;
+            ViewBag.ClassEnded = ClassEnded;
+
 
             return View();
         }
@@ -41,6 +53,11 @@ namespace ManagementSystem.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult TestChart()
+        {
 
             return View();
         }

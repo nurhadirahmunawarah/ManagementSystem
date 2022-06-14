@@ -30,7 +30,7 @@ namespace ManagementSystem.Controllers
                 }
                 else
                 {
-                    Session["IC"] = userDetails.IC;
+                    Session["ID"] = userDetails.ID;
                     Session["RefNo"] = userDetails.RefNo;
                     Session["Name"] = userDetails.Name;
 

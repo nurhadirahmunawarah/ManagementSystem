@@ -1,7 +1,8 @@
 ﻿@model ManagementSystem.Models.tb_user
 
 @{
-    ViewBag.Title = "Delete";
+    Page.Title = "View Profile";
+    //Layout = "Your Layout Page goes here";
 }
 
 <div class="container">
@@ -9,7 +10,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
 
-            <h6 class="m-0 font-weight-bold text-primary">Padam Pengguna</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Maklumat Pengguna</h6>
         </div>
 
 
@@ -35,15 +36,7 @@
                         @Html.DisplayFor(model => model.Name)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Role)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Role)
-                    </dd>
-
-             
+                  
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -61,35 +54,18 @@
                         @Html.DisplayFor(model => model.Contact)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.BatchID)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.BatchID)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.tb_status.Description)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tb_status.Description)
-                    </dd>
-
                 </dl>
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-actions no-color">
-                        <input type="submit" value="Padam" class="btn btn-danger" /> |
-                        @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
-                    </div>
-                }
             </div>
-        </div>
+            <p>
+                <button class="btn btn-warning ">
+                    @Html.ActionLink("Kemaskini", "Edit", new { id = Model.ID }, new { style = "color: white" })
+                </button>
 
+                <button class="btn btn-outline-primary">
+                    @Html.ActionLink("Kembali", "Index", "Home")
+                </button>
+
+            </p>
+        </div>
     </div>
 </div>

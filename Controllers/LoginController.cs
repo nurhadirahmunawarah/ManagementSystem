@@ -9,6 +9,7 @@ using ManagementSystem.Services;
 using System.Net;
 using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
+using System.Web.Security;
 
 namespace ManagementSystem.Controllers
 {
@@ -35,6 +36,7 @@ namespace ManagementSystem.Controllers
                 return View("Index", userModel);
             }
 
+
             if (userDetails ==null)
             {
                 userModel.LoginErrorMessage = "Salah nombor kad pengenalan atau kata laluan";
@@ -48,6 +50,7 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
 
         public ActionResult ForgotPassword()
         {
@@ -100,13 +103,10 @@ namespace ManagementSystem.Controllers
 
             if (TryUpdateModel<tb_user>(passToUpdate,"",null,new [] {"Password"}))
             {
-                try
-                {
+                try{
                     db.SaveChanges();
                     return RedirectToAction("Index", "Login");
-                }
-                catch (DbUpdateException /* ex */)
-                {
+                }catch (DbUpdateException /* ex */){
                     return RedirectToAction("Index", "Forgot");
                 }
             }
@@ -172,12 +172,18 @@ namespace ManagementSystem.Controllers
             return Convert.ToBase64String(dst);
         }
 
+
+        [Authorize]
+
         public ActionResult Logout()
         {
-           
-            Session.Abandon();
-            Session.Clear();
-            return RedirectToAction("Index","Login");
+            FormsAuthentication.SignOut();
+            Session["IC"] = null;
+            Session["Name"] = null;
+            Session["Role"] = null;
+            Session["ID"] = null;
+            return RedirectToAction("Index", "Login");
+
         }
     }
 }

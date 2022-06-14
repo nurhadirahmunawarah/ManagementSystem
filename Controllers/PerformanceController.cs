@@ -82,11 +82,12 @@ namespace ManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Remark,StudentID")] tb_performance tb_performance)
+        public ActionResult Edit([Bind(Include = "ID,Remark,StudentID,ratingStudent")] tb_performance tb_performance)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tb_performance).State = EntityState.Modified;
+                db.Entry(tb_performance).Property(p => p.DateCreated).IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

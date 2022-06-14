@@ -16,7 +16,6 @@
         <div class="card-body">
             <div class="table-responsive">
                 <h6 text-align="center">Butiran Maklumat</h6>
-
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
@@ -43,13 +42,7 @@
                         @Html.DisplayFor(model => model.Role)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Password)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Password)
-                    </dd>
+                
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)
@@ -68,6 +61,14 @@
                     </dd>
 
                     <dt>
+                        @Html.DisplayNameFor(model => model.BatchID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BatchID)
+                    </dd>
+
+                    <dt>
                         @Html.DisplayNameFor(model => model.tb_status.Description)
                     </dt>
 
@@ -75,20 +76,11 @@
                         @Html.DisplayFor(model => model.tb_status.Description)
                     </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.tb_batches.ID)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.tb_batches.ID)
-                    </dd>
-
                 </dl>
             </div>
             <p>
-                
-                    @Html.ActionLink("Kemaskini", "Edit",null, new { id = Model.ID }, new { @class = "btn btn-warning" })
-                
+                @Html.ActionLink("Kemaskini", "Edit", null, new { id = Model.ID }, new { @class = "btn btn-warning" })
+
 
                 @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
 

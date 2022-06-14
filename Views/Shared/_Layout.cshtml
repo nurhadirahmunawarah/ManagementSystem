@@ -23,6 +23,11 @@
     <!-- Custom styles for this template-->
     <link href="~/Content/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  
+
 </head>
 
 
@@ -39,7 +44,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-book-reader"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Sistem Pengurusan Mengaji</div>
             </a>
@@ -68,36 +73,32 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "User")">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="fas fa-edit"></i>
                         <span>Kemaskini Pengguna</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="@Url.Action("Index", "Salary")" data-toggle="collapse" data-target="#collapseTwo"
                        aria-expanded="true" aria-controls="collapseTwo">
-                            <i class="fas fa-fw fa-chart-area"></i>
-                            <span>Kemaskini Butiran Gaji</span>
-                        </a>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Tambahan:</h6>
-                                <a class="collapse-item" href="@Url.Action("Index", "salaryRate")">Kemaskini Kadar Gaji</a>
+                        <i class="fas fa-edit"></i>
+                        <span>Kemaskini Butiran Gaji</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Tambahan:</h6>
+                            <a class="collapse-item" href="@Url.Action("Index", "Salary")">Kemaskini Gaji</a>
+                            <a class="collapse-item" href="@Url.Action("Index", "salaryRate")">Kemaskini Kadar Gaji</a>
 
-                            </div>
                         </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Student")">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="fas fa-edit"></i>
                         <span>Kemaskini Pelajar</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Batches")">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Kemaskini Batch</span>
-                    </a>
-                </li>
+
 
             }
             @if (@Session["Role"].ToString() == "2")
@@ -105,13 +106,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Class")">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="fas fa-edit"></i>
                         <span>Kemaskini Kelas</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("Index", "Performance")">
-                        <i class="fas fa-fw fa-chart-area"></i>
+                        <i class="fas fa-edit"></i>
                         <span>Kemaskini Prestasi Pelajar</span>
                     </a>
                 </li>
@@ -133,9 +134,9 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
+                <a class="nav-link" href="@Url.Action("Details", "Profile", new { id = Session["ID"] })">
+                    <i class="fas fa-user"></i>
+                    <span>Kemaskini Profil</span>
                 </a>
             </li>
             <!-- Divider -->
@@ -209,10 +210,11 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="@Url.Action("Details", "Profile", new { id = Session["ID"] })">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="@Url.Action("Index", "MainPage")" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -235,7 +237,7 @@
                                     <div class="modal-body">Sila tekan Logout semula untuk kepastian</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                        <a class="btn btn-primary" href="@Url.Action("Index", "MainPage")">Logout</a>
+                                        <a class="btn btn-primary" href="@Url.Action("Index", "MainPage")">Log Keluar</a>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +271,11 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-  
+
+
+    <!-- Page level plugins -->
+    <script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="~/Content/vendor/jquery/jquery.min.js"></script>

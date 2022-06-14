@@ -12,14 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tb_batches">
-      <EntityTypeMapping TypeName="ManagementSystemModel.tb_batches">
-        <MappingFragment StoreEntitySet="tb_batches">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tb_class">
       <EntityTypeMapping TypeName="ManagementSystemModel.tb_class">
         <MappingFragment StoreEntitySet="tb_class">
