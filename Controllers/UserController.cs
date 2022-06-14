@@ -134,6 +134,7 @@ namespace ManagementSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tb_user tb_user = db.tb_user.Find(id);
+
             db.tb_user.Remove(tb_user);
             db.SaveChanges();
 

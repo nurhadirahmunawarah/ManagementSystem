@@ -33,7 +33,7 @@ $(document).ready(function () {
                     }
                 },
                 series: [{
-                    name: 'Pengguna',
+                    name: 'Bilangan',
                     colorByPoint: true,
                     data: [{
                         name: 'Admin',
@@ -43,7 +43,7 @@ $(document).ready(function () {
                         name: 'Tutor',
                         y: data.Tutor
                     }, {
-                        name: 'Student',
+                        name: 'Pelajar',
                         y: data.Student
                     }]
                 }]

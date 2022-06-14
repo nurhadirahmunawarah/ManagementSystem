@@ -178,12 +178,17 @@ namespace ManagementSystem.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-            Session["IC"] = null;
-            Session["Name"] = null;
-            Session["Role"] = null;
-            Session["ID"] = null;
-            return RedirectToAction("Index", "Login");
+            Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
+
+            System.Web.Security.FormsAuthentication.SignOut();
+            this.Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+            this.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            this.Response.Cache.SetNoStore();
+
+            return RedirectToAction("Index", "MainPage");
+
 
         }
     }

@@ -117,6 +117,10 @@ namespace ManagementSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tb_student tb_student = db.tb_student.Find(id);
+            var classes = db.tb_class.Where(x => x.StudentID == id);
+            var performances = db.tb_performance.Where(x => x.StudentID == id);
+            db.tb_class.RemoveRange(classes);
+            db.tb_performance.RemoveRange(performances);
             db.tb_student.Remove(tb_student);
             db.SaveChanges();
             return RedirectToAction("Index");
