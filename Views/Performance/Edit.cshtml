@@ -63,10 +63,7 @@
                         @Html.LabelFor(model => model.ratingStudent, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <select id="ratingStudent" name="ratingStudent" class="form-control" value="@Model.ratingStudent">
-                                <option> @Html.DisplayFor(model => model.ratingStudent) (terkini) </option>
-                               
-                                <option value="@Model.ratingStudent" selected></option>
-                               
+                                <option> @Html.DisplayFor(model => model.ratingStudent) (terkini) </option>                               
                                 <option value="5">5</option>
                                 <option value="4">4</option>
                                 <option value="3">3</option>
