@@ -254,6 +254,9 @@
                                             <th>
                                                 Pakej
                                             </th>
+                                            <th>
+                                                Nilai Tutor
+                                            </th>
 
 
 
@@ -263,39 +266,50 @@
                                     <tbody>
                                         @foreach (var item in Model.tb_class.Where(m => m.StudentID == (int)Session["ID"]).OrderByDescending(m => m.verifyStatus))
                                         {
-                                            <tr>
+                                        <tr>
 
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Date)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Duration)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.tb_user.Name)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.tb_package.Name)
-                                                </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Duration)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tb_user.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tb_package.Name)
+                                            </td>
 
-
-
-                                                <td>
-
+                                            <td>
+                                                @if (item.RatingTutor == null)
+                                                {
+                                                   
                                                     
-                                                    @if (item.verifyStatus != 1)
-                                                    {
-                                                        <button id="myBtn" class="myBtn btn btn-primary" onclick="verify(@item.ID)">
-                                                            Sahkan
-                                                        </button>
-                                                    }
-                                                    else
-                                                    {
-                                                        <button class="btn btn-outline-success ">Telah Sah</button>
-                                                    }
-                                                </td>
+                                                    <button class="btn btn-outline-success ">@Html.ActionLink("Nilai Tutor", "RateTutor2", "Class", new { id = item.ID }, new { @target = "_blank" }) </button>
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.RatingTutor)
+                                                }
+                                            </td>
 
-                                            </tr>
+                                            <td>
+
+
+                                                @if (item.verifyStatus != 1)
+                                                {
+                                                    <button id="myBtn" class="myBtn btn btn-primary" onclick="verify(@item.ID)">
+                                                        Sahkan
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn btn-outline-success ">Telah Sah</button>
+                                                }
+                                            </td>
+
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>

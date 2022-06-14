@@ -230,7 +230,9 @@
                                                 <div class="col-md-5 col-md-1">
                                                     <div class="form-group row">
                                                         @Html.LabelFor(model => model.IC, htmlAttributes: new { @class = "control-label col-md-7" })
-                                                        Ini adalah kata laluan anda bagi log masuk portal ini.
+                                                        <p style="color:red">
+                                                            *Ini adalah kata laluan anda bagi log masuk portal ini.
+                                                        </p>
                                                         <div class="col-md-12">
                                                             @Html.EditorFor(model => model.IC, new { htmlAttributes = new { @class = "form-control" } })
                                                             @Html.ValidationMessageFor(model => model.IC, "", new { @class = "text-danger" })

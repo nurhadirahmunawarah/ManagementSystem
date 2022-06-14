@@ -134,7 +134,10 @@ namespace ManagementSystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             tb_user tb_user = db.tb_user.Find(id);
-
+            var classes = db.tb_class.Where(x => x.TutorID == id);
+            var salary = db.tb_salary.Where(x => x.TutorID == id);
+            db.tb_class.RemoveRange(classes);
+            db.tb_salary.RemoveRange(salary);
             db.tb_user.Remove(tb_user);
             db.SaveChanges();
 

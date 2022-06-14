@@ -251,5 +251,43 @@ namespace ManagementSystem.Controllers
 
             return Json(new { verify = 1 });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RateTutor2([Bind(Include = "ID,Date,Duration,Package,TutorID,StudentID,RatingTutor")] tb_class tb_class)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tb_class).State = EntityState.Modified;
+                db.Entry(tb_class).Property(p => p.verifyStatus).IsModified = false;
+                db.Entry(tb_class).Property(p => p.Description).IsModified = false;
+                db.Entry(tb_class).Property(p => p.CheckOut).IsModified = false;
+                db.Entry(tb_class).Property(p => p.CheckIn).IsModified = false;
+                db.Entry(tb_class).Property(p => p.StartTime).IsModified = false;
+
+                db.SaveChanges();
+                return RedirectToAction("ViewClass", "Student", new { id = tb_class.StudentID });
+            }
+            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_class.Package);
+            ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC", tb_class.TutorID);
+            ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name", tb_class.StudentID);
+            return View(tb_class);
+        }
+        public ActionResult RateTutor2(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tb_class tb_class = db.tb_class.Find(id);
+            if (tb_class == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_class.Package);
+            ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC", tb_class.TutorID);
+            ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name", tb_class.StudentID);
+            return View(tb_class);
+        }
     }
 }

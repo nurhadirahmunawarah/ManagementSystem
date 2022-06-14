@@ -15,7 +15,7 @@ $(document).ready(function () {
                 text: 'Kadar Penilaian daripada Pelajar'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.y}</b>'
+                pointFormat: '{series.name}: <b>Skor: {point.y}</b>'
             },
             accessibility: {
                 point: {
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 }
             },
             series: [{
-                name: 'Pengguna',
+                name: 'Bilangan',
                 colorByPoint: true,
                 data: [{
                     name: '1',
