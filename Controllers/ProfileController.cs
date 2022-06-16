@@ -17,11 +17,20 @@ namespace ManagementSystem.Controllers
         // GET: Profile
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
             return View();
         }
 
         public ActionResult Details(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -37,6 +46,11 @@ namespace ManagementSystem.Controllers
         // GET: User/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -56,6 +70,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,IC,Name,Role,Password,Email,Contact,Status,BatchID")] tb_user tb_user)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_user).State = EntityState.Modified;
@@ -71,6 +90,11 @@ namespace ManagementSystem.Controllers
         public ActionResult DetailsStudent(int? id)
         {
 
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,6 +109,11 @@ namespace ManagementSystem.Controllers
 
         public ActionResult EditStudent(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,6 +129,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditStudent([Bind(Include = "ID,Name,IC,Address,Date,Package,BatchID,RefNo")] tb_student tb_student)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_student).State = EntityState.Modified;

@@ -178,7 +178,8 @@
                                     <div class="modal-body">Sila tekan Logout semula untuk kepastian</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                        <a class="btn btn-primary" href="@Url.Action("Index", "MainPage")">Logout</a>
+                                        @*<a class="btn btn-primary" href="@Url.Action("Index", "MainPage")">Logout</a>*@
+                                        @Html.ActionLink("Log Keluar Student", "Logout", "LoginStudent", null, new { @class = "btn btn-primary" })
                                     </div>
                                 </div>
                             </div>

@@ -174,7 +174,7 @@ namespace ManagementSystem.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
 
         public ActionResult Logout()
         {

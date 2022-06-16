@@ -180,7 +180,18 @@
                                     <div class="modal-body">Sila tekan Logout semula untuk kepastian</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                        <a class="btn btn-primary" href="@Url.Action("Index", "MainPage")">Logout</a>
+                                        @if (Session["Role"].ToString() == "3")
+                                        {
+                                            @Html.ActionLink("Log Keluar Student", "Logout", "LoginStudent", null, new { @class = "btn btn-primary" })
+
+                                            @*<a class="btn btn-primary" href="@Url.Action("Logout", "LoginStudent")">Log Keluar</a>*@
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Log Keluar User", "Logout", "Login", null, new { @class = "btn btn-primary" })
+                                            @*<a class="btn btn-primary" href="@Url.Action("Logout", "Login")">Log Keluar</a>*@
+
+                                        }
                                     </div>
                                 </div>
                             </div>
