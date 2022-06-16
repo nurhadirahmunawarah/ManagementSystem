@@ -37,7 +37,7 @@
                                         <div class="form-group row">
                                             @Html.LabelFor(model => model.TutorID, "No Kad Pengenalan Tutor",htmlAttributes: new { @class = "control-form-label col-md-5" })
                                             <div class="col-md-12">
-                                                @Html.DropDownList("TutorID", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.DropDownListFor(model => model.TutorID, ViewBag.TutorID as SelectList, "--Pilih Tutor--", htmlAttributes: new { @class = "form-control" })
                                                 @Html.ValidationMessageFor(model => model.TutorID, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -58,6 +58,7 @@
                                             @Html.LabelFor(model => model.month, htmlAttributes: new { @class = "control-label col-md-5" })
                                             <div class="col-md-12">
                                                 <select name="month" id="month" class="form-control">
+                                                    <option value="">--Pilih Bulan--</option>
                                                     <option value="1">Januari</option>
                                                     <option value="2">Februari</option>
                                                     <option value="3">Mac</option>
@@ -84,8 +85,8 @@
                                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-5" })
                                         <div class="col-md-12">
                                             <select id="Status" name="Status" class="form-control">
-                                                <option value=""disabled>-- Pilih Status --</option>
-                                                <option value="Selesai" selected>Selesai</option>
+                                                <option value="">-- Pilih Status --</option>
+                                                <option value="Selesai">Selesai</option>
                                                 <option value="Tidak Selesai">Tidak Selesai</option>
                                             </select>
                                             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })

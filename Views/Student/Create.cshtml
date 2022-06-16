@@ -99,9 +99,9 @@
                             <div class="row">
                                 <div class="col-md-5 col-md-1">
                                     <div class="form-group row">
-                                        @Html.LabelFor(model => model.Package, "Package", htmlAttributes: new { @class = "control-label col-md-7" })
+                                        @Html.LabelFor(model => model.Package, "Pakej", htmlAttributes: new { @class = "control-label col-md-7" })
                                         <div class="col-md-12">
-                                            @Html.DropDownList("Package", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.Package, ViewBag.Package as SelectList, "--Pilih Pakej--", htmlAttributes: new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
