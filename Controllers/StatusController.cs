@@ -17,12 +17,22 @@ namespace ManagementSystem.Controllers
         // GET: Status
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             return View(db.tb_status.ToList());
         }
 
         // GET: Status/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +48,11 @@ namespace ManagementSystem.Controllers
         // GET: Status/Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             return View();
         }
 
@@ -48,6 +63,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Description")] tb_status tb_status)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.tb_status.Add(tb_status);
@@ -61,6 +81,11 @@ namespace ManagementSystem.Controllers
         // GET: Status/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +105,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Description")] tb_status tb_status)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_status).State = EntityState.Modified;
@@ -92,6 +122,11 @@ namespace ManagementSystem.Controllers
         // GET: Status/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +144,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             tb_status tb_status = db.tb_status.Find(id);
             db.tb_status.Remove(tb_status);
             db.SaveChanges();

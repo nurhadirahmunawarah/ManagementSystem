@@ -27,6 +27,11 @@ namespace ManagementSystem.Controllers
         // GET: Class
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             var tb_class = db.tb_class.Include(t => t.tb_package).Include(t => t.tb_user).Include(t => t.tb_student).OrderByDescending(t => t.Date).ThenByDescending(t => t.StartTime);
 
             return View(tb_class.ToList());
@@ -35,6 +40,12 @@ namespace ManagementSystem.Controllers
         // GET: Class/Details/5
         public ActionResult Details(int? id)
         {
+
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -50,6 +61,11 @@ namespace ManagementSystem.Controllers
         // GET: Class/Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name");
             ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC");
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name");
@@ -63,6 +79,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Date,Duration,Package,TutorID,StudentID,Description,StartTime,RatingTutor, verifyStatus")] tb_class tb_class, int ID)
         {
+
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
 
             if (ModelState.IsValid)
             {
@@ -87,6 +108,11 @@ namespace ManagementSystem.Controllers
         // GET: Class/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +135,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Date,Duration,Description,Package,StartTime,StudentID")] tb_class tb_class)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {   // only update nama pelajar, tarikh, waktu mula, durasi, pakej
                 db.Entry(tb_class).State = EntityState.Modified;
@@ -128,6 +159,11 @@ namespace ManagementSystem.Controllers
         // GET: Class/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -145,6 +181,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             tb_class tb_class = db.tb_class.Find(id);
             db.tb_class.Remove(tb_class);
             db.SaveChanges();
@@ -154,6 +195,11 @@ namespace ManagementSystem.Controllers
         [HttpPost, ActionName("CheckIn")]
         public ActionResult CheckIn(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -178,6 +224,11 @@ namespace ManagementSystem.Controllers
         [HttpPost, ActionName("CheckOut")]
         public ActionResult CheckOut(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -201,6 +252,7 @@ namespace ManagementSystem.Controllers
         [HttpGet, ActionName("GetStatus")]
         public ActionResult GetStatus(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -231,6 +283,11 @@ namespace ManagementSystem.Controllers
         [HttpPost, ActionName("verify")]
         public ActionResult Verify(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -275,6 +332,11 @@ namespace ManagementSystem.Controllers
         }
         public ActionResult RateTutor2(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -33,6 +33,7 @@ namespace ManagementSystem.Controllers
                     Session["ID"] = userDetails.ID;
                     Session["RefNo"] = userDetails.RefNo;
                     Session["Name"] = userDetails.Name;
+                    Session["Role"] = 3;
 
                     return RedirectToAction("About", "Home");
                 }
@@ -42,9 +43,18 @@ namespace ManagementSystem.Controllers
 
         public ActionResult Logout()
         {
-
-            Session.Abandon();
             Session.Clear();
+            Session.Abandon();
+            Session.RemoveAll();
+
+            System.Web.Security.FormsAuthentication.SignOut();
+            this.Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+            this.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            this.Response.Cache.SetNoStore();
+
+
+            //Session.Abandon();
+            //Session.Clear();
             return RedirectToAction("Index", "LoginStudent");
         }
     }

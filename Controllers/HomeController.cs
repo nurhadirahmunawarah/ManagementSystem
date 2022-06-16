@@ -17,6 +17,10 @@ namespace ManagementSystem.Controllers
         public ActionResult Index()
         {
 
+            if(Session["Role"] == null)
+{
+                return RedirectToAction("Index", "MainPage");
+            }
             int test = (int)Session["ID"];
 
             var numStudent = db.tb_student.Count();
@@ -40,6 +44,11 @@ namespace ManagementSystem.Controllers
 
         public ActionResult About()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             int studentid = (int)Session["ID"];
 
             var ClassNow = db.tb_class.Where(a => a.Date >= DateTime.Now && a.StudentID == studentid).Count();
@@ -56,6 +65,12 @@ namespace ManagementSystem.Controllers
 
         public ActionResult Contact()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
+
             ViewBag.Message = "Your contact page.";
 
             return View();

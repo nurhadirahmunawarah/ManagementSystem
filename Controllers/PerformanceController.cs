@@ -17,6 +17,11 @@ namespace ManagementSystem.Controllers
         // GET: Performance
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             var tb_performance = db.tb_performance.Include(t => t.tb_student);
             return View(tb_performance.ToList());
         }
@@ -24,6 +29,11 @@ namespace ManagementSystem.Controllers
         // GET: Performance/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +49,11 @@ namespace ManagementSystem.Controllers
         // GET: Performance/Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name");
             return View();
         }
@@ -50,6 +65,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Remark,StudentID,DateCreated,ratingStudent")] tb_performance tb_performance)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.tb_performance.Add(tb_performance);
@@ -64,6 +84,11 @@ namespace ManagementSystem.Controllers
         // GET: Performance/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +109,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Remark,StudentID,ratingStudent,ratingStudent")] tb_performance tb_performance)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_performance).State = EntityState.Modified;
@@ -98,6 +128,11 @@ namespace ManagementSystem.Controllers
         // GET: Performance/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -115,6 +150,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             tb_performance tb_performance = db.tb_performance.Find(id);
             db.tb_performance.Remove(tb_performance);
             db.SaveChanges();
@@ -123,12 +163,22 @@ namespace ManagementSystem.Controllers
 
         public ActionResult ViewPerformance()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             var tb_performance = db.tb_performance.Include(t => t.tb_student);
             return View(tb_performance.ToList());
         }
 
         public ActionResult ViewPerDetails(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

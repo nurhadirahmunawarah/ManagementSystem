@@ -174,8 +174,7 @@ namespace ManagementSystem.Controllers
         }
 
 
-        
-       
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

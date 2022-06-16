@@ -17,12 +17,22 @@ namespace ManagementSystem.Controllers
         // GET: salaryRate
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             return View(db.tb_salaryRate.ToList());
         }
 
         // GET: salaryRate/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +48,11 @@ namespace ManagementSystem.Controllers
         // GET: salaryRate/Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             return View();
         }
 
@@ -48,6 +63,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,DateCreated,SalaryRate")] tb_salaryRate tb_salaryRate)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 tb_salaryRate.DateCreated = DateTime.Now;
@@ -62,6 +82,11 @@ namespace ManagementSystem.Controllers
         // GET: salaryRate/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +106,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,DateCreated,SalaryRate")] tb_salaryRate tb_salaryRate)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_salaryRate).State = EntityState.Modified;
@@ -93,6 +123,11 @@ namespace ManagementSystem.Controllers
         // GET: salaryRate/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -110,6 +145,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
             db.tb_salaryRate.Remove(tb_salaryRate);
             db.SaveChanges();
