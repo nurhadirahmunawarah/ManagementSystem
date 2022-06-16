@@ -234,7 +234,7 @@
                                 </a>
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Login")" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="@Url.Action("Index", "MainPage")" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -255,7 +255,21 @@
                                     <div class="modal-body">Sila tekan Logout semula untuk kepastian</div>
                                     <div class="modal-footer">
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                        <a class="btn btn-primary" href="@Url.Action("Index", "Login")">Log Keluar</a>
+
+                                        @if (Session["Role"].ToString() == "3")
+                                        {
+                                            @Html.ActionLink("Log Keluar Pelajar", "Logout", "LoginStudent", null, new { @class = "btn btn-primary" })
+
+                                            @*<a class="btn btn-primary" href="@Url.Action("Logout", "LoginStudent")">Log Keluar</a>*@
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Log Keluar Pengguna", "Logout", "Login", null, new { @class = "btn btn-primary" })
+                                            @*<a class="btn btn-primary" href="@Url.Action("Logout", "Login")">Log Keluar</a>*@
+
+                                        }
+
+                                      @* <a class="btn btn-primary" href="@Url.Action("Index", "Login")">Log Keluar</a>*@
                                     </div>
                                 </div>
                             </div>
