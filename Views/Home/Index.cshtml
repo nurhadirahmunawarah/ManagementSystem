@@ -1,6 +1,7 @@
-﻿@{
-    ViewBag.Title = "Index";
-    if (Session["IC"] == null)
+﻿
+@{
+   
+    if (Session["ID"] == null)
     {
         Response.Redirect("~/Login/Index");
     }
