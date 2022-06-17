@@ -4,23 +4,69 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
 
-<div>
-    <h4>tb_package</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <h6 class="m-0 font-weight-bold text-primary">Maklumat Pakej</h6>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-    </dl>
+        <div class="card-body">
+            <div class="table-responsive">
+                <h6 text-align="center">Butiran Maklumat</h6>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Masa)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Masa)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sesi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Sesi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fee)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Fee)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Kemaskini", "Edit", null, new { id = Model.ID }, new { @class = "btn btn-warning" })
+
+
+                @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

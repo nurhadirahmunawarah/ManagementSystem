@@ -15,7 +15,7 @@ $(document).ready(function () {
                 text: 'Kadar Penilaian daripada Tutor'
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>Skor: {point.y}</b>'
+                pointFormat: 'Skor {series.name}: <b> {point.y}</b>'
             },
             accessibility: {
                 point: {

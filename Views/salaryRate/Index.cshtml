@@ -31,7 +31,7 @@
                     @Html.ActionLink("Tambah Kadar Gaji", "Create", null, new { @class = "btn btn-outline-primary" })
 
                     <hr>
-                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
 
@@ -58,9 +58,6 @@
                                     </td>
                                     <td>
                                         @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
-
-
-                                        @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
 
                                         @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
                                     </td>

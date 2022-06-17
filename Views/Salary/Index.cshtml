@@ -83,111 +83,105 @@
                 <div class="table-responsive">
 
 
-                    <h5>  Cari</h5>
-                    <div class="input-group">
-                        <input type="text" id="myInput" class="form-control bg-light border-0 small" onkeyup="myFunction()" placeholder="Sila masukkan no. kad pengenalan"
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
+                 
 
 
                     <br>
-                   
-                        @Html.ActionLink("Tambah Butiran Gaji", "Create",null, new { @class = "btn btn-outline-primary" })
-                   
+                    @Html.ActionLink("Tambah Butiran Gaji", "Create", null, new { @class = "btn btn-outline-primary" })
+                    
+                    @Html.ActionLink("Jana Gaji Bulan Ini", "GenerateAllSalary", null, new { @class = "btn btn-outline-info" })
+
+
                     <hr>
-                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
-                        <tr>
+                    <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                         <thead>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tb_user.Name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.tb_user.IC)
-                        </th>
+                            <tr>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.Amount)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.month)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Status)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Date)
-                        </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tb_user.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tb_user.IC)
+                                </th>
 
-                        <th>Kemaskini</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.month)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
 
+                                <th>Kemaskini</th>
+                            </tr>
                         </thead>
-                        </tr>
+                       
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
+                                <tr>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_user.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tb_user.IC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Amount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.month)
-                                </td>
-                                <td>
-                                    <span class="badge" id="badgeId">@item.Status</span>
-                                    @*@Html.DisplayFor(modelItem => item.Status)*@
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tb_user.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tb_user.IC)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.month)
+                                    </td>
+                                    <td>
+                                        <span class="badge" id="badgeId">@item.Status</span>
+                                        @*@Html.DisplayFor(modelItem => item.Status)*@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
 
-                                <td>
-
-
-
-                                    @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+                                    <td>
 
 
-                                    @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
 
-                                    @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
-                                    <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = item.ID }, new { @target = "_blank" }) </button>
-                                </td>
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
 
-                            </tr>
+
+                                        @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+
+                                        @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                        <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = item.ID }, new { @target = "_blank" }) </button>
+                                    </td>
+
+                                </tr>
                             }
                         </tbody>
                     </table>
                     <script>
-                        function myFunction() {
-                            var input, filter, table, tr, td, i, txtValue;
-                           input = document.getElementById("myInput");
-                            filter = input.value.toUpperCase();
-                            table = document.getElementById("myTable");
-                            tr = table.getElementsByTagName("tr");
-                            for (i = 0; i < tr.length; i++) {
-                               td = tr[i].getElementsByTagName("td")[1];
-                               if (td) {
-                                   txtValue = td.textContent || td.innerText;
-                                   if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                       tr[i].style.display = "";
-                                 } else {
-                                        tr[i].style.display = "none";
-                                    }
-                                }
-                            }
-                        }
+                        //function myFunction() {
+                        //    var input, filter, table, tr, td, i, txtValue;
+                        //    input = document.getElementById("myInput");
+                        //    filter = input.value.toUpperCase();
+                        //    table = document.getElementById("myTable");
+                        //    tr = table.getElementsByTagName("tr");
+                        //    for (i = 0; i < tr.length; i++) {
+                        //        td = tr[i].getElementsByTagName("td")[1];
+                        //        if (td) {
+                        //            txtValue = td.textContent || td.innerText;
+                        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        //                tr[i].style.display = "";
+                        //            } else {
+                        //                tr[i].style.display = "none";
+                        //            }
+                        //        }
+                        //    }
+                        //}
 
                         function badgeColor() {
                             let el = document.getElementById("badgeId");
@@ -204,7 +198,7 @@
                         }
                         document.getElementById("badgeId").onload = badgeColor();
                     </script>
-                   
+
                 </div>
             </div>
         </div>

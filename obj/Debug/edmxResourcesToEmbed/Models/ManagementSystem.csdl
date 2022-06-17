@@ -38,6 +38,10 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="tb_class" Relationship="Self.FK_tb_class_tb_package" FromRole="tb_package" ToRole="tb_class" />
     <NavigationProperty Name="tb_student" Relationship="Self.FK_tb_student_tb_package" FromRole="tb_package" ToRole="tb_student" />
+    <Property Name="Masa" Type="Int32" />
+    <Property Name="Sesi" Type="Int32" />
+    <Property Name="Fee" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="tb_performance">
     <Key>

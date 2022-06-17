@@ -104,6 +104,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <p><a href="https://docs.google.com/document/d/1Pm0SKhlSjRj-n9s89CivcjB_wXSNmNX6iGh7gNEBLc8/edit?usp=sharing/" class="btn btn-primary" target="_blank">Panduan Pengguna</a></p>
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
@@ -210,34 +211,28 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h5>  Prestasi Pelajar </h5>
+                
 
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+
+                            <h6 class="m-0 font-weight-bold text-primary">Senarai Prestasi</h6>
+                        </div>
+
 
 
                         <div class="card-body">
                             <div class="table-responsive">
 
 
-                                <h5>  Cari</h5>
-                                <div class="input-group">
-                                    <input type="text" id="myInput" class="form-control bg-light border-0 small" onkeyup="myFunction()" placeholder="Sila masukkan tarikh"
-                                           aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
 
 
-                                <br>
+                               
 
-                                <hr>
-                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                               
+                                <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
 
@@ -250,7 +245,7 @@
                                             <th>
                                                 Prestasi (/5)
                                             </th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -267,31 +262,31 @@
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.ratingStudent)
                                                 </td>
-                                            
+
 
                                             </tr>
                                         }
                                     </tbody>
                                 </table>
                                 <script>
-                                    function myFunction() {
-                                        var input, filter, table, tr, td, i, txtValue;
-                                        input = document.getElementById("myInput");
-                                        filter = input.value.toUpperCase();
-                                        table = document.getElementById("myTable");
-                                        tr = table.getElementsByTagName("tr");
-                                        for (i = 0; i < tr.length; i++) {
-                                            td = tr[i].getElementsByTagName("td")[0];
-                                            if (td) {
-                                                txtValue = td.textContent || td.innerText;
-                                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                                    tr[i].style.display = "";
-                                                } else {
-                                                    tr[i].style.display = "none";
-                                                }
-                                            }
-                                        }
-                                    }
+                                    //function myFunction() {
+                                    //    var input, filter, table, tr, td, i, txtValue;
+                                    //    input = document.getElementById("myInput");
+                                    //    filter = input.value.toUpperCase();
+                                    //    table = document.getElementById("myTable");
+                                    //    tr = table.getElementsByTagName("tr");
+                                    //    for (i = 0; i < tr.length; i++) {
+                                    //        td = tr[i].getElementsByTagName("td")[0];
+                                    //        if (td) {
+                                    //            txtValue = td.textContent || td.innerText;
+                                    //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                    //                tr[i].style.display = "";
+                                    //            } else {
+                                    //                tr[i].style.display = "none";
+                                    //            }
+                                    //        }
+                                    //    }
+                                    //}
                                 </script>
                             </div>
                         </div>
@@ -314,11 +309,20 @@
                     <script src="~/Content/js/sb-admin-2.min.js"></script>
 
                     <!-- Page level plugins -->
-                    <script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
-                    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+                    <!--<script src="~/Content/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.min.js"></script>-->
                     <!-- Page level custom scripts -->
-                    <script src="~/Content/js/demo/datatables-demo.js"></script>
+                    <!--<script src="~/Content/js/demo/datatables-demo.js"></script>-->
+                    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+                    <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+                    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+                    <script>
+                        $('#example1').DataTable({
+                            order: [[0, 'desc']],
+                        });
+                    </script>
 </body>
 
 

@@ -4,29 +4,74 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="container">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>tb_package</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <h6 class="m-0 font-weight-bold text-primary">Padam Pakej</h6>
         </div>
-    }
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <h6 text-align="center">Butiran Maklumat</h6>
+
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Masa)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Masa)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sesi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Sesi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Fee)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Fee)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Padam" class="btn btn-danger" /> |
+                        @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
 </div>

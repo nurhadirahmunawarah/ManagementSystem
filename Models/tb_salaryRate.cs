@@ -21,7 +21,6 @@ namespace ManagementSystem.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateCreated { get; set; }
         [DisplayName("Kadar Gaji satu jam (RM)")]
-     
         public Nullable<decimal> SalaryRate { get; set; }
     }
 }
