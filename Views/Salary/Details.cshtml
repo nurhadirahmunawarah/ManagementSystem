@@ -19,7 +19,15 @@
                         Butiran Maklumat
                     </h6>
                     <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Lampiran", "ViewAppendix", null, new { tid = ViewContext.RouteData.Values["id"], month = Model.month }, new { @target = "_blank" })</button>
-                    <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = ViewContext.RouteData.Values["id"] }, new { @target = "_blank" })</button>
+                    @if (Model.Status == "Dalam Proses")
+                    {
+                        <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end" data-toggle="tooltip" data-placement="top" title="Sila sahkan gaji terlebih dahulu" disabled>Lihat Invois</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = ViewContext.RouteData.Values["id"] }, new { @target = "_blank" })</button>
+                    }
+
                 </div>
               
 
