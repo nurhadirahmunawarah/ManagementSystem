@@ -33,6 +33,10 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Masa" Type="int" />
+    <Property Name="Sesi" Type="int" />
+    <Property Name="Fee" Type="float" />
+    <Property Name="Description" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="tb_performance">
     <Key>

@@ -23,16 +23,7 @@
                 <div class="table-responsive">
 
 
-                    <h5>  Cari</h5>
-                    <div class="input-group">
-                        <input type="text" id="myInput" class="form-control bg-light border-0 small" onkeyup="myFunction()" placeholder="Sila masukkan no. kad pengenalan"
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
+              
 
 
                     <br>
@@ -40,78 +31,81 @@
                     @Html.ActionLink("Tambah Pelajar", "Create",null, new { @class = "btn btn-outline-primary" })
 
                     <hr>
-                    <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Name)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IC)
-                            </th>
+                    <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IC)
+                                </th>
 
 
-                            <th>
-                                @Html.DisplayNameFor(model => model.Address)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Date)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RefNo)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.BatchID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.tb_package.Name)
-                            </th>
-                            <th>Kemaskini</th>
-                        </tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RefNo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BatchID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tb_package.Name)
+                                </th>
+                                <th>Kemaskini</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
 
-                        @foreach (var item in Model)
-                     {
-                    <tbody>
-                        <tr>
+                                <tr>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IC)
-                            </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IC)
+                                    </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RefNo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BatchID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.tb_package.Name)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RefNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BatchID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tb_package.Name)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
 
 
-                                @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
+                                        @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
 
-                                @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
-                                <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
-                            </td>
+                                        @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
+                                        <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
+                                    </td>
 
-                        </tr>
-                    </tbody>
+                                </tr>
 
-                    }
-                       
-                    </table>
+
+                            }
+                        </tbody>
+
+                        </table>
                     <script>
                         function myFunction() {
                             var input, filter, table, tr, td, i, txtValue;
