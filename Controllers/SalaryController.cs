@@ -255,40 +255,5 @@ namespace ManagementSystem.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult GenerateAllSalary()
-        {
-            var listLecturer = db.tb_user.Select(x => x.ID).ToList();
-
-            foreach (var lect in listLecturer)
-            {
-                var listClasses = 0;
-                var rateSalary = (decimal)0.00;
-
-                listClasses = db.tb_class.Where(s => s.Date.Month == DateTime.Now.Month && s.TutorID == lect).Select(s => s.Duration).DefaultIfEmpty().Sum();
-                rateSalary = (decimal)db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate;
-
-                if (listClasses == 0)
-                {
-                    continue;
-                }
-                else
-                {
-                    var SalaryAmount = (decimal)listClasses * rateSalary / 60;
-
-                    tb_salary input = null;
-
-                    input = new tb_salary();
-                    input.Amount = (double?)SalaryAmount;
-                    input.TutorID = lect;
-                    input.month = DateTime.Now.Month;
-                    input.Status = "Tidak Selesai";
-                    input.Date = DateTime.Now;
-                    db.tb_salary.Add(input);
-                    db.SaveChanges();
-                }
-            }
-
-            return RedirectToAction("Index");
-        }
     }
 }

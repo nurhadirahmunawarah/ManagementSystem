@@ -174,17 +174,21 @@ namespace ManagementSystem.Controllers
         }
 
 
+        //[Authorize]
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-            Session["IC"] = null;
-            Session["Name"] = null;
-            Session["Role"] = null;
-            Session["ID"] = null;
-            Session.RemoveAll();
+            Session.Clear();
             Session.Abandon();
-            return RedirectToAction("Index", "Login");
+            Session.RemoveAll();
+
+            System.Web.Security.FormsAuthentication.SignOut();
+            this.Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+            this.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            this.Response.Cache.SetNoStore();
+
+            return RedirectToAction("Index", "MainPage");
+
 
         }
     }

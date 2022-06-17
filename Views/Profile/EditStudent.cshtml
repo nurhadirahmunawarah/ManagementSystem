@@ -107,7 +107,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <p><a href="https://docs.google.com/document/d/1Pm0SKhlSjRj-n9s89CivcjB_wXSNmNX6iGh7gNEBLc8/edit?usp=sharing/" class="btn btn-primary" target="_blank">Panduan Pengguna</a></p>
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
@@ -271,7 +270,7 @@
                                                     <div class="text-center">
                                                         <div class="col-md-offset-2 col-md-12">
                                                             <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
-                                                            <a class="btn btn-outline-primary " href="@Url.Action("DetailsStudent", "Profile", new { id = Session["ID"] })">
+                                                            <a class="btn btn-outline-primary " href="@Url.Action("Details", "Profile", new { id = Session["ID"] })">
                                                                 Kembali
                                                                 @*@Html.ActionLink("Kembali", "Details", "Profile", new { id = Session["ID"] })*@
                                                             </a>

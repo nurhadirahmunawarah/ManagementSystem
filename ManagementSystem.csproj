@@ -2348,7 +2348,6 @@
     <Content Include="Views\Home\TestChart.cshtml" />
     <Content Include="Views\Class\RateTutor2.cshtml" />
     <Content Include="Views\Salary\ViewAppendix.cshtml" />
-    <Content Include="Views\Home\UserAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

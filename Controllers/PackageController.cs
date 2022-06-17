@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ManagementSystem.Models;
-using static ManagementSystem.Models.tb_package;
 
 namespace ManagementSystem.Controllers
 {
@@ -18,18 +17,22 @@ namespace ManagementSystem.Controllers
         // GET: Package
         public ActionResult Index()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
 
-            var test = db.tb_student.GroupBy(t => t.Package).Select(packageGroup => new testPackage { Package1 = (int)packageGroup.Key, StudentCount = packageGroup.Count() }).ToList();
-            ViewBag.test = test;
-
-            var tb_package = db.tb_package.Include(t => t.tb_student);
-
-            return View(tb_package.ToList());
+            return View(db.tb_package.ToList());
         }
 
         // GET: Package/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -45,6 +48,11 @@ namespace ManagementSystem.Controllers
         // GET: Package/Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             return View();
         }
 
@@ -53,8 +61,13 @@ namespace ManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Masa,Sesi,Fee,Description")] tb_package tb_package)
+        public ActionResult Create([Bind(Include = "ID,Name")] tb_package tb_package)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.tb_package.Add(tb_package);
@@ -68,6 +81,11 @@ namespace ManagementSystem.Controllers
         // GET: Package/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,8 +103,13 @@ namespace ManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Masa,Sesi,Fee,Description")] tb_package tb_package)
+        public ActionResult Edit([Bind(Include = "ID,Name")] tb_package tb_package)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(tb_package).State = EntityState.Modified;
@@ -99,6 +122,11 @@ namespace ManagementSystem.Controllers
         // GET: Package/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -116,6 +144,11 @@ namespace ManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
             tb_package tb_package = db.tb_package.Find(id);
             db.tb_package.Remove(tb_package);
             db.SaveChanges();
