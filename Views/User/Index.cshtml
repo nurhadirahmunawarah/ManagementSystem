@@ -43,30 +43,30 @@
                     <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>
+                                <th style="width:13%" class="align-middle"> 
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
-                                <th>
+                                <th style="width:8%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.IC)
                                 </th>
 
-                                <th>
+                                <th style="width:6%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.Role)
                                 </th>
 
-                                <th>
+                                <th style="width:8%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.Email)
                                 </th>
-                                <th>
+                                <th style="width:8%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.Contact)
                                 </th>
-                                <th>
+                                <th style="width:5%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.BatchID)
                                 </th>
-                                <th>
+                                <th style="width:5%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.tb_status.Description)
                                 </th>
-                                <th>Kemaskini</th>
+                                <th style="width:26%" class="align-middle">Kemaskini</th>
                         </thead>
                         </tr>
                         <tbody>
@@ -104,15 +104,15 @@
                                         @Html.DisplayFor(modelItem => item.tb_status.Description)
                                     </td>
                                     <td>
-                                        <div class="col-sm-12">
+                                    
 
-                                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info" })
+                                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info my-1" })
 
 
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
+                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning my-1" })
 
-                                            @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
-                                        </div>
+                                            @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger my-1" })
+                                     
 
 
                                     </td>

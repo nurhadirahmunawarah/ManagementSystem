@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -182,7 +183,7 @@ namespace ManagementSystem.Controllers
             return View(tb_salary);
         }
 
-        public ActionResult ViewInvoice (int?id)
+        public ActionResult ViewInvoice (int? id)
         {
             if (Session["Role"] == null)
             {
@@ -200,6 +201,36 @@ namespace ManagementSystem.Controllers
 
 
         }
+
+        public ActionResult ViewAppendix(int? tid, int? month)
+        {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
+            if (tid == null && month == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var query = db.tb_class.Include(t => t.tb_student).Include(t=>t.tb_user)
+                .Where(c => c.TutorID == tid && c.Date.Month == month)
+                //.Select(c => new { c.tb_student.Name, c.Date, c.CheckIn, c.CheckOut, c.verifyStatus })
+                .OrderBy(c => c.Date);
+
+            ViewBag.TutorName = query.Select(n => n.tb_user.Name).FirstOrDefault();
+            ViewBag.TutorContact = query.Select(n => n.tb_user.Contact).FirstOrDefault();
+            ViewBag.Month = month;
+            ViewBag.Year = query.Select(n=>n.Date).FirstOrDefault().Year;
+            ViewBag.SalaryRate = (decimal)db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate;
+
+            //return Json(query, JsonRequestBehavior.AllowGet);
+            return View(query);
+
+            // SELECT * FROM tb_class LEFT JOIN tb_studentON tb_class.StudentID = tb_student.ID WHERE tb_class.TutorID = 1 AND MONTH(tb_class.Date) = 6;
+        }
+
         // POST: Salary/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
