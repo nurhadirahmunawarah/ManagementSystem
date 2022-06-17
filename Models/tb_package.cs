@@ -21,14 +21,29 @@ namespace ManagementSystem.Models
             this.tb_class = new HashSet<tb_class>();
             this.tb_student = new HashSet<tb_student>();
         }
+
     
         public int ID { get; set; }
         [DisplayName("Nama Pakej")]
         public string Name { get; set; }
+        [DisplayName("Bilangan Masa per sesi (minit)")]
+        public Nullable<int> Masa { get; set; }
+        [DisplayName("Bilangan Sesi Dalam Sebulan")]
+        public Nullable<int> Sesi { get; set; }
+        [DisplayName("Harga Pakej (RM)")]
+        public Nullable<double> Fee { get; set; }
+        [DisplayName("Ulasan")]
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_class> tb_class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_student> tb_student { get; set; }
-    }
+
+        public class testPackage
+        {
+            public int Package1 { get; set; }
+            public int  StudentCount{ get; set; }
+        }
+        }
 }

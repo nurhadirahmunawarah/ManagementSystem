@@ -33,6 +33,10 @@
     <EntitySetMapping Name="tb_package">
       <EntityTypeMapping TypeName="ManagementSystemModel.tb_package">
         <MappingFragment StoreEntitySet="tb_package">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+          <ScalarProperty Name="Sesi" ColumnName="Sesi" />
+          <ScalarProperty Name="Masa" ColumnName="Masa" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
