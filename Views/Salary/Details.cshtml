@@ -14,7 +14,23 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <h6 text-align="center">Butiran Maklumat</h6>
+                <div class="d-flex flex-row align-items-center h-50">
+                    <h6 text-align="center" class="mr-auto align-self-center">
+                        Butiran Maklumat
+                    </h6>
+                    <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Lampiran", "ViewAppendix", null, new { tid = ViewContext.RouteData.Values["id"], month = Model.month }, new { @target = "_blank" })</button>
+                    @if (Model.Status == "Dalam Proses")
+                    {
+                        <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end" data-toggle="tooltip" data-placement="top" title="Sila sahkan gaji terlebih dahulu" disabled>Lihat Invois</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = ViewContext.RouteData.Values["id"] }, new { @target = "_blank" })</button>
+                    }
+
+                </div>
+              
+
 
                 <hr />
                 <dl class="dl-horizontal">
@@ -60,6 +76,7 @@
 
                 </dl>
             </div>
+            <br />
             <p>
                
                     @Html.ActionLink("Kemaskini", "Edit",null, new { id = Model.ID }, new { @class = "btn btn-warning" })
