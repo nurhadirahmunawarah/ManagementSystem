@@ -224,6 +224,7 @@ namespace ManagementSystem.Controllers
             }
             base.Dispose(disposing);
         }
+
         public ActionResult GenerateAllSalary()
         {
             var listLecturer = db.tb_user.Select(x => x.ID).ToList();
@@ -232,11 +233,13 @@ namespace ManagementSystem.Controllers
             {
                 var listClasses = 0;
                 var rateSalary = (decimal)0.00;
+                var existingSalary = 0;
 
                 listClasses = db.tb_class.Where(s => s.Date.Month == DateTime.Now.Month && s.TutorID == lect).Select(s => s.Duration).DefaultIfEmpty().Sum();
                 rateSalary = (decimal)db.tb_salaryRate.OrderByDescending(x => x.DateCreated).FirstOrDefault().SalaryRate;
+                existingSalary = db.tb_salary.Where(s => s.Date.Value.Month == DateTime.Now.Month && s.TutorID == lect).Count(); // checks if that lecturer has a salary entry for that month.
 
-                if (listClasses == 0)
+                if (listClasses == 0 || existingSalary != 0)
                 {
                     continue;
                 }
@@ -259,5 +262,6 @@ namespace ManagementSystem.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

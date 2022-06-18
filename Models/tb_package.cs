@@ -26,7 +26,7 @@ namespace ManagementSystem.Models
         public int ID { get; set; }
         [DisplayName("Nama Pakej")]
         public string Name { get; set; }
-        [DisplayName("Bilangan Masa per sesi (minit)")]
+        [DisplayName("Tempoh Masa per sesi (minit)")]
         public Nullable<int> Masa { get; set; }
         [DisplayName("Bilangan Sesi Dalam Sebulan")]
         public Nullable<int> Sesi { get; set; }

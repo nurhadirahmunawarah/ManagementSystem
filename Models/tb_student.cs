@@ -27,6 +27,7 @@ namespace ManagementSystem.Models
         [DisplayName("Nama Penuh")]
         public string Name { get; set; }
         [DisplayName("No Kad Pengenalan")]
+        [Range(0, Int64.MaxValue, ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul")]
         public string IC { get; set; }
         [DisplayName("Alamat")]
         public string Address { get; set; }
