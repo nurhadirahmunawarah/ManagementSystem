@@ -59,6 +59,7 @@ namespace ManagementSystem.Controllers
             {
                 db.tb_package.Add(tb_package);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pakej berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
@@ -91,6 +92,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_package).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pakej berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             return View(tb_package);
@@ -119,6 +121,7 @@ namespace ManagementSystem.Controllers
             tb_package tb_package = db.tb_package.Find(id);
             db.tb_package.Remove(tb_package);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod pakej berjaya dipadam.";
             return RedirectToAction("Index");
         }
 

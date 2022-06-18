@@ -98,6 +98,7 @@ namespace ManagementSystem.Controllers
                 tb_salary.Amount = (double?)SalaryAmount;
                 db.tb_salary.Add(tb_salary);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod gaji berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
@@ -144,7 +145,7 @@ namespace ManagementSystem.Controllers
 
             if (listClasses==0)
             {
-                return RedirectToAction("Index");
+                ModelState.AddModelError("", "Tarikh Gaji tidak sepadan dengan Bulan. Sila semak semula butiran yang dimasukkan");
             }
 
             var salaryAmount = (decimal)listClasses * rateSalary / 60;
@@ -157,6 +158,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_salary).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod gaji berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC", tb_salary.TutorID);
@@ -244,6 +246,7 @@ namespace ManagementSystem.Controllers
             tb_salary tb_salary = db.tb_salary.Find(id);
             db.tb_salary.Remove(tb_salary);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod gaji berjaya dipadam.";
             return RedirectToAction("Index");
         }
 

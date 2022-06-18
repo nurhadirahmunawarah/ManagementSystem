@@ -43,7 +43,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.StudentID, "Nama Pelajar", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.StudentID, ViewBag.StudentID as SelectList, "--Pilih Pelajar--", htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.StudentID, ViewBag.StudentID as SelectList, "--Pilih Pelajar--", htmlAttributes: new { @class = "form-control", })
                             @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         @Html.LabelFor(model => model.ratingStudent, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <select id="ratingStudent" name="ratingStudent" class="form-control">
-                                <option value="">-- Nilai Untuk Pelajar --</option>
+                                <option value=""disable selected hidden>-- Nilai Untuk Pelajar --</option>
                                 <option value="5">5</option>
                                 <option value="4">4</option>
                                 <option value="3">3</option>

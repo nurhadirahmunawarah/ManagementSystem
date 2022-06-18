@@ -73,6 +73,7 @@ namespace ManagementSystem.Controllers
                 tb_salaryRate.DateCreated = DateTime.Now;
                 db.tb_salaryRate.Add(tb_salaryRate);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod kadar gaji berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
@@ -115,6 +116,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_salaryRate).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod kadar gaji berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             return View(tb_salaryRate);
@@ -153,6 +155,7 @@ namespace ManagementSystem.Controllers
             tb_salaryRate tb_salaryRate = db.tb_salaryRate.Find(id);
             db.tb_salaryRate.Remove(tb_salaryRate);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod kadar gaji berjaya dipadam.";
             return RedirectToAction("Index");
         }
 

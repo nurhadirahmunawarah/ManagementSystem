@@ -90,11 +90,12 @@ namespace ManagementSystem.Controllers
                 tb_user.Password = HashPassword(unhashedPass);
                 db.tb_user.Add(tb_user);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pengguna berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
-          
+
             return View(tb_user);
         }
 
@@ -136,10 +137,11 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pengguna berjaya disimpan.";
                 return RedirectToAction("Index");
             }
             ViewBag.Status = new SelectList(db.tb_status, "ID", "Description", tb_user.Status);
-            
+
             return View(tb_user);
         }
 
@@ -180,10 +182,11 @@ namespace ManagementSystem.Controllers
             db.tb_salary.RemoveRange(salary);
             db.tb_user.Remove(tb_user);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod pengguna berjaya dipadam.";
 
 
             ////email code
-            
+
 
 
             //// create email message
@@ -201,7 +204,7 @@ namespace ManagementSystem.Controllers
             //    smtp.Send(email);
             //    smtp.Disconnect(true);
             //}
-            
+
             ////end email code
 
             return RedirectToAction("Index");

@@ -74,10 +74,12 @@ namespace ManagementSystem.Controllers
             {
                 db.tb_student.Add(tb_student);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pelajar berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
+
             return View(tb_student);
         }
 
@@ -119,9 +121,11 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_student).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod pelajar berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_student.Package);
+
             return View(tb_student);
         }
 
@@ -163,6 +167,7 @@ namespace ManagementSystem.Controllers
             db.tb_performance.RemoveRange(performances);
             db.tb_student.Remove(tb_student);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod pelajar berjaya dipadam.";
             return RedirectToAction("Index");
         }
 

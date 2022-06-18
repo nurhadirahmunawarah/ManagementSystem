@@ -72,9 +72,10 @@ namespace ManagementSystem.Controllers
             {
                 db.tb_status.Add(tb_status);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod status berjaya disimpan.";
                 return RedirectToAction("Index");
             }
-
+            TempData["AlertMessage"] = "Rekod berjaya disimpan.";
             return View(tb_status);
         }
 
@@ -114,6 +115,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_status).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod status berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             return View(tb_status);
@@ -152,6 +154,7 @@ namespace ManagementSystem.Controllers
             tb_status tb_status = db.tb_status.Find(id);
             db.tb_status.Remove(tb_status);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod status berjaya dipadam.";
             return RedirectToAction("Index");
         }
 

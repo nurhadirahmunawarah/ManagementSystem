@@ -18,6 +18,7 @@ namespace ManagementSystem.Models
     {
         public int ID { get; set; }
         [DisplayName("Ulasan")]
+        [DataType(DataType.MultilineText)]
         public string Remark { get; set; }
         public int StudentID { get; set; }
         [DisplayName("Tarikh Dijana")]

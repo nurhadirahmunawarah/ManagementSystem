@@ -21,7 +21,13 @@
 
             <div class="card-body">
                 <div class="table-responsive">
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
 
+                    }
 
                     @Html.ActionLink("Tambah Kadar Gaji Terkini", "Create", null, new { @class = "btn btn-outline-primary" })
 
@@ -40,7 +46,7 @@
 
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             @foreach (var item in Model)
                             {

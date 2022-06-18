@@ -77,55 +77,58 @@
                     </span>
                 </div>
 
-                <div class="row justify-content-center py-3">
-                    <table class="table table-hover">
-                        <thead>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="">Tarikh Kelas</th>
+                            <!-- <th>#</th>
+                            <th class="text-center">Price</th> -->
+                            <th class="">Catatan</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.tb_performance)
+                        {
                             <tr>
-                                <th class="text-center col-md-2">Tarikh Kelas</th>
-                                <!-- <th>#</th>
-                                <th class="text-center">Price</th> -->
-                                <th class="text-center col-md-8">Catatan</th>
+                                <td class=""><em>@item.DateCreated.GetValueOrDefault().ToString("dd/MM/yyyy")</em></td>
+                                <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
+                                <td class="col-md-1 text-center">$13</td> -->
+                                <td class="">@item.Remark</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.tb_performance)
-                            {
-                                <tr>
-                                    <td class="col-md-2"><em>@item.DateCreated.GetValueOrDefault().ToString("dd/MM/yyyy")</em></td>
-                                    <!-- <td class="col-md-1" style="text-align: center"> 2 </td>
-                                    <td class="col-md-1 text-center">$13</td> -->
-                                    <td class="col-md-8">@item.Remark</td>
-                                </tr>
-                            }
+                        }
 
 
-                            <!-- <tr>
-                                <td class="text-right">
-                                <p>
-                                    <strong>Jumlah: </strong>
-                                </p>
-                                <p>
-                                    <strong>Tax: </strong>
-                                </p></td>
-                                <td class="text-center">
-                                <p>
-                                    <strong>$6.94</strong>
-                                </p>
-                                <p>
-                                    <strong>$6.94</strong>
-                                </p></td>
-                            </tr> -->
-                            <tr>
-                                <!-- <td>   </td>
-                                <td>   </td> -->
-                                <td class="col-md-2"><h6><strong>Jumlah Kelas: </strong></h6></td>
-                                <td class="col-md-8">@Model.tb_performance.Count()</td>
+                        <!-- <tr>
+                            <td class="text-right">
+                            <p>
+                                <strong>Jumlah: </strong>
+                            </p>
+                            <p>
+                                <strong>Tax: </strong>
+                            </p></td>
+                            <td class="text-center">
+                            <p>
+                                <strong>$6.94</strong>
+                            </p>
+                            <p>
+                                <strong>$6.94</strong>
+                            </p></td>
+                        </tr> -->
+                        <tr>
+                            <!-- <td>   </td>
+                            <td>   </td> -->
+                            <td class=""><h6><strong>Jumlah Kelas: </strong></h6></td>
+                            <td class="">@Model.tb_performance.Count()</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                        </tr>
+                    </tbody>
+                </table>
 
-                </div>
+
+
+
                 <div class="row justify-content-center py-3">
                     <footer class="text-center text-muted">
                         Laporan ini merupakan kelas-kelas terakhir yang dihadiri pelajar
@@ -138,5 +141,3 @@
 
 
 </body>
-
-

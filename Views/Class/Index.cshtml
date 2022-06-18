@@ -22,12 +22,15 @@
             <div class="card-body">
                 <div class="table-responsive">
 
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
 
-                    
+                    }
 
-
-                    <br>
-                    @Html.ActionLink("Tambah Kelas", "Create", new {ID=Session["ID"]}, new { @class = "btn btn-outline-primary" })
+                    @Html.ActionLink("Tambah Kelas", "Create", new { ID = Session["ID"] }, new { @class = "btn btn-outline-primary" })
                     <hr>
                     <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                         <thead>
@@ -87,13 +90,27 @@
                                         @(item.CheckIn.HasValue ? "Selesai" : "Belum Selesai")
                                     </td>
                                     <td align="center">
-                                        <button id="myBtn" class="myBtn btn btn-primary" onclick="checkIn(@item.ID)">
-                                            Mula
-                                            @*@Html.ActionLink("Tindakan", "...", new { id = item.ID }, new { style = "color: white" })*@
-                                        </button>
-                                        <button id="myBtn" class="myBtn btn btn-danger" onclick="checkOut(@item.ID)">
-                                            Tamat
-                                        </button>
+
+                                        @if (item.CheckIn.HasValue && item.CheckOut.HasValue)
+                                        {
+                                            <button id="myBtn" class="myBtn btn btn-primary" onclick="checkIn(@item.ID)" disabled>
+                                                Mula
+                                                @*@Html.ActionLink("Tindakan", "...", new { id = item.ID }, new { style = "color: white" })*@
+                                            </button>
+                                            <button id="myBtn" class="myBtn btn btn-danger" onclick="checkOut(@item.ID)" disabled>
+                                                Tamat
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button id="myBtn" class="myBtn btn btn-primary" onclick="checkIn(@item.ID)">
+                                                Mula
+                                                @*@Html.ActionLink("Tindakan", "...", new { id = item.ID }, new { style = "color: white" })*@
+                                            </button>
+                                            <button id="myBtn" class="myBtn btn btn-danger" onclick="checkOut(@item.ID)">
+                                                Tamat
+                                            </button>
+                                        }
 
 
                                     </td>

@@ -23,7 +23,13 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <br>
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
+
+                    }
 
                     @Html.ActionLink("Tambah Pakej", "Create", null, new { @class = "btn btn-outline-primary" })
 
@@ -75,9 +81,9 @@
                                     <td>
                                         @foreach (var item1 in @ViewBag.test)
                                         {
-                                            if(item.ID== item1.Package1)
+                                            if (item.ID == item1.Package1)
                                             {
-                                            @item1.StudentCount;
+                                                @item1.StudentCount;
                                             }
 
 

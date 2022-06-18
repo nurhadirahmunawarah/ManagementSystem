@@ -11,10 +11,12 @@ namespace ManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tb_class
     {
         public int ID { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Date { get; set; }
         public int Duration { get; set; }
         public int Package { get; set; }
