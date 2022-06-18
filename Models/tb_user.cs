@@ -25,7 +25,7 @@ namespace ManagementSystem.Models
     
         public int ID { get; set; }
         [DisplayName("Nombor Kad Pengenalan")]
-        [Range(0, int.MaxValue, ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul")]
+        [Range(0, Int64.MaxValue, ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul")]
         public string IC { get; set; }
         [DisplayName("Nama Penuh")]
         public string Name { get; set; }

@@ -351,5 +351,17 @@ namespace ManagementSystem.Controllers
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name", tb_class.StudentID);
             return View(tb_class);
         }
+        public ActionResult ViewAllClass()
+        {
+            if (Session["Role"] == null)
+            {
+                return RedirectToAction("Index", "MainPage");
+            }
+
+
+            var Sclass = db.tb_class.Include(c => c.tb_student);
+
+            return View(Sclass);
+        }
     }
 }
