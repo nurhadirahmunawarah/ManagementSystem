@@ -48,13 +48,13 @@
                 </dl>
             </div>
             <p>
-                <button class="btn btn-warning ">
-                    @Html.ActionLink("Kemaskini", "Edit", new { id = Model.ID }, new { style = "color: white" })
-                </button>
+                
+                    @Html.ActionLink("Kemaskini", "Edit",null, new { id = Model.ID }, new { @class = "btn btn-warning" })
+               
 
-                <button class="btn btn-outline-primary">
-                    @Html.ActionLink("Kembali", "Index", new { style = "color: white" })
-                </button>
+               
+                    @Html.ActionLink("Kembali", "Index",null, new { @class = "btn btn-outline-primary" })
+               
 
             </p>
         </div>

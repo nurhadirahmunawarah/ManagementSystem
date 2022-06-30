@@ -58,8 +58,8 @@
                         <div class="col-lg-6">
                            
                             <div class="p-4">
-                                <button class="btn btn-outline-primary ">@Html.ActionLink("Kembali","Index", "MainPage") </button>
-       
+
+
 
                                 <div class="text-center">
                                     <br>
@@ -107,15 +107,17 @@
                                             <td>
                                             </td>
                                             <td>
-                                                <input type="submit" class="btn btn-primary" name="name" value="Log Masuk" />
+                                                <input type="submit" class="btn btn-success" name="name" value="Log Masuk" />
                                                 <input type="reset" name="name" class="btn btn-warning" value="Reset" />
                                                 <br />
                                                 <br />
+                                               @Html.ActionLink("Kembali", "Index", "MainPage",null, new { @class = "btn btn-outline-primary" })
                                                 @Html.ActionLink("Lupa Kata Laluan", "ForgotPassword", "Login", new { @class = "btn btn-outline-info" })
                                             </td>
                                         </tr>
                                     </table>
                                 }
+                               
 
                             </div>
 

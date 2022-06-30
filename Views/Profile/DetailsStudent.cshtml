@@ -277,13 +277,13 @@
                                     </dl>
                                 </div>
                                 <p>
-                                    <button class="btn btn-warning ">
-                                        @Html.ActionLink("Kemaskini", "EditStudent", new { id = Model.ID }, new { style = "color: white" })
-                                    </button>
+                                    
+                                        @Html.ActionLink("Kemaskini", "EditStudent", null, new { id = Model.ID }, new { @class = "btn btn-outline-warning" })
+                                    
 
-                                    <button class="btn btn-outline-primary">
-                                        @Html.ActionLink("Kembali", "Index", "Home")
-                                    </button>
+                                    
+                                        @Html.ActionLink("Kembali", "Index", "Home",null, new { @class = "btn btn-outline-primary" })
+                                    
 
                                 </p>
                             </div>
