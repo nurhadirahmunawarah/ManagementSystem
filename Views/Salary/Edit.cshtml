@@ -24,14 +24,14 @@
                             <h6 text-align="center" class="mr-auto align-self-center">
                                 Sila isi ruang bagi maklumat yang ingin dikemaskini
                             </h6>
-                            <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Lampiran", "ViewAppendix", null, new { tid = ViewContext.RouteData.Values["id"], month = Model.month }, new { @target = "_blank" })</button>
+                           @Html.ActionLink("Lihat Lampiran", "ViewAppendix", new { tid =Model.tb_user.ID , month = Model.month }, new { @target = "_blank", @class = "btn btn-outline-info" })
                             @if (Model.Status == "Dalam Proses")
                             {
                                 <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end" data-toggle="tooltip" data-placement="top" title="Sila sahkan gaji terlebih dahulu" disabled>Lihat Invois</button>
                             }
                             else
                             {
-                                <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end">@Html.ActionLink("Lihat Invois", "ViewInvoice", null, new { id = ViewContext.RouteData.Values["id"] }, new { @target = "_blank" })</button>
+                                @Html.ActionLink("Lihat Invois", "ViewInvoice", new { id = ViewContext.RouteData.Values["id"] }, new { @target = "_blank", @class = "btn btn-outline-info" })
                             }
                         </div>
                         @using (Html.BeginForm())

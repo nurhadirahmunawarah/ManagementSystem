@@ -25,7 +25,8 @@ namespace ManagementSystem.Models
     
         public int ID { get; set; }
         [DisplayName("Nombor Kad Pengenalan")]
-        [Range(0, Int64.MaxValue, ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul")]
+        [RegularExpression(@"^[0-9]{12}$", ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul dan tanpa '-'")]
+        [Range(0, Int64.MaxValue, ErrorMessage = "Sila masukkan nombor kad pengenalan yang betul dan tanpa '-'")]
         public string IC { get; set; }
         [DisplayName("Nama Penuh")]
         public string Name { get; set; }
@@ -34,6 +35,7 @@ namespace ManagementSystem.Models
         [DisplayName("Kata Laluan")]
         public string Password { get; set; }
         [DisplayName("Emel")]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "Emel ini tidak sah")]
         public string Email { get; set; }
         [DisplayName("Nombor Telefon")]
         [Range(0, int.MaxValue, ErrorMessage = "Sila masukkan nombor telefon yang betul")]

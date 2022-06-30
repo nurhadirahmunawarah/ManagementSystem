@@ -2350,6 +2350,7 @@
     <Content Include="Views\Salary\ViewAppendix.cshtml" />
     <Content Include="Views\Home\UserAdmin.cshtml" />
     <Content Include="Views\Class\ViewAllClass.cshtml" />
+    <Content Include="Views\User\CreateStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
