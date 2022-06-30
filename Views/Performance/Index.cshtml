@@ -23,10 +23,16 @@
                 <div class="table-responsive">
 
 
-                
 
 
-                    <br>
+
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
+
+                    }
                     <button class="btn btn-outline-primary ">
                         @Html.ActionLink("Tambah Prestasi Pelajar", "Create", new { style = "color: white" })
                     </button>
@@ -85,24 +91,24 @@
                     </table>
 
                     <script>
-                        //function myFunction() {
-                        //    var input, filter, table, tr, td, i, txtValue;
-                        //    input = document.getElementById("myInput");
-                        //    filter = input.value.toUpperCase();
-                        //    table = document.getElementById("myTable");
-                        //    tr = table.getElementsByTagName("tr");
-                        //    for (i = 0; i < tr.length; i++) {
-                        //        td = tr[i].getElementsByTagName("td")[0];
-                        //        if (td) {
-                        //            txtValue = td.textContent || td.innerText;
-                        //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        //                tr[i].style.display = "";
-                        //            } else {
-                        //                tr[i].style.display = "none";
-                        //            }
-                        //        }
-                        //    }
-                        //}
+                                            //function myFunction() {
+                                            //    var input, filter, table, tr, td, i, txtValue;
+                                            //    input = document.getElementById("myInput");
+                                            //    filter = input.value.toUpperCase();
+                                            //    table = document.getElementById("myTable");
+                                            //    tr = table.getElementsByTagName("tr");
+                                            //    for (i = 0; i < tr.length; i++) {
+                                            //        td = tr[i].getElementsByTagName("td")[0];
+                                            //        if (td) {
+                                            //            txtValue = td.textContent || td.innerText;
+                                            //            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                            //                tr[i].style.display = "";
+                                            //            } else {
+                                            //                tr[i].style.display = "none";
+                                            //            }
+                                            //        }
+                                            //    }
+                                            //}
                     </script>
                 </div>
             </div>

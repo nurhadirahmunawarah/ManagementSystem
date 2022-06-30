@@ -22,15 +22,28 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <br>
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
 
+                    }
                     @Html.ActionLink("Tambah Pengguna", "Create", null, new { @class = "btn btn-outline-primary" })
 
                     <hr>
+                    @if (TempData["AlertMessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["AlertMessage"]
+                        </div>
+
+                    }
+
                     <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width:13%" class="align-middle"> 
+                                <th style="width:13%" class="align-middle">
                                     @Html.DisplayNameFor(model => model.Name)
                                 </th>
                                 <th style="width:8%" class="align-middle">
@@ -91,15 +104,15 @@
                                         @Html.DisplayFor(modelItem => item.tb_status.Description)
                                     </td>
                                     <td>
-                                    
-
-                                            @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info my-1" })
 
 
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning my-1" })
+                                        @Html.ActionLink("Lihat Butiran", "Details", null, new { id = item.ID }, new { @class = "btn btn-info my-1" })
 
-                                            @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger my-1" })
-                                     
+
+                                        @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { @class = "btn btn-warning my-1" })
+
+                                        @Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { @class = "btn btn-danger my-1" })
+
 
 
                                     </td>

@@ -79,6 +79,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_user).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Profil pengguna berjaya dikemaskini.";
                 return RedirectToAction("Details", "Profile", new { id = Session["ID"] });
             }
            
@@ -138,6 +139,7 @@ namespace ManagementSystem.Controllers
             {
                 db.Entry(tb_student).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Profil pengguna berjaya dikemaskini.";
                 return RedirectToAction("DetailsStudent", "Profile", new { id = Session["ID"] });
              
             }

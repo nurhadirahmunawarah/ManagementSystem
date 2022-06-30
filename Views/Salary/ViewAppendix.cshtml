@@ -4,6 +4,7 @@
     Layout = null;
     ViewBag.Title = "Lampiran Gaji Bulanan";
     double jumlah_durasi = 0;
+    double jumlah_durasi_sebenar = 0;
     var i = 0;
 }
 
@@ -124,6 +125,7 @@
                                 <th scope="col">Waktu Mula</th>
                                 <th scope="col">Waktu Tamat</th>
                                 <th scope="col">Status Pengesahan</th>
+                                <th scope="col">Durasi Rujukan (minit)</th>
                                 <th scope="col">Durasi (minit)</th>
                             </tr>
                         </thead>
@@ -181,13 +183,19 @@
                                             jumlah_durasi = Math.Round(jumlah_durasi, 0);
                                         }
                                     </td>
+                                    <td class="text-right">
+                                        @{ 
+                                            jumlah_durasi_sebenar += item.Duration;
+                                        }
+                                        @item.Duration
+                                    </td>
                                 </tr>
                             }
 
                         </tbody>
                         <tfoot>
-                        <th colspan="6" class="text-right px-3">Jumlah</th>
-                        <th class="text-right">
+                        <th colspan="6" class="text-right px-3">Jumlah (minit)</th>
+                        <td class="text-right">
                             @if (jumlah_durasi <= 0)
                             {
                                 <span class="text-danger">@jumlah_durasi</span>
@@ -196,10 +204,13 @@
                             {
                                 @jumlah_durasi
                             }
+                        </td>
+                        <th class="text-right">
+                            @jumlah_durasi_sebenar
                         </th>
                         </tfoot>
                     </table>
-                    @{var gaji = (decimal)(jumlah_durasi * (double)ViewBag.SalaryRate / 60);
+                    @{var gaji = (decimal)(jumlah_durasi_sebenar * (double)ViewBag.SalaryRate / 60);
                     }
 
 
@@ -210,7 +221,7 @@
                             <span>
                                 Kadar Gaji Semasa: <strong>RM @Math.Round(ViewBag.SalaryRate, 2)</strong> <br />
                                 Gaji = Jumlah Durasi (minit) x Kadar Gaji Semasa (RM) / 60
-                                = @jumlah_durasi x @ViewBag.SalaryRate.ToString("0.00") / 60 = <strong>RM @gaji.ToString("0.00")</strong>
+                                = @jumlah_durasi_sebenar x @ViewBag.SalaryRate.ToString("0.00") / 60 = <strong>RM @gaji.ToString("0.00")</strong>
                             </span>
                         </p>
                     } else
@@ -221,7 +232,7 @@
                 <p>
                     <strong>Maklumat</strong>
                     <br />1. Status Pengesahan adalah berdasarkan pengesahan daripada pelajar setelah tamat setiap kelas.
-                    <br />2. Bagi Durasi - <span class="text-danger">Nilai</span>: Durasi kelas tidak dicatat,  <span class="text-warning">Nilai</span>: Durasi kelas tidak melebihi 30 minit.
+                    <br />2. Durasi Rujukan = (Waktu Tamat - Waktu Mula) <br /><span class="text-danger">Nilai</span>: Durasi kelas tidak dicatat,  <span class="text-warning">Nilai</span>: Durasi kelas tidak melebihi 30 minit.
                 </p>
                 </div>
             </div>

@@ -16,6 +16,13 @@
 
         <div class="card-body">
             <div class="table-responsive">
+                @if (TempData["AlertMessage"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["AlertMessage"]
+                    </div>
+
+                }
                 <h6 text-align="center">Butiran Maklumat</h6>
 
                 <hr />
@@ -36,7 +43,7 @@
                         @Html.DisplayFor(model => model.Name)
                     </dd>
 
-                  
+
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Email)

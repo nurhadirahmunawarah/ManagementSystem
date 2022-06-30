@@ -20,6 +20,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
+                    <h6 text-align="center">Sila isi maklumat yang ingin dikemaskini</h6>
                     <div class=" col-lg-12">
                         @using (Html.BeginForm())
                         {
@@ -34,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-md-7 col-md-1">
 
-                                        <div class="form-group">
+                                        <div class="form-group row">
                                             @Html.LabelFor(model => model.IC, htmlAttributes: new { @class = "control-label col-md-7" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.IC, new { htmlAttributes = new { @class = "form-control" } })
@@ -43,10 +44,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-5 col-md-1">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.RefNo, htmlAttributes: new { @class = "control-label col-md-4" })
-                                            <div class="col-md-10">
+                                    <div class="col-md-3 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.RefNo, htmlAttributes: new { @class = "control-label col-md-5" })
+                                            <div class="col-md-12">
                                                 @Html.EditorFor(model => model.RefNo, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.RefNo, "", new { @class = "text-danger" })
                                             </div>
@@ -54,16 +55,20 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-12 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-5" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="form-group row">
+                                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-5" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
@@ -72,8 +77,8 @@
 
                                 <div class="row">
                                     <div class="col-md-7 col-md-1">
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-5" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date", @required = "required" } })
                                                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
@@ -81,10 +86,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-5 col-md-1">
-                                        <div class="form-group">
+                                    <div class="col-md-3 col-md-1">
+                                        <div class="form-group row">
                                             @Html.LabelFor(model => model.BatchID, htmlAttributes: new { @class = "control-label col-md-6" })
-                                            <div class="col-md-10">
+                                            <div class="col-md-12">
                                                 @Html.EditorFor(model => model.BatchID, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.BatchID, "", new { @class = "text-danger" })
                                             </div>
@@ -92,32 +97,37 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Package, "Package", htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.DropDownList("Package", null, htmlAttributes: new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-md-5 col-md-1">
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.Package, "Package", htmlAttributes: new { @class = "control-label col-md-5" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("Package", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Package, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
 
 
 
-
-
-                                <div class="text-center">
-                                    <div class="form-group">
-                                        <div class="col-md-offset-2 col-md-10">
-                                            <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
+                                <br />
+                                <div class="row">
+                                    <div class="text-center">
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-12">
+                                                <input type="submit" value="Simpan" class="btn btn-success" text-align="center" />
+                                                @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         }
 
-                        @Html.ActionLink("Kembali", "Index", null, new { @class = "btn btn-outline-primary" })
                     </div>
-                    </div>
+                </div>
                 </div>
         </div>
     </div>

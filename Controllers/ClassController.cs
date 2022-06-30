@@ -85,6 +85,13 @@ namespace ManagementSystem.Controllers
                 return RedirectToAction("Index", "MainPage");
             }
 
+            var studentBarred = db.tb_class.Where(t=>t.verifyStatus == 2 && t.Date.Month == DateTime.Now.Month).Count();
+
+            if(studentBarred > 0)
+            {
+                ModelState.AddModelError("", "Pelajar masih ada kelas yang tidak disahkan.");
+            }
+
             if (ModelState.IsValid)
             {
 
@@ -96,6 +103,7 @@ namespace ManagementSystem.Controllers
                 tb_class.TutorID = ID;
                 db.tb_class.Add(tb_class);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod kelas berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
@@ -148,6 +156,7 @@ namespace ManagementSystem.Controllers
                 db.Entry(tb_class).Property(c => c.CheckOut).IsModified = false;
                 db.Entry(tb_class).Property(c => c.RatingTutor).IsModified = false;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod kelas berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_class.Package);
@@ -189,6 +198,7 @@ namespace ManagementSystem.Controllers
             tb_class tb_class = db.tb_class.Find(id);
             db.tb_class.Remove(tb_class);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod kelas berjaya dipadam.";
             return RedirectToAction("Index");
         }
 
@@ -216,6 +226,7 @@ namespace ManagementSystem.Controllers
                 db.tb_class.Attach(c);
                 db.Entry(c).Property(x => x.CheckIn).IsModified = true;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Kelas telah bermula.";
             }
 
             return Json(new { checkIn = DateTime.Now.ToString("hh:mm tt") });
@@ -245,6 +256,7 @@ namespace ManagementSystem.Controllers
                 db.tb_class.Attach(c);
                 db.Entry(c).Property(x => x.CheckOut).IsModified = true;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Kelas telah berakhir.";
             }
 
             return Json(new { checkOut = DateTime.Now.ToString("hh:mm tt") });
@@ -304,6 +316,7 @@ namespace ManagementSystem.Controllers
                 db.tb_class.Attach(c);
                 db.Entry(c).Property(x => x.verifyStatus).IsModified = true;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Kelas berjaya disahkan.";
             }
 
             return Json(new { verify = 1 });
@@ -323,6 +336,7 @@ namespace ManagementSystem.Controllers
                 db.Entry(tb_class).Property(p => p.StartTime).IsModified = false;
 
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Penilaian tutor berjaya direkod.";
                 return RedirectToAction("ViewClass", "Student", new { id = tb_class.StudentID });
             }
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_class.Package);
@@ -349,6 +363,7 @@ namespace ManagementSystem.Controllers
             ViewBag.Package = new SelectList(db.tb_package, "ID", "Name", tb_class.Package);
             ViewBag.TutorID = new SelectList(db.tb_user, "ID", "IC", tb_class.TutorID);
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name", tb_class.StudentID);
+            TempData["AlertMessage"] = "Penilaian tutor berjaya direkod.";
             return View(tb_class);
         }
         public ActionResult ViewAllClass()

@@ -74,6 +74,7 @@ namespace ManagementSystem.Controllers
             {
                 db.tb_performance.Add(tb_performance);
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod prestasi pelajar berjaya disimpan.";
                 return RedirectToAction("Index");
             }
 
@@ -119,6 +120,7 @@ namespace ManagementSystem.Controllers
                 db.Entry(tb_performance).State = EntityState.Modified;
                 db.Entry(tb_performance).Property(p => p.DateCreated).IsModified = false;
                 db.SaveChanges();
+                TempData["AlertMessage"] = "Rekod prestasi pelajar berjaya dikemaskini.";
                 return RedirectToAction("Index");
             }
             ViewBag.StudentID = new SelectList(db.tb_student, "ID", "Name", tb_performance.StudentID);
@@ -158,6 +160,7 @@ namespace ManagementSystem.Controllers
             tb_performance tb_performance = db.tb_performance.Find(id);
             db.tb_performance.Remove(tb_performance);
             db.SaveChanges();
+            TempData["AlertMessage"] = "Rekod prestasi pelajar berjaya dipadam.";
             return RedirectToAction("Index");
         }
 
