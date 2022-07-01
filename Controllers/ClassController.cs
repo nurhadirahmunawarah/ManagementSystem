@@ -215,16 +215,27 @@ namespace ManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var c = new tb_class()
-            {
-                ID = (int)id,
-                CheckIn = DateTime.Now
-            };
+            // <--- Old method -->>
+            //var c = new tb_class()
+            //{
+            //    ID = (int)id,
+            //    CheckIn = DateTime.Now
+            //};
 
-            using (var db = new ManagementSystemEntities())
+            //using (var db = new ManagementSystemEntities())
+            //{
+            //    db.tb_class.Attach(c);
+            //    db.Entry(c).Property(x => x.CheckIn).IsModified = true;
+            //    db.SaveChanges();
+            //    TempData["AlertMessage"] = "Kelas telah bermula.";
+            //}
+            // <-- -->
+
+            tb_class tb_Class = db.tb_class.Find(id);
+
+            if(tb_Class != null)
             {
-                db.tb_class.Attach(c);
-                db.Entry(c).Property(x => x.CheckIn).IsModified = true;
+                tb_Class.CheckIn = DateTime.Now;
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Kelas telah bermula.";
             }
@@ -245,16 +256,25 @@ namespace ManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var c = new tb_class()
-            {
-                ID = (int)id,
-                CheckOut = DateTime.Now
-            };
+            //var c = new tb_class()
+            //{
+            //    ID = (int)id,
+            //    CheckOut = DateTime.Now
+            //};
 
-            using (var db = new ManagementSystemEntities())
+            //using (var db = new ManagementSystemEntities())
+            //{
+            //    db.tb_class.Attach(c);
+            //    db.Entry(c).Property(x => x.CheckOut).IsModified = true;
+            //    db.SaveChanges();
+            //    TempData["AlertMessage"] = "Kelas telah berakhir.";
+            //}
+
+            tb_class tb_Class = db.tb_class.Find(id);
+
+            if (tb_Class != null)
             {
-                db.tb_class.Attach(c);
-                db.Entry(c).Property(x => x.CheckOut).IsModified = true;
+                tb_Class.CheckOut = DateTime.Now;
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Kelas telah berakhir.";
             }
