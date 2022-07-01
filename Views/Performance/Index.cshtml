@@ -33,9 +33,9 @@
                         </div>
 
                     }
-                    <button class="btn btn-outline-primary ">
-                        @Html.ActionLink("Tambah Prestasi Pelajar", "Create", new { style = "color: white" })
-                    </button>
+                    
+                        @Html.ActionLink("Tambah Prestasi Pelajar", "Create",null,  new { @class = "btn btn-outline-primary" })
+                  
                     <hr>
                     <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                         <thead>
@@ -75,15 +75,15 @@
                                     </td>
 
                                     <td>
-                                        <button class="btn btn-info ">
-                                            @Html.ActionLink("Lihat Butiran", "Details", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
-                                        <button class="btn btn-warning ">
-                                            @Html.ActionLink("Kemaskini", "Edit", new { id = item.ID }, new { style = "color: white" })
-                                        </button>
+                                        
+                                            @Html.ActionLink("Lihat Butiran", "Details",null, new { id = item.ID }, new { @class = "btn btn-info" })
+                                        
+                                        
+                                            @Html.ActionLink("Kemaskini", "Edit",null, new { id = item.ID }, new { @class = "btn btn-warning" })
+                                        
 
 
-                                        <button class="btn btn-danger ">@Html.ActionLink("Padam", "Delete", new { id = item.ID }, new { style = "color: white" }) </button>
+                                        @Html.ActionLink("Padam", "Delete",null, new { id = item.ID }, new { @class = "btn btn-danger" }) 
                                     </td>
                                 </tr>
                             }
