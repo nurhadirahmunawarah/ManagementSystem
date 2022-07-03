@@ -12,7 +12,7 @@
                 type: 'line'
             },
             title: {
-                text: 'Bilangan Kemasukan Pelajar Mengikut Hari Dalam Bulan Terkini '
+                text: 'Bilangan Kemasukan Pelajar Terkini '
             },
             subtitle: {
                 text: ''

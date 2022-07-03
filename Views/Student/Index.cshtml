@@ -98,7 +98,7 @@
                                         @Html.ActionLink("Kemaskini", "Edit", null, new { id = item.ID }, new { @class = "btn btn-warning" })
 
                                         @Html.ActionLink("Padam", "Delete", null, new { id = item.ID }, new { @class = "btn btn-danger" })
-                                        <button class="btn btn-outline-success ">@Html.ActionLink("Lihat Laporan", "ViewReport", new { id = item.ID }, new { @target = "_blank" }) </button>
+                                       @Html.ActionLink("Lihat Laporan", "ViewReport",null, new { id = item.ID }, new { @target = "_blank", @class = "btn btn-outline-success" }) 
                                     </td>
 
                                 </tr>
