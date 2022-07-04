@@ -339,7 +339,7 @@ namespace ManagementSystem.Controllers
                 TempData["AlertMessage"] = "Kelas berjaya disahkan.";
             }
 
-            return Json(new { verify = 1 });
+            return Json(new { verifyStatus = 1 });
         }
 
         [HttpPost]

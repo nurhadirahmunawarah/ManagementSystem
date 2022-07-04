@@ -19,9 +19,9 @@
                         Butiran Maklumat
                     </h6>
                     @Html.ActionLink("Lihat Lampiran", "ViewAppendix", null, new { tid = Model.tb_user.ID, month = Model.month }, new { @target = "_blank", @class = "btn btn-outline-info" })
-                    @if (Model.Status == "Dalam Proses")
+                    @if (Model.Status == "Tidak Selesai")
                     {
-                        <button class="btn btn-outline-primary text-right btn-sm mx-1 align-self-end" data-toggle="tooltip" data-placement="top" title="Sila sahkan gaji terlebih dahulu" disabled>Lihat Invois</button>
+                        
                     }
                     else
                     {
