@@ -312,7 +312,7 @@ namespace ManagementSystem.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost, ActionName("verify")]
+        [HttpPost, ActionName("Verify")]
         public ActionResult Verify(int? id)
         {
             if (Session["Role"] == null)
@@ -325,21 +325,29 @@ namespace ManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var c = new tb_class()
+            tb_class tb_class = db.tb_class.Find(id);
+            if (tb_class != null)
             {
-                ID = (int)id,
-                verifyStatus = 1
-            };
-
-            using (var db = new ManagementSystemEntities())
-            {
-                db.tb_class.Attach(c);
-                db.Entry(c).Property(x => x.verifyStatus).IsModified = true;
+                tb_class.verifyStatus = 1;
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Kelas berjaya disahkan.";
             }
 
-            return Json(new { verifyStatus = 1 });
+            //var c = new tb_class()
+            //{
+            //    ID = (int)id,
+            //    verifyStatus = 1
+            //};
+
+            //using (var db = new ManagementSystemEntities())
+            //{
+            //    db.tb_class.Attach(c);
+            //    db.Entry(c).Property(x => x.verifyStatus).IsModified = true;
+            //    db.SaveChanges();
+            //    TempData["AlertMessage"] = "Kelas berjaya disahkan.";
+            //}
+
+            return Json(new { verify= 1 });
         }
 
         [HttpPost]

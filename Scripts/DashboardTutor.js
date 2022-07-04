@@ -15,7 +15,7 @@ $(document).ready(function () {
                 text: 'Kadar Penilaian daripada Pelajar'
             },
             tooltip: {
-                pointFormat: ' {series.name}: <b> {point.y}</b>'
+                pointFormat: '  <b> {point.y}</b>'
             },
             accessibility: {
                 point: {

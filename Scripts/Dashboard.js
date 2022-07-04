@@ -15,7 +15,7 @@ $(document).ready(function () {
                     text: 'Bilangan Pengguna Sistem ini'
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.y}</b>'
+                    pointFormat: ' <b>{point.y}</b>'
                 },
                 accessibility: {
                     point: {

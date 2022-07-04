@@ -34,7 +34,7 @@
                 }
             },
             series: [{
-                name: 'Pelajar',
+                name: 'Bilangan Pelajar',
                 data: Qts
             }]
         });
